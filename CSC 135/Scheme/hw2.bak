@@ -1,0 +1,9 @@
+(define (isEven x)
+  (if (= (mod x 2) 0) #t #f))
+
+(define (allEven n)
+  (if (= (mod n 10) n) isEven(n))
+  (if (= (mod n 2) 0) allEven((/ n 10)))
+  (if (= (not((mod n 2) 0))) #f)
+  #t
+  )

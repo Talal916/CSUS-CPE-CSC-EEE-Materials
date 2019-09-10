@@ -1,0 +1,2 @@
+cappedSum(C,[],0).
+cappedSum(C,[H|T],S):-(H>C -> is sum1 + C; S is Sum1 + H), cappedSum(C,T,Sum1).
