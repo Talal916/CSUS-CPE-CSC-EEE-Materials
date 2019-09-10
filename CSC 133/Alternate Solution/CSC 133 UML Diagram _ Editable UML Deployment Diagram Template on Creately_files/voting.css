@@ -1,0 +1,197 @@
+/* Plain HTML Version */
+form.createlyvoting-widget {
+  clear: both;
+  display: block;
+}
+form.createlyvoting-widget select,form.createlyvoting-widget input {
+  margin: 0;
+}
+
+/* Combo Static and Rate Widget */
+.createlyvoting-combo-stars .createlyvoting-static-form-item {
+  float: left; /* RTL */
+  margin-right: 40px; /* RTL */
+}
+.createlyvoting-combo-stars .createlyvoting-form-item {
+  float: left; /* RTL */
+}
+
+/* Fivestar form items */
+.createlyvoting-static-form-item .form-item,
+.createlyvoting-form-item .form-item {
+  margin: 0;
+}
+
+/* Static View-only Star Version */
+
+div.createlyvoting-widget-static {
+  display: block;
+  clear: left;
+  padding-right: 60px;
+  
+  margin-bottom:20px;
+}
+
+div.createlyvoting-widget-static br {
+  clear: left; /* RTL */
+}
+
+div.createlyvoting-widget-static .star, div.createlyvoting-widget-static .star-s {
+  float: left; /* RTL */
+  width: 12px;
+  height: 15px;
+  overflow: hidden;
+  text-indent: -999em;
+  background: url(../images/star/star.gif) no-repeat 0 0; /* RTL */
+  margin-left: 0;
+   margin-right: 0;
+}
+
+div.createlyvoting-widget-static .star span.on, div.createlyvoting-widget-static .star-s span.on {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url(../images/star/star.gif) no-repeat 0 -31px; /* RTL */
+  margin-left: 0;
+}
+
+div.createlyvoting-widget-static .star span.off, div.createlyvoting-widget-static .star-s span.off {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url(../images/star/star.gif) no-repeat 0 0; /* RTL */
+  margin-left: 0;
+}
+
+div.createlyvoting-widget-static .over-on, div.createlyvoting-widget-static .over-on span.off {
+  background: url(../images/star/star.gif) no-repeat 0 -30px; /* RTL */
+}
+
+div.createlyvoting-widget-static .over-off, div.createlyvoting-widget-static .over-off span.on {
+  background: url(../images/star/star.gif) no-repeat 0 0; /* RTL */
+}
+
+/***** Voting star for diagram-example page *****/
+
+div.createlyvoting-example .star1 {
+  float: left; /* RTL */
+  width: 17px;
+  height: 15px;
+  overflow: hidden;
+  text-indent: -999em;
+  background: url(../images/star/star1.gif) no-repeat 0 0; /* RTL */
+  margin-left: 0;
+  margin-right: 0;
+}
+
+div.createlyvoting-example .star1  span.on {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url(../images/star/star1.gif) no-repeat 0 -32px; /* RTL */
+  margin-left: 0;
+}
+
+div.createlyvoting-example .star1  span.off {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url(../images/star/star1.gif) no-repeat 0 0; /* RTL */
+  margin-left: 0;
+}
+
+div.createlyvoting-example .over-on, div.createlyvoting-example .over-on span.off {
+  background: url(../images/star/star1.gif) no-repeat 0 -32px; /* RTL */
+}
+
+div.createlyvoting-example .over-off, div.createlyvoting-example .over-off span.on {
+  background: url(../images/star/star1.gif) no-repeat 0 0; /* RTL */
+}
+
+/***** Voting star for popular thumbnail  *****/
+
+div.popular .star1 {
+  float: left; /* RTL */
+  width: 17px;
+  height: 15px;
+  overflow: hidden;
+  text-indent: -999em;
+  background: url(../images/star/star2.gif) no-repeat 0 0; /* RTL */
+  margin-left: 0;
+  margin-right: 0;
+}
+
+div.popular .star1  span.on {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url(../images/star/star2.gif) no-repeat 0 -30px; /* RTL */
+  margin-left: 0;
+}
+
+div.popular .star1  span.off {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url(../images/star/star2.gif) no-repeat 0 0; /* RTL */
+  margin-left: 0;
+}
+
+div.popular .over-on, div.popular .over-on span.off {
+  background: url(../images/star/star2.gif) no-repeat 0 -30px; /* RTL */
+}
+
+div.popular .over-off, div.popular .over-off span.on {
+  background: url(../images/star/star2.gif) no-repeat 0 0; /* RTL */
+}
+
+
+
+/* Javascript Star Version */
+div.createlyvoting-widget {
+  display: block;
+}
+
+
+div.createlyvoting-widget .cancel, div.createlyvoting-widget .star, div.createlyvoting-widget .star-s {
+  float: left; /* RTL */
+  width: 17px;
+  height: 15px;
+  overflow: hidden;
+  text-indent: -999em;
+}
+div.createlyvoting-widget .cancel, div.createlyvoting-widget .cancel a {
+  background: url(../images/star/delete.gif) no-repeat 0 -16px; /* RTL */
+  text-decoration: none;
+}
+
+div.createlyvoting-widget .star, div.createlyvoting-widget .star a, div.createlyvoting-widget .star-s, div.createlyvoting-widget .star-s a {
+  background: url(../images/star/star.gif) no-repeat 0 0; /* RTL */
+  text-decoration: none;
+}
+
+div.createlyvoting-widget .cancel a, div.createlyvoting-widget .star a, div.createlyvoting-widget .star-s a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-position: 0 0; /* RTL */
+  cursor: pointer;
+}
+
+div.createlyvoting-widget div.on a {
+  background-position: 0 -16px; /* RTL */
+}
+div.createlyvoting-widget div.hover a, div.rating div a:hover {
+  background-position: 0 -32px; /* RTL */
+}
+form.createlyvoting-widget div.description {
+  margin-bottom: 0;
+}
+
+
+.star-text-num{color: #777777;
+font-family: arial,verdana;
+font-size: 11px;
+padding-left: 5px;
+position: relative;
+top: -3px;}
