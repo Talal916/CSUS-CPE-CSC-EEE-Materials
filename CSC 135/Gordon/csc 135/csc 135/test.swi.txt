@@ -1,0 +1,1 @@
+dogEnthusiast (X) :- owner (X, Y), owner (X, Z), not (Y = Z), breed(Y, dog), breed(Z, dog).

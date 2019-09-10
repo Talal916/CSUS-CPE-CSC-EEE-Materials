@@ -1,0 +1,24 @@
+(define (isEven x)
+  (if (= (modulo x 2) 0) #t #f))
+
+; attempt to convert ifs to cond for alleven
+(define (allEven n )
+  (cond
+    [(= (modulo n 10) n) (isEven n)]
+    [(= (modulo n 2) 0) (allEven(/ n 10))]
+    [(not(= (modulo n 2) 0)) #f]
+    [else #t]))
+
+(define (allOdd n)
+  (if (= (modulo n 10) n) not(isEven n))
+  (if (not(= (modulo n 2) 0)) allOdd((/ n 10)))
+  (if (= (modulo n 2) 0) #f)
+  #t
+  )
+;attempt to convert ifs to cond in allODD
+(define (ludicrous n)
+  (if (= (modulo n 10) n) #t)
+  (if (= (modulo n 2) 0) (allEven n))
+  (if (not(= (modulo n 2) 0)) (allOdd n))
+  #f 
+  ) 

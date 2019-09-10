@@ -1,0 +1,10 @@
+main
+	print"enter#"
+	input N
+	count(N)
+count(N)
+	print(x)
+	if(x>0)
+		count(x-1)
+	if(x%2 ==0)
+		print x

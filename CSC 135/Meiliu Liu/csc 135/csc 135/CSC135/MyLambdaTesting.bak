@@ -1,0 +1,16 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-advanced-reader.ss" "lang")((modname MyLambdaTesting) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #t #t none #f () #f)))
+; Q6 ----------------------------------------------------------------------------
+;    Takes as input an integer N. It then builds and returns a "select" function based on N.
+
+(define singleSelect          ; return a funtion which remove the first element of a list
+  (lambda (L) (cdr L)))
+
+(define (multiCompose n F)    ; return the power n of a function
+  (if (= n 1) F
+      (compose (multiCompose (- n 1) F) F)))
+
+(define (selectN n)           ; return a function with power n of the singleSelect function.  
+  (lambda (L) ((multiCompose n singleSelect)L)))
+

@@ -1,0 +1,1367 @@
+<html><head><!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+--><!--
+@license
+Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+--><meta charset="UTF-8">
+    
+    <script src="webcomponentsjs/custom-elements-es5-adapter.js"></script>
+
+    
+    <script src="webcomponentsjs/webcomponents-lite.js"></script>
+
+    
+    <script>window.gwdPreview = {"config":{"previewPath":"index.html","modes":["mobile","desktop"],"sizes":[],"breakpoints":null,"feeds":{},"feedNames":[],"reloadOnResize":false,"defaults":{"mode":"mobile","modeSettings":{"mobile":{"device":"pixel2xl","feed":null},"desktop":{"feed":null}}}},"strings":{"MSG_ALL_FEEDS_MODE":"All sample data","MSG_ALL_SIZES_MODE":"All sizes","MSG_CUSTOM":"Custom","MSG_CUSTOM_SIZE":"Custom size","MSG_DESKTOP_MODE":"Desktop","MSG_DEVICE":"Device","MSG_MOBILE_MODE":"Mobile","MSG_NO_SAMPLE_DATA":"No sample data","MSG_NO_SAMPLE_DATA_TO_PREVIEW":"Select sample data to see previews.","MSG_NO_SIZES_TO_PREVIEW":"Select sizes to see previews.","MSG_NONE_SELECTED":"None selected","MSG_PARALLAX_MODE":"Parallax","MSG_PREVIEW_MODE":"Preview mode","MSG_RELOAD":"Reload","MSG_RELOAD_ALL":"Reload all","MSG_ROTATE_DEVICE":"Rotate device","MSG_SAMPLE_FEED":"Sample data","MSG_SAMPLE_FEEDS":"Sample data","MSG_SELECT_ALL":"Select all","MSG_SELECT_NONE":"Select none","MSG_SELECTED":"{num} selected","MSG_SHOW_SIZE":"Show size","MSG_SHOW_SIZES":"Show sizes","MSG_SINGLE_MODE":"Single size","MSG_VIEWPORT_SIZE":"Viewport size"}};</script></head>
+
+  <body><div hidden="" by-vulcanize="">
+
+
+
+<dom-module id="tf-creative-preview-selector-shared-styles" assetpath="/preview/">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      paper-dropdown-menu {
+        /* The font size is customized via a mixin targeting the internal paper-input-container.
+         * This mixin must be set at the paper-dropdown-menu level rather than cascade down to it
+         * because the initial base font subhead styles we'd like to override are included and
+         * redefined directly in paper-dropdown-menu's local styles. */
+        --paper-input-container-input: {
+          font-size: inherit;
+
+          /* Prevents the line-height of the internal input from being too large in IE. */
+          line-height: 1em;
+        };
+
+        /* Turn off the paper-input-container underline for dropdowns. */
+        --paper-input-container-underline: {
+          display: none;
+        };
+
+        --paper-input-container-underline-focus: {
+          display: none;
+        };
+
+        /* Don't show the ripple over the menu button. */
+        --paper-dropdown-menu-ripple: {
+          display: none;
+        };
+
+        /* width must be explicitly set 100% because paper-dropdown-menu does not automatically take
+         * its width from its selected value. */
+        width: 100%;
+
+        /* Although we hide the underline, its container will still take up 2px of height. There are
+         * no APIs to remove it, so cancel out its height with a negative margin. */
+        margin-bottom: -2px;
+      }
+
+      [slot="dropdown-content"] {
+        display: block;
+        padding: var(--tf-creative-preview-padding) 0;
+        /* Ensure dropdowns are at least as wide as the .control containers' inner width. The
+         * iron-dropdown popup's width is calculated from the dropdown-content (e.g., this listbox)
+         * width at the time the dropdown is opened, and the width must be an absolute
+         * (not relative) value. */
+        min-width: var(--tf-creative-preview-control-width);
+      }
+
+      paper-item {
+        /* The background highlight for paper-items is implemented as a pseudo-element. Hide it;
+         * we implement our own hover effect that works for both focus and hover states (hover
+         * states are not handled by paper elements by default). See paper-item:hover below. */
+        --paper-item-focused-before: {
+          display: none;
+        };
+
+        /* By default, paper-items use the paper subhead font size. */
+        font-size: inherit;
+        min-height: var(--tf-creative-preview-item-height);
+        cursor: pointer;
+
+        /* A fix for min-height in IE. @see https://github.com/philipwalton/flexbugs/issues/231 */
+        height: 1px;
+      }
+
+      /* Highlight paper-items on focus (when navigating via keyboard) and on hover. */
+      paper-item:hover,
+      paper-item:focus {
+        background: var(--tf-creative-preview-item-highlight-color);
+      }
+
+      /* A horizontal rule which separates groups of menu items. */
+      .divider {
+        height: 1px;
+        background: var(--tf-creative-preview-border-color);
+        margin: var(--tf-creative-preview-padding) 0;
+      }
+    </style>
+  </template>
+</dom-module>
+<dom-module id="tf-creative-preview-multi-selector" assetpath="/preview/">
+  <template>
+    <style include="tf-creative-preview-selector-shared-styles">
+      paper-checkbox {
+        --paper-checkbox-size: 16px;
+        --paper-checkbox-unchecked-color: var(--tf-creative-preview-icon-color);
+        --paper-checkbox-checked-color: var(--tf-creative-preview-accent-color);
+        /* Don't show the ripple. Hide it by setting a zero size rather than a transparent color to
+         * prevent an artifact of the ripple from appearing on first render in Firefox. */
+        --paper-checkbox-ink-size: 0px;
+
+        /* Style paper-checkboxes to look like paper-items. It's not possible to use shared
+         * paper-item styles directly due to github.com/PolymerElements/paper-item/issues/85. */
+        display: block;
+        cursor: pointer;
+        padding: 0 calc(var(--tf-creative-preview-padding) * 2);
+        min-height: var(--tf-creative-preview-item-height);
+        @apply --layout-horizontal;
+        @apply --layout-center;
+
+        /* A fix for min-height in IE. @see https://github.com/philipwalton/flexbugs/issues/231 */
+        height: 1px;
+      }
+
+      /* Use the same focus/hover effect for checkboxes as for paper-items. */
+      paper-checkbox:hover,
+      paper-checkbox:focus {
+        background: var(--tf-creative-preview-item-highlight-color);
+      }
+    </style>
+
+    <paper-dropdown-menu id="dropdown" always-float-label="" label="[[label]]" value="[[displayedValue_]]" title$="[[label]]" on-opened-changed="onOpenedChanged_">
+      <paper-listbox id="menu" slot="dropdown-content" multi="" attr-for-selected="data-value" selected-attribute="checked" selectable="paper-checkbox" selected-values="{{values}}" on-iron-select="onIronEvent_" on-iron-deselect="onIronEvent_" on-iron-activate="onIronEvent_">
+        
+        <template is="dom-repeat" items="[[items]]" as="item">
+          <paper-checkbox noink="" data-value="[[item.value]]">[[item.label]]</paper-checkbox>
+        </template>
+        <div class="divider"></div>
+        <paper-item on-click="onSelectAllClick_">[[getMsg_('SELECT_ALL')]]</paper-item>
+        <paper-item on-click="onSelectNoneClick_">[[getMsg_('SELECT_NONE')]]</paper-item>
+      </paper-listbox>
+    </paper-dropdown-menu>
+  </template>
+  </dom-module>
+
+<dom-module id="tf-creative-preview-selector" assetpath="/preview/">
+  <template>
+    <style include="tf-creative-preview-selector-shared-styles"></style>
+
+    <paper-dropdown-menu id="dropdown" always-float-label="" label="[[label]]" title$="[[label]]" on-opened-changed="onOpenedChanged_">
+      <paper-listbox id="menu" slot="dropdown-content" attr-for-selected="data-value" selected="{{value}}" selectable="paper-item">
+        
+        <template is="dom-if" if="[[showCustomOption]]" restamp="">
+          <paper-item data-value="custom">[[getCustomLabel_()]]</paper-item>
+          <div class="divider"></div>
+        </template>
+
+        <template is="dom-repeat" items="[[items]]" as="item">
+          <paper-item data-value="[[item.value]]">[[item.label]]</paper-item>
+        </template>
+      </paper-listbox>
+    </paper-dropdown-menu>
+  </template>
+  </dom-module>
+<dom-module id="tf-text-slider" assetpath="/tf-text-slider/">
+  <template>
+    <style>
+      /* Hide spinner in Firefox. */
+      ::slotted(input[type="number"]) {
+        -moz-appearance: textfield;
+      }
+
+      /* Hide spinner in Webkit. */
+      /* TODO(sklobovskaya): This does not appear to actually work. For now, the component
+       * implementing the text slider must style the input itself in its local styles. Investigate
+       * if there is a workaround or if this is a bug. */
+      ::slotted(input[type="number"])::-webkit-outer-spin-button,
+      ::slotted(input[type="number"])::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    </style>
+    <slot name="input"></slot>
+  </template>
+  </dom-module>
+<dom-module id="tf-creative-preview-size-input" assetpath="/preview/">
+  <template>
+    <style>
+      :host {
+        /* Opacity for disabled labels and inputs. The default paper-input opacity is too faint. */
+        --tf-creative-preview-disabled-opacity: 0.5;
+
+        display: block;
+      }
+
+      paper-input-container {
+        --paper-input-container-focus-color: var(--tf-creative-preview-accent-color);
+
+        --paper-input-container-underline: {
+          border-color: var(--tf-creative-preview-border-color);
+        };
+
+        --paper-input-container-input: {
+          font-size: inherit;
+        };
+
+        --paper-input-container-disabled: {
+          opacity: var(--tf-creative-preview-disabled-opacity);
+        };
+
+        display: inline-block;
+        /* Reduce bottom padding by 2px because the underline container contributes 2px of height.
+         * This bottom-aligns the input with the selectors, which don't show an underline. */
+        padding-bottom: 6px;
+        /* Crop the whitespace reserved for the floating label. We won't use the
+         * paper-input-container's label. */
+        margin-top: -28px;
+      }
+
+      #label {
+        height: 20px;
+        line-height: 20px;
+        color: var(--secondary-text-color);
+        padding-top: 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        cursor: default;
+      }
+
+      :host([disabled]) {
+        /* Although there are no mouse handlers on the host element itself, turning off pointer
+         * events is necessary to prevent the tooltip from appearing when the input is disabled.
+         * This is for consistency with other paper-input-containers. */
+        pointer-events: none;
+      }
+
+      :host([disabled]) #label {
+        opacity: var(--tf-creative-preview-disabled-opacity);
+      }
+
+      #inputs {
+        @apply --layout-horizontal;
+      }
+
+      input {
+        @apply --paper-input-container-shared-input-style;
+        font-size: inherit;
+
+        width: 40px;
+        text-align: center;
+
+        /* Additionally set the line-height value using height, required for IE. */
+        height: 24px;
+      }
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        /* Hide spinner in Webkit. This CSS must be defined here due to an issue with ::slotted()
+         * that does not permit styling this pseudo-element in TfTextSlider's template. See
+         * comment in tf-text-slider-v2.html. */
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    </style>
+
+    <div id="label">[[label]]</div>
+
+    <paper-input-container id="container" always-float-label="" disabled$="[[disabled]]">
+      
+      <div id="inputs" class="paper-input-input" slot="input">
+        <tf-text-slider>
+          <input id="width" slot="input" type="number" min$="[[min]]" max$="[[max]]" on-changing="commitChange_" on-change="commitChange_" on-keypress="onKeypress_" on-blur="commitChange_" disabled$="[[disabled]]">
+        </tf-text-slider>
+        x
+        <tf-text-slider>
+          <input id="height" slot="input" type="number" min$="[[min]]" max$="[[max]]" on-changing="commitChange_" on-change="commitChange_" on-keypress="onKeypress_" on-blur="commitChange_" disabled$="[[disabled]]">
+        </tf-text-slider>
+      </div>
+    </paper-input-container>
+  </template>
+  </dom-module>
+<dom-module id="tf-creative-preview-controls" assetpath="/preview/">
+  <template>
+    <style>
+      :host {
+        /* Apply general customizations to paper-input-container, which is used internally in all
+         * input components. */
+
+        /* By default, the label changes color on focus. Turn off the color change. */
+        --paper-input-container-label-focus: {
+          color: var(--secondary-text-color);
+        };
+
+        /* By default, the label is shown at a smaller size than the base font. Turn off the
+         * shrinking effect so the label font size is the same as the rest of the text. */
+        --paper-input-container-label-floating: {
+          -webkit-transform: translateY(-90%);
+          transform: translateY(-90%);
+          width: inherit;
+        };
+
+        --paper-input-container-label: {
+          font-size: inherit;
+          max-width: 100%;
+        };
+
+        display: block;
+      }
+
+      .flex-container {
+        @apply --layout-horizontal;
+        @apply --layout-center;
+      }
+
+      /* Only add the outermost padding when there are controls to show, so that when the control
+       * bar is empty, it appears completely collapsed. */
+      :host([has-controls]) .flex-container {
+        padding: var(--tf-creative-preview-padding);
+      }
+
+      /* A container with a vertical divider for displaying a single control. */
+      .control {
+        padding: 0 var(--tf-creative-preview-padding);
+        border-right: 1px solid var(--tf-creative-preview-border-color);
+        box-sizing: content-box;
+      }
+
+      /* A wrapper for an input component which ensures a minimum width so the dropdown widths can
+       * be matched with widths of their flyouts. */
+      .input-container {
+        width: var(--tf-creative-preview-control-width);
+        flex-shrink: 0;
+      }
+
+      /* Remove the top and bottom padding from all internal paper-input-containers common to all
+       * input components. This padding can also be removed via a paper-input-container mixin, but
+       * when removed this way, the positioning of the flyout is also affected. */
+      tf-creative-preview-selector,
+      tf-creative-preview-multi-selector,
+      tf-creative-preview-size-input {
+        margin: calc(var(--tf-creative-preview-padding) * -1) 0;
+      }
+
+      tf-creative-preview-selector,
+      tf-creative-preview-multi-selector {
+        padding-left: var(--tf-creative-preview-padding);
+      }
+
+      tf-creative-preview-size-input {
+        padding: 0 var(--tf-creative-preview-padding);
+      }
+
+      /* Modifier class for .control containers which have an input and a suffix button. */
+      .has-suffix {
+        @apply --layout-horizontal;
+        /* Bottom-align the suffix and the input so the suffix appears in line with the dropdown
+         * and not the full height of the selector, which includes the label. */
+        @apply --layout-end;
+
+        /* Prevent the suffix button container from collapsing in IE (b/113591503). */
+        flex-shrink: 0;
+      }
+
+      /* Container for a suffix element which should appear inline with an input. */
+      .has-suffix .suffix-container {
+        border-left: 1px solid var(--tf-creative-preview-border-color);
+        height: 24px;
+        margin-left: var(--tf-creative-preview-padding);
+        padding-left: var(--tf-creative-preview-padding);
+        @apply --layout-horizontal;
+        @apply --layout-center;
+      }
+
+      .has-suffix .suffix-container paper-icon-button {
+        width: 36px;
+        height: 36px;
+        margin: -8px;  /* Cancel out the icon's padding. */
+      }
+
+      /* Device rotation buttons and the Reload button. */
+      paper-icon-button {
+        flex-shrink: 0;
+        --paper-icon-button: {
+          color: var(--tf-creative-preview-icon-color);
+        };
+      }
+
+      /* The Reload button. */
+      #reloadButton {
+        margin-left: auto;
+      }
+
+      /* Hide controls by default until they are enabled with the `control-enabled` class. A class
+       * is used instead of the native `hidden` attribute so that visibility can default to false
+       * before any properties which determine visibility are evaluated. Controls are hidden with
+       * :not() rather than the inverse because different controls have different display styles
+       * (block, flex). */
+      .control:not(.control-enabled),
+      #reloadButton:not(.control-enabled) {
+        display: none;
+      }
+    </style>
+
+    <div class="flex-container">
+      
+      <div class$="control input-container [[getControlEnabledClass_(enabledControls_.mode)]]">
+        <tf-creative-preview-selector id="mode-control" label="[[getMsg_('PREVIEW_MODE')]]" value="{{mode}}" items="[[getModesItemsList_(modes)]]">
+        </tf-creative-preview-selector>
+      </div>
+
+      
+      <template is="dom-if" if="[[modeIs_('single', mode)]]">
+        <div class$="control input-container [[getControlEnabledClass_(enabledControls_.size)]]">
+          <tf-creative-preview-selector id="single-size-control" show-custom-option="" label="[[getMsg_('SHOW_SIZE')]]" items="[[getSizesItemsList_(sortedSizes_)]]" value="[[getSizeSelectorValue_(
+                  modeSettings.single.size, modeSettings.single.isCustomSize)]]" on-value-changed="onSizeSelectorChange_">
+          </tf-creative-preview-selector>
+        </div>
+        <div class$="control input-container
+            [[getControlEnabledClass_(modeSettings.single.isCustomSize)]]">
+          <tf-creative-preview-size-input id="single-custom-size-control" label="[[getMsg_('CUSTOM_SIZE')]]" value="{{modeSettings.single.size}}" min="[[minSize_]]" max="[[maxSize_]]">
+          </tf-creative-preview-size-input>
+        </div>
+        <div class$="control input-container [[getControlEnabledClass_(enabledControls_.feed)]]">
+          <tf-creative-preview-selector id="single-feed-control" label="[[getMsg_('SAMPLE_FEED')]]" value="{{modeSettings.single.feed}}" items="[[getFeedsItemsList_(feeds)]]">
+          </tf-creative-preview-selector>
+        </div>
+      </template>
+
+      
+      <template is="dom-if" if="[[modeIs_('allsizes', mode)]]">
+        <div class="control input-container control-enabled">
+          <tf-creative-preview-multi-selector id="allsizes-sizes-control" label="[[getMsg_('SHOW_SIZES')]]" values="{{modeSettings.allsizes.sizes}}" items="[[getSizesItemsList_(sortedSizes_)]]">
+          </tf-creative-preview-multi-selector>
+        </div>
+        <div class$="control input-container [[getControlEnabledClass_(enabledControls_.feed)]]">
+          <tf-creative-preview-selector id="allsizes-feed-control" label="[[getMsg_('SAMPLE_FEED')]]" value="{{modeSettings.allsizes.feed}}" items="[[getFeedsItemsList_(feeds)]]">
+          </tf-creative-preview-selector>
+        </div>
+      </template>
+
+      
+      <template is="dom-if" if="[[modeIs_('allfeeds', mode)]]">
+        <div class$="control input-container [[getControlEnabledClass_(enabledControls_.size)]]">
+          <tf-creative-preview-selector id="allfeeds-size-control" label="[[getMsg_('SHOW_SIZE')]]" value="{{modeSettings.allfeeds.size}}" items="[[getSizesItemsList_(sortedSizes_)]]">
+          </tf-creative-preview-selector>
+        </div>
+        <div class="control input-container control-enabled">
+          <tf-creative-preview-multi-selector id="allfeeds-feeds-control" label="[[getMsg_('SAMPLE_FEEDS')]]" values="{{modeSettings.allfeeds.feeds}}" items="[[getFeedsItemsList_(feeds)]]">
+          </tf-creative-preview-multi-selector>
+        </div>
+      </template>
+
+      
+      <template is="dom-if" if="[[modeIs_('mobile', mode)]]">
+        <div class="control has-suffix control-enabled">
+          <div class="input-container">
+            <tf-creative-preview-selector id="mobile-device-control" show-custom-option="" label="[[getMsg_('DEVICE')]]" items="[[getDevicesItemsList_()]]" value="[[getSizeSelectorValue_(
+                    modeSettings.mobile.device, modeSettings.mobile.isCustomSize)]]" on-value-changed="onMobileDeviceSelectorChange_">
+            </tf-creative-preview-selector>
+          </div>
+          <div class="suffix-container">
+            <paper-icon-button id="mobile-rotate-device-control" icon="device:screen-rotation" title$="[[getMsg_('ROTATE_DEVICE')]]" on-click="onMobileRotateButtonClick_">
+            </paper-icon-button>
+          </div>
+        </div>
+        <div class="control input-container control-enabled">
+          <tf-creative-preview-size-input id="mobile-custom-size-control" label="[[getMsg_('VIEWPORT_SIZE')]]" value="{{modeSettings.mobile.deviceSize}}" min="[[minSize_]]" max="[[maxSize_]]" disabled="[[!modeSettings.mobile.isCustomSize]]">
+          </tf-creative-preview-size-input>
+        </div>
+        <div class$="control input-container [[getControlEnabledClass_(enabledControls_.feed)]]">
+          <tf-creative-preview-selector id="mobile-feed-control" label="[[getMsg_('SAMPLE_FEED')]]" value="{{modeSettings.mobile.feed}}" items="[[getFeedsItemsList_(feeds)]]">
+          </tf-creative-preview-selector>
+        </div>
+      </template>
+
+      
+      <template is="dom-if" if="[[modeIs_('desktop', mode)]]">
+        <div class$="control input-container [[getControlEnabledClass_(enabledControls_.feed)]]">
+          <tf-creative-preview-selector id="desktop-feed-control" label="[[getMsg_('SAMPLE_FEED')]]" value="{{modeSettings.desktop.feed}}" items="[[getFeedsItemsList_(feeds)]]">
+          </tf-creative-preview-selector>
+        </div>
+      </template>
+
+      
+      <template is="dom-if" if="[[modeIs_('parallax', mode)]]">
+        <div class="control has-suffix control-enabled">
+          <div class="input-container">
+            <tf-creative-preview-selector id="parallax-device-control" show-custom-option="" label="[[getMsg_('DEVICE')]]" items="[[getDevicesItemsList_()]]" value="[[getSizeSelectorValue_(
+                    modeSettings.parallax.device, modeSettings.parallax.isCustomSize)]]" on-value-changed="onParallaxDeviceSelectorChange_">
+            </tf-creative-preview-selector>
+          </div>
+          <div class="suffix-container">
+            <paper-icon-button id="parallax-rotate-device-control" icon="device:screen-rotation" on-click="onParallaxRotateButtonClick_">
+            </paper-icon-button>
+          </div>
+        </div>
+        <div class="control input-container control-enabled">
+          <tf-creative-preview-size-input id="parallax-custom-size-control" label="[[getMsg_('VIEWPORT_SIZE')]]" value="{{modeSettings.parallax.deviceSize}}" min="[[minSize_]]" max="[[maxSize_]]" disabled="[[!modeSettings.parallax.isCustomSize]]">
+          </tf-creative-preview-size-input>
+        </div>
+        <div class$="control input-container [[getControlEnabledClass_(enabledControls_.feed)]]">
+          <tf-creative-preview-selector id="parallax-feed-control" label="[[getMsg_('SAMPLE_FEED')]]" value="{{modeSettings.parallax.feed}}" items="[[getFeedsItemsList_(feeds)]]">
+          </tf-creative-preview-selector>
+        </div>
+      </template>
+
+      <paper-icon-button id="reloadButton" icon="icons:refresh" title$="[[getMsg_('RELOAD_ALL')]]" class$="[[getControlEnabledClass_(hasControls)]]" on-click="onReloadButtonClick_">
+      </paper-icon-button>
+    </div>
+  </template>
+  </dom-module>
+<dom-module id="tf-creative-preview-desktop" assetpath="/preview/">
+  <template>
+    <style>
+      :host {
+        display: block;
+        padding: var(--tf-creative-preview-stage-padding);
+        box-sizing: border-box;
+      }
+
+      iframe {
+        border: none;
+        background: #fff;
+        width: 100%;
+        height: 100%;
+        @apply --shadow-elevation-2dp;
+      }
+    </style>
+
+    <iframe id="iframe" allowfullscreen="" src="[[getIframeSrc(previewPath, feed, active)]]"></iframe>
+  </template>
+  </dom-module>
+<dom-module id="tf-creative-preview-gwd-logo" assetpath="/preview/">
+  <template>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1387.01 180.33">
+      <defs>
+        <style>.cls-1{fill:#ccc;}.cls-2{fill:#4480f6;}.cls-3{fill:#f3b500;}.cls-4{fill:#db4534;}.cls-5{fill:#fff;}.cls-6{fill:#3569be;}.cls-7{fill:#b0362f;}.cls-8,.cls-9{fill:#b7b7b7;}.cls-9{opacity:0.5;isolation:isolate;}.cls-10{fill:#5f6368;}</style>
+      </defs>
+      <path class="cls-1" d="M221.43,340.21V340h0a24.28,24.28,0,0,1-17,22.86,21.71,21.71,0,0,1-6.91,1.11h0v21.35c23.81-.16,43.18-20.8,43.58-45.08Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-2" d="M156.82,344.26a36.7,36.7,0,0,1,.4-5.16A34.31,34.31,0,0,1,191,310.21h.56V263.61a81.37,81.37,0,0,0-81.12,81.12h46.43Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-3" d="M156.82,344.73H96.9c0,54.77,45.32,99.22,100.72,99.22V385.37C175.48,385.37,157.14,366.8,156.82,344.73Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-4" d="M191.59,277.5v32.78a34.75,34.75,0,0,1,4,.32A29.64,29.64,0,0,1,221.43,340v.4h31.75C253.18,305.84,225.88,277.82,191.59,277.5Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-5" d="M197.54,364h0a22.46,22.46,0,0,0,6.91-1.11,24.19,24.19,0,0,1-6.91,1.11Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-6" d="M110.39,344.73h46.43l-46-8.65A79,79,0,0,0,110.39,344.73Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-7" d="M200.32,278.22a63.84,63.84,0,0,0-8.81-.71v32.7Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-8" d="M197.54,363.94v0Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-9" d="M197.54,363.94v21.35l10.4-23.81a18.68,18.68,0,0,1-3.49,1.35A19.7,19.7,0,0,1,197.54,363.94Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-8" d="M241.2,340.29H221.51l18.81,8.25A57.07,57.07,0,0,0,241.2,340.29Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-10" d="M838.36,395.52H826.77L807.8,337h-.4l-19,58.52H776.84l-24.57-88.68h12L783,376.55h.4l19.17-57.72h10.59l19.17,57.72h.4l17.78-69.71h12Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-10" d="M859.93,365.16c0-17.18,12-32.36,29.76-32.36,18.18,0,29.76,12.78,29.76,32.36a20.8,20.8,0,0,1-.2,2.2H871.31c.6,12.78,10,19.77,19.37,19.77,6.59,0,13.38-2.8,16.58-10.39l10.19,4.19c-3.6,8.59-12.58,16.58-26.57,16.58C872.31,397.52,859.93,383.54,859.93,365.16Zm29.56-22c-8.39,0-15.18,5.79-17.38,14.58h35.15C906.87,352.58,902.47,343.19,889.49,343.19Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-10" d="M940,387.13h-.4v8.39h-11V306.84H940v28l-.4,8.39h.4c3.4-5.59,11-10.39,20.77-10.39,15.38,0,28.76,13.78,28.76,32.36S976,397.52,960.8,397.52C951,397.52,943.42,392.73,940,387.13Zm38-22c0-13.58-9.19-22-19.37-22s-19.37,8-19.37,22c0,13.78,9.19,22,19.37,22C969,387.13,978,378.75,978,365.16Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-10" d="M1019.12,306.84h27.16c27.56,0,44.94,18.38,44.94,44.34s-17.38,44.34-44.94,44.34h-27.16Zm27.16,77.7c20.37,0,33.36-12.18,33.36-33.36s-13-33.36-33.36-33.36H1030.5v66.91h15.78Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-10" d="M1097.42,365.16c0-17.18,12-32.36,29.76-32.36,18.18,0,29.76,12.78,29.76,32.36a20.8,20.8,0,0,1-.2,2.2H1108.8c.6,12.78,10,19.77,19.37,19.77,6.59,0,13.38-2.8,16.58-10.39l10.19,4.19c-3.6,8.59-12.58,16.58-26.57,16.58C1109.8,397.52,1097.42,383.54,1097.42,365.16Zm29.36-22c-8.39,0-15.18,5.79-17.38,14.58h35.15C1144.35,352.58,1140,343.19,1126.78,343.19Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-10" d="M1162.13,380.14l10.19-4.19c3.2,7.59,9.19,11.39,16.38,11.39,7,0,12.18-3.4,12.18-8.59,0-3-1.8-6.39-8.39-8l-12.18-3c-5.59-1.4-16.18-6.19-16.18-16.78,0-11,11.39-18.18,24-18.18,10.59,0,19.77,4.79,23.37,14.18l-10,4c-2.4-5.79-8-8-13.78-8-6.39,0-12,2.8-12,7.79,0,3.8,3.2,6,8,7l12,2.8c12,2.8,16.78,10.19,16.78,17.78,0,10.79-9.59,19-24,19C1173.92,397.52,1165.53,388.93,1162.13,380.14Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-10" d="M1219.06,314a8,8,0,1,1,8,8A8,8,0,0,1,1219.06,314Zm2.4,81.49V334.8h11.39v60.72Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-10" d="M1244.82,406.51l10.39-4.39a17.86,17.86,0,0,0,17,11.58c12.58,0,20.17-8.19,20.17-21v-5.79h-.4c-3.8,5.59-11,10.39-20.77,10.39-15.38,0-28.76-13.78-28.76-32.36s13.38-32.36,28.76-32.36A25,25,0,0,1,1292,343h.4V334.6h11v57.52c0,22-15.18,31.76-31.16,31.76S1248,413.9,1244.82,406.51Zm47.54-41.35c0-13.78-9.19-22-19.37-22s-19.37,8.39-19.37,22,9.19,22,19.37,22S1292.36,379.15,1292.36,365.16Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-10" d="M1326.12,343.19h.4c3.2-5.59,11-10.39,19.17-10.39,15.38,0,23.17,10.59,23.17,25.57v37.15h-11.39V360.17c0-12.58-6.39-16.78-15-16.78-10,0-16,9.39-16,18.78v33.56h-11.39V335h11v8.19Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-10" d="M1377.65,365.16c0-17.18,12-32.36,29.76-32.36,18.18,0,29.76,12.78,29.76,32.36a20.81,20.81,0,0,1-.2,2.2H1389c.6,12.78,10,19.77,19.37,19.77,6.59,0,13.38-2.8,16.58-10.39l10.19,4.19c-3.6,8.59-12.58,16.58-26.57,16.58C1390,397.52,1377.65,383.54,1377.65,365.16Zm29.56-22c-8.39,0-15.18,5.79-17.38,14.58H1425C1424.59,352.58,1420.19,343.19,1407.21,343.19Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-10" d="M1446.36,395.52V334.8h11v10h.4c2.4-7,11.19-11.39,17.58-11.39a20.85,20.85,0,0,1,8.59,1.4l-4.39,10.59a17.41,17.41,0,0,0-6-.8c-7.79,0-15.78,6.59-15.78,17.78v33.16Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-10" d="M311.37,346.79c0-28,23.57-50.73,51.53-50.73a48,48,0,0,1,34.75,14l-9.79,9.79a35.36,35.36,0,0,0-25-10c-20.37,0-36.35,16.38-36.35,37,0,20.37,16,37,36.35,37,13.18,0,20.77-5.39,25.57-10.19,4-4,6.59-9.59,7.59-17.38H362.9V342.39h46.74a52.43,52.43,0,0,1,.8,8.59c0,10.39-2.8,23.37-12,32.36-9,9.19-20.37,14.18-35.35,14.18C334.94,397.52,311.37,374.75,311.37,346.79Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-10" d="M448,332.21c-18.18,0-32.76,13.78-32.76,32.76A32.4,32.4,0,0,0,448,397.72c18,0,32.76-13.78,32.76-32.76C480.94,345.79,466.16,332.21,448,332.21Zm0,52.33c-10,0-18.38-8.19-18.38-19.77C429.61,353,438.2,345,448,345c10,0,18.38,8,18.38,19.77C466.56,376.55,458,384.54,448,384.54Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-10" d="M519.69,332.21c-18.18,0-32.76,13.78-32.76,32.76a32.4,32.4,0,0,0,32.76,32.76c18,0,32.76-13.78,32.76-32.76C552.45,345.79,537.67,332.21,519.69,332.21Zm0,52.33c-10,0-18.38-8.19-18.38-19.77,0-11.78,8.59-19.77,18.38-19.77,10,0,18.38,8,18.38,19.77S529.48,384.54,519.69,384.54Z" transform="translate(-96.9 -263.61)"></path>
+      <path class="cls-10" d="M607.58,334.2v5.39h-.4c-3.2-3.8-9.39-7.39-17.18-7.39-16.38,0-31.36,14.38-31.36,32.76s15,32.56,31.36,32.56c7.79,0,14-3.4,17.18-7.39h.4v4.79c0,12.58-6.59,19.17-17.38,19.17-8.79,0-14.18-6.39-16.38-11.58l-12.58,5.19c3.6,8.59,13.18,19.37,29,19.37,16.78,0,31.16-10,31.16-34V334.4H607.58ZM591,384.54c-10,0-18.18-8.39-18.18-19.77,0-11.58,8.39-20,18.18-20s17.38,8.39,17.38,20C608.58,376.35,600.79,384.54,591,384.54Z" transform="translate(-96.9 -263.61)"></path>
+      <rect class="cls-10" x="534.05" y="35.84" width="14.38" height="96.07"></rect>
+      <path class="cls-10" d="M684.68,384.54c-7.39,0-12.58-3.4-15.78-10l43.74-18.18-1.4-3.8c-2.8-7.39-11-20.77-28-20.77-16.78,0-30.76,13.18-30.76,32.76,0,18.38,13.78,32.76,32.36,32.76A32.25,32.25,0,0,0,712,382.74l-11.19-7.39C697.06,381.14,692.07,384.54,684.68,384.54Zm-1-39.75c5.79,0,10.59,2.8,12.18,7L666.7,364C666.1,351.18,676.29,344.79,683.68,344.79Z" transform="translate(-96.9 -263.61)"></path>
+    </svg>
+  </template>
+  </dom-module>
+<dom-module id="tf-creative-preview-resizable-container" assetpath="/preview/">
+  <template>
+    <style>
+      :host {
+        --tf-creative-preview-handle-size: 16px;
+        --tf-creative-preview-handle-color: var(--paper-grey-500);
+        --tf-creative-preview-handle-bg-color: var(--tf-creative-preview-bg-color);
+        --tf-creative-preview-handle-active-bg-color: #d8d8d8;
+        --tf-creative-preview-drag-handle-scale: 1.25;
+
+        display: inline-block;
+        position: relative;
+        @apply --shadow-elevation-2dp;
+      }
+
+      :host([resizable]) {
+        padding: 0 var(--tf-creative-preview-handle-size) var(--tf-creative-preview-handle-size) 0;
+      }
+
+      /* Using ::slotted(*) (with the wildcard) does not work correctly with the polyfill. */
+      :host([resizable]) ::slotted([slot="content"]) {
+        position: relative;
+        /* Shadow cast by the resizable content on the handles. */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.075);
+        z-index: 2;
+      }
+
+      .handle {
+        display: none;
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        background: var(--tf-creative-preview-handle-bg-color);
+        color: var(--tf-creative-preview-handle-color);
+        transition: background 200ms;
+        -webkit-transition: background 200ms;
+        -moz-transition: background 200ms;
+        cursor: pointer;
+        -webkit-user-select: none;
+      }
+
+      :host([resizable]) .handle {
+        display: flex;
+      }
+
+      /* On handle mouseover or while a handle is being dragged, highlight the handle's background.
+       * The southeast handle is special -- interacting with it activates all three handles. */
+      .handle:hover,
+      .handle:active,
+      .handle[data-direction="se"]:hover ~ .handle,
+      .handle[data-direction="se"]:active ~ .handle {
+        background: var(--tf-creative-preview-handle-active-bg-color);
+      }
+
+      .handle[data-direction="e"] {
+        right: 0;
+        top: 0;
+        width: var(--tf-creative-preview-handle-size);
+        height: 100%;
+        padding-bottom: var(--tf-creative-preview-handle-size);
+        cursor: e-resize;
+
+        /* For IE. The contents are not centered correctly if using flex-direction: row. */
+        flex-direction: column;
+      }
+
+      .handle[data-direction="s"] {
+        bottom: 0;
+        width: 100%;
+        height: var(--tf-creative-preview-handle-size);
+        padding-right: var(--tf-creative-preview-handle-size);
+        cursor: s-resize;
+      }
+
+      .handle[data-direction="se"] {
+        right: 0;
+        bottom: 0;
+        width: var(--tf-creative-preview-handle-size);
+        height: var(--tf-creative-preview-handle-size);
+        z-index: 1;
+        cursor: se-resize;
+      }
+
+      .handle iron-icon {
+        flex-shrink: 0;
+      }
+
+      .handle[data-direction="e"] iron-icon {
+        /* The drag handle icons in Polymer's icon set are shorter than we need. Lengthen them. */
+        transform: scaleY(var(--tf-creative-preview-drag-handle-scale)) rotateZ(90deg);
+      }
+
+      .handle[data-direction="s"] iron-icon {
+        transform: scaleX(var(--tf-creative-preview-drag-handle-scale));
+      }
+
+      /* No diagonal drag handle icon is available in the icon set. Create one from the orthogonal
+       * drag icon by rotating and cropping it (see next rule). */
+      iron-icon.diagonal-icon {
+        transform: rotateZ(-45deg) translate(0px, -4px);
+        transform-origin: 50% 50%;
+      }
+
+      .diagonal-icon-crop-container {
+        overflow: hidden;
+        margin: 0px 3px 3px 0;
+        height: calc(var(--tf-creative-preview-handle-size) - 3px);
+      }
+    </style>
+
+    <slot name="content"></slot>
+
+    <div class="handle" data-direction="se" on-track="onTrack_">
+      <div class="diagonal-icon-crop-container">
+        <iron-icon icon="editor:drag-handle" class="diagonal-icon"></iron-icon>
+      </div>
+    </div>
+
+    <div class="handle" data-direction="e" on-track="onTrack_">
+      <iron-icon icon="editor:drag-handle"></iron-icon>
+    </div>
+
+    <div class="handle" data-direction="s" on-track="onTrack_">
+      <iron-icon icon="editor:drag-handle"></iron-icon>
+    </div>
+  </template>
+  </dom-module>
+<dom-module id="tf-creative-preview-mobile" assetpath="/preview/">
+  <template>
+    <style>
+      :host {
+        display: block;
+        padding: var(--tf-creative-preview-stage-padding);
+      }
+
+      :host([responsive]) {
+        /* For consistency with the Single size view, don't add padding on the sides with the
+         * resize handles. */
+        padding-right: 0;
+        padding-bottom: 0;
+      }
+
+      iframe {
+        border: none;
+        background: #fff;
+      }
+    </style>
+
+    <tf-creative-preview-resizable-container id="deviceFrame" size="{{parsedDeviceSize_}}" resizable="[[responsive]]" min="[[minSize_]]" max="[[maxSize_]]">
+      <iframe id="iframe" slot="content" allowfullscreen="" src$="[[getIframeSrc(previewPath, feed, active)]]" width$="[[parsedDeviceSize_.width]]" height$="[[parsedDeviceSize_.height]]">
+      </iframe>
+    </tf-creative-preview-resizable-container>
+  </template>
+  </dom-module>
+
+
+<dom-module id="tf-creative-preview-iframe-card" assetpath="/preview/">
+  <template>
+    <style>
+      /* The card details container. */
+      .card-actions {
+        /* Use content-box so the container's width can be matched to the iframe's. */
+        box-sizing: content-box;
+
+        @apply --layout-horizontal;
+        @apply --layout-center;
+      }
+
+      .card-content {
+        /* Center the iframe in the card if the card is wider than the iframe. */
+        text-align: center;
+      }
+
+      /* The Reload button. */
+      paper-icon-button {
+        --paper-icon-button: {
+          color: var(--tf-creative-preview-icon-color, inherit);
+        };
+
+        flex-shrink: 0;
+        margin-left: auto;
+        /* Counteract the button's 8px padding so icon graphic is visually right-aligned. */
+        margin-right: -8px;
+      }
+
+      iframe {
+        border: none;
+      }
+    </style>
+
+    <paper-card>
+      
+      <div class="card-content">
+        <iframe id="iframe" scrolling="no" allowfullscreen="" src$="[[iframeSrc]]" width$="[[size.width]]" height$="[[size.height]]">
+        </iframe>
+      </div>
+      
+      <div id="details" class="card-actions">
+        <div id="label">[[label]]</div>
+        <paper-icon-button id="reloadButton" icon="icons:refresh" title$="[[getMsg_('RELOAD')]]" on-click="onReloadButtonClick_">
+        </paper-icon-button>
+      </div>
+    </paper-card>
+  </template>
+  </dom-module>
+<dom-module id="tf-creative-preview-multiple-feeds" assetpath="/preview/">
+  <template>
+    <style>
+      /* TODO(sklobovskaya): The multi feeds and sizes views' CSS is identical (as is most of the
+       * the logic). Consider introducing some code sharing, e.g., shared CSS or base class. */
+      .iframe-cards-container {
+        padding: 12px;
+        @apply --layout-horizontal;
+        flex-wrap: wrap;
+      }
+
+      tf-creative-preview-iframe-card {
+        display: inline-block;
+        margin: 12px;
+      }
+
+      .no-previews-message {
+        /* The message will be an additional 24px from the top because of the padding of the
+         * .iframe-cards-container, which will be empty but not hidden. */
+        margin-top: 64px;
+        padding: var(--tf-creative-preview-padding);
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        color: var(--paper-grey-500);
+        @apply --layout-vertical;
+        @apply --layout-center;
+      }
+
+      .no-previews-message iron-icon {
+        --iron-icon-width: 48px;
+        --iron-icon-height: 48px;
+      }
+    </style>
+
+    <div class="iframe-cards-container">
+      
+      <tf-creative-preview-repeat items="[[cardItems_]]" observe="feed,size">
+        <template>
+          <tf-creative-preview-iframe-card label="[[getLabel_(item.feed)]]" src="[[getIframeSrc(previewPath, item.feed, active)]]" size="[[parseSize_(item.size)]]">
+          </tf-creative-preview-iframe-card>
+        </template>
+      </tf-creative-preview-repeat>
+    </div>
+
+    <template is="dom-if" if="[[!cardItems_.length]]">
+      <div class="no-previews-message">
+        <iron-icon icon="icons:view-quilt"></iron-icon>
+        [[getMsg_('NO_SAMPLE_DATA_TO_PREVIEW')]]
+      </div>
+    </template>
+  </template>
+  </dom-module>
+<dom-module id="tf-creative-preview-multiple-sizes" assetpath="/preview/">
+  <template>
+    <style>
+      .iframe-cards-container {
+        padding: 12px;
+        @apply --layout-horizontal;
+        flex-wrap: wrap;
+      }
+
+      tf-creative-preview-iframe-card {
+        display: inline-block;
+        margin: 12px;
+      }
+
+      .no-previews-message {
+        /* The message will be an additional 24px from the top because of the padding of the
+         * .iframe-cards-container, which will be empty but not hidden. */
+        margin-top: 64px;
+        padding: var(--tf-creative-preview-padding);
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        color: var(--paper-grey-500);
+        @apply --layout-vertical;
+        @apply --layout-center;
+      }
+
+      .no-previews-message iron-icon {
+        --iron-icon-width: 48px;
+        --iron-icon-height: 48px;
+      }
+    </style>
+
+    <div class="iframe-cards-container">
+      
+      <tf-creative-preview-repeat items="[[parsedSizes_]]" as="size" observe="width,height">
+        <template>
+          <tf-creative-preview-iframe-card label="[[getLabel_(size)]]" src="[[getIframeSrc(previewPath, feed, active)]]" size="[[size]]">
+          </tf-creative-preview-iframe-card>
+        </template>
+      </tf-creative-preview-repeat>
+    </div>
+
+    <template is="dom-if" if="[[!parsedSizes_.length]]">
+      <div class="no-previews-message">
+        <iron-icon icon="icons:view-quilt"></iron-icon>
+        [[getMsg_('NO_SIZES_TO_PREVIEW')]]
+      </div>
+    </template>
+  </template>
+  </dom-module>
+<dom-module id="tf-creative-preview-parallax" assetpath="/preview/">
+  <template>
+    <style>
+      :host {
+        display: block;
+        padding: var(--tf-creative-preview-stage-padding);
+
+        /* These values must be kept in sync with the corresponding constants in
+         * tf-creative-preview-parallax.js. */
+        --tf-creative-preview-dummy-text-size: 8px;
+        --tf-creative-preview-dummy-text-line-height: 20px;
+        --tf-creative-preview-dummy-body-padding: 32px;
+      }
+
+      :host([responsive]) {
+        /* For consistency with the Single size view, don't add padding on the sides with the
+         * resize handles. */
+        padding-right: 0;
+        padding-bottom: 0;
+      }
+
+      .dummy-window {
+        overflow: auto;
+        background: #fff;
+      }
+
+      .dummy-window::-webkit-scrollbar {
+        width: 16px;
+        height: 16px;
+      }
+
+      .dummy-window::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      .dummy-window::-webkit-scrollbar-thumb {
+        background-clip: content-box;
+        background-color: var(--paper-grey-300);
+        border: 4px solid transparent;
+        border-radius: 8px;
+      }
+
+      .dummy-body {
+        width: 100%;
+        padding: var(--tf-creative-preview-dummy-body-padding);
+        background: #fff;
+        box-sizing: border-box;
+        @apply --layout-vertical;
+      }
+
+      .dummy-text {
+        background-image: linear-gradient(
+            to bottom,
+            var(--paper-grey-100) var(--tf-creative-preview-dummy-text-size),
+            transparent var(--tf-creative-preview-dummy-text-size));
+        background-repeat: repeat-y;
+        background-size: 100% var(--tf-creative-preview-dummy-text-line-height);
+      }
+
+      iframe {
+        border: none;
+        background: #fff;
+        margin: 24px auto;
+      }
+    </style>
+
+    <tf-creative-preview-resizable-container id="deviceFrame" size="{{parsedDeviceSize_}}" resizable="[[responsive]]" min="[[minSize_]]" max="[[maxSize_]]">
+      <div id="dummyWindow" slot="content" class="dummy-window" style$="[[computeDeviceViewportStyle_(parsedDeviceSize_)]]" on-scroll="onScroll_">
+        <div class="dummy-body">
+          <div class="dummy-text" style$="[[computePlaceholderTextStyle_(parsedDeviceSize_.height)]]">
+          </div>
+          <iframe id="iframe" scrolling="no" allowfullscreen="" src$="[[getIframeSrc(previewPath, feed, active)]]" width$="[[parsedSize_.width]]" height$="[[parsedSize_.height]]" on-load="onIframeLoad_">
+          </iframe>
+          <div class="dummy-text" style$="[[computePlaceholderTextStyle_(parsedDeviceSize_.height)]]">
+          </div>
+        </div>
+      </div>
+    </tf-creative-preview-resizable-container>
+  </template>
+  </dom-module>
+
+
+<dom-module id="tf-creative-preview-ruler" assetpath="/preview/">
+  <template>
+    <style>
+      :host {
+        --tf-creative-preview-ruler-bg-color: #e6e6e6;
+        --tf-creative-preview-ruler-hover-bg-color: #d1d1d1;
+        --tf-creative-preview-ruler-tickmark-size: 2px;
+      }
+
+      :host([vertical]) {
+        /* For IE. Block display makes the vertical ruler not fill the available height. */
+        display: inline;
+      }
+
+      /* A flex container for the interval elements. An explicit height must be set on flex
+       * containers for IE; otherwise, it would have been possible to use height: 100%. */
+      #container {
+        height: var(--tf-creative-preview-ruler-size, 16px);
+        width: 100%;
+        @apply --layout-horizontal;
+      }
+
+      :host([vertical]) #container {
+        width: var(--tf-creative-preview-ruler-size, 16px);
+        height: 100%;
+        @apply --layout-vertical;
+      }
+
+      /* A container for a single interval which provides the padding at the right/bottom end of
+       * the interval to create the appearance of a tickmark. */
+      .interval {
+        box-sizing: border-box;
+        cursor: pointer;
+        flex-shrink: 0;
+        padding: 0 var(--tf-creative-preview-ruler-tickmark-size) 0 0;
+        @apply --layout-horizontal;
+      }
+
+      :host([vertical]) .interval {
+        padding: 0 0 var(--tf-creative-preview-ruler-tickmark-size) 0;
+        @apply --layout-vertical;
+
+        /* For IE. */
+        align-items: center;
+      }
+
+      /* A child of the interval which fills in the interval with a background color. */
+      .interval-bg {
+        background: var(--tf-creative-preview-ruler-bg-color);
+        font-size: 0.9em;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-grow: 1;
+        padding: 0 4px;
+      }
+
+      :host([vertical]) .interval-bg {
+        padding: 4px 0;
+        position: relative;
+
+        /* For IE. */
+        @apply --layout-vertical;
+        width: 100%;
+      }
+
+      /* The last interval simply fills in the remaining space in the ruler. This interval has a
+       * small fixed minimum width or height so it does not collapse to 0; this gives the label
+       * room to appear and allows the user to interact with this region of the ruler. */
+      .interval.last {
+        flex-grow: 1;
+        padding: 0;
+        margin: 0;
+        min-width: var(--tf-creative-preview-ruler-last-interval-size, 100px);
+      }
+
+      :host([vertical]) .interval.last {
+        /* 0px rather than 'initial' is required for IE. */
+        min-width: 0px;
+        min-height: var(--tf-creative-preview-ruler-last-interval-size, 100px);
+      }
+
+      :host([vertical]) .interval.last .interval-bg {
+        justify-content: center;
+      }
+
+      /* The interval label which displays the interval's range, shown only on hover. */
+      .label {
+        display: none;
+        white-space: nowrap;
+        -webkit-user-select: none;
+      }
+
+      :host([vertical]) .label {
+        transform: rotateZ(90deg);
+      }
+
+      /* On hover, highlight the interval and show the label. */
+      .interval:hover .interval-bg {
+        background: var(--tf-creative-preview-ruler-hover-bg-color);
+      }
+
+      .interval:hover .label {
+        display: block;
+      }
+    </style>
+
+    <div id="container">
+      <template is="dom-repeat" items="[[intervals_]]" as="interval">
+        <div class$="[[getIntervalClassnames_(interval)]]" style$="[[getIntervalStyle_(interval, vertical)]]">
+          <div class="interval-bg">
+            <div class="label">
+              [[getIntervalLabel_(interval, breakpoints)]]
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+  </template>
+  </dom-module>
+<dom-module id="tf-creative-preview-single" assetpath="/preview/">
+  <template>
+    <style>
+      :host {
+        --tf-creative-preview-ruler-padding: 8px;
+        /* Ruler size plus surrounding padding. */
+        --tf-creative-preview-ruler-total-size: 32px;
+        /* Margin around the viewport to offset the stage from the rulers. This is 2px less than the
+         * total size because the additional 2px are added on the stage to avoid cropping the
+         * viewport shadow. */
+        --tf-creative-preview-ruler-viewport-margin: 30px;
+
+        display: block;
+        position: relative;
+      }
+
+      tf-creative-preview-ruler {
+        --tf-creative-preview-ruler-size: 16px;
+        /* This value should be kept approximately in sync with LAST_INTERVAL_MIN_WIDTH. */
+        --tf-creative-preview-ruler-last-interval-size: 100px;
+      }
+
+      /* A container used to allow or hide scroll overflow in the rulers and stage. */
+      :host([responsive]) .scroll-overflow {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* The container for a TfCreativePreviewRuler element, used to position the ruler. */
+      .ruler {
+        /* Label font size. */
+        font-size: 0.9em;
+        box-sizing: border-box;
+        position: absolute;
+        z-index: 1;
+      }
+
+      .ruler.horizontal {
+        top: var(--tf-creative-preview-ruler-padding);
+        width: 100%;
+        padding-left: var(--tf-creative-preview-ruler-total-size);
+      }
+
+      .ruler.vertical {
+        left: var(--tf-creative-preview-ruler-padding);
+        height: 100%;
+        padding-top: var(--tf-creative-preview-ruler-total-size);
+      }
+
+      /* Don't show scrollbars in the rulers; their scroll will be automatically updated as the
+       * stage is scrolled. */
+      .ruler .scroll-overflow {
+        overflow: hidden;
+      }
+
+      #stage {
+        padding: var(--tf-creative-preview-stage-padding);
+        z-index: 0;
+        overflow: auto;
+        @apply --layout;
+      }
+
+      :host([responsive]) #stage {
+        padding: var(--tf-creative-preview-ruler-viewport-margin)
+            0 0 var(--tf-creative-preview-ruler-viewport-margin);
+        height: 100%;
+        width: 100%;
+        display: block;
+        position: absolute;
+        box-sizing: border-box;
+      }
+
+      :host([responsive]) #stage .scroll-overflow {
+        overflow: auto;
+        /* Add a small padding so the scrollable container boundaries do not crop the viewport
+         * shadow entirely when scroll is at (0,0). */
+        padding: 2px 0 0 2px;
+        box-sizing: border-box;
+      }
+
+      iframe {
+        border: none;
+        background: #fff;
+      }
+    </style>
+
+    <template is="dom-if" if="[[responsive]]">
+      <div class="ruler horizontal">
+        <div class="scroll-overflow">
+          <tf-creative-preview-ruler breakpoints="[[getBreakpoints_(breakpoints, orientation_, 'width')]]" on-ruler-click="onHorizontalRulerClick_" style$="[[getRulerStyle_(scrollSize_, 'width')]]">
+          </tf-creative-preview-ruler>
+        </div>
+      </div>
+
+      <div class="ruler vertical">
+        <div class="scroll-overflow">
+          <tf-creative-preview-ruler vertical="" breakpoints="[[getBreakpoints_(breakpoints, orientation_, 'height')]]" on-ruler-click="onVerticalRulerClick_" style$="[[getRulerStyle_(scrollSize_, 'height')]]">
+          </tf-creative-preview-ruler>
+        </div>
+      </div>
+    </template>
+
+    <div id="stage">
+      <div class="scroll-overflow" on-scroll="onStageScroll_">
+        <div id="stage-scroll-content" style$="[[getStageScrollContentStyle_(responsive, scrollSize_)]]">
+          <tf-creative-preview-resizable-container id="resizable-container" size="{{parsedSize_}}" resizable="[[responsive]]" min="[[minSize_]]" max="[[maxSize_]]">
+            <iframe id="iframe" slot="content" scrolling="no" allowfullscreen="" src$="[[getIframeSrc(previewPath, feed, active)]]" width$="[[parsedSize_.width]]" height$="[[parsedSize_.height]]">
+            </iframe>
+          </tf-creative-preview-resizable-container>
+        </div>
+      </div>
+    </div>
+  </template>
+  </dom-module>
+<dom-module id="tf-creative-preview" assetpath="/preview/">
+  <template>
+    <style>
+      :host {
+        --tf-creative-preview-accent-color: var(--google-blue-500);
+        --tf-creative-preview-border-color: var(--light-theme-divider-color);
+        --tf-creative-preview-icon-color: var(--paper-grey-600);
+        --tf-creative-preview-item-highlight-color: #f0f0f0;
+
+        --tf-creative-preview-control-width: 160px;
+        --tf-creative-preview-item-height: 32px;
+        --tf-creative-preview-padding: 8px;
+        /* Common padding used in the mode views to align the view's iframe(s) with the control
+         * bar contents and logo in the header. */
+        --tf-creative-preview-stage-padding: 24px;
+
+        font-family: Roboto, Helvetica, sans-serif;
+        font-size: 13px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        @apply --layout-vertical;
+
+        /* Required for paper-dropdown-menus to correctly display on top of iframe contents in IE
+         * (b/115536159, b/115566574, b/113070296). The z-index can be any value >= 0. */
+        position: relative;
+        z-index: 0;
+      }
+
+      /* Container for the GWD logo and the control bar. */
+      #header {
+        z-index: 1;
+        /* The header has a soft shadow which is approximately --shadow-elevation-2dp at 75%
+         * opacity. */
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.105),
+            0 1px 5px 0 rgba(0, 0, 0, 0.09),
+            0 3px 1px -2px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Container for the GWD logo. */
+      #masthead {
+        padding: 12px 24px;
+      }
+
+      /* The GWD logo element. */
+      #logo {
+        width: 270px;
+        /* Both a width and a height must be set for the SVG to scale correctly in IE. */
+        height: 35px;
+        display: block;
+      }
+
+      /* When there are no enabled controls, the control bar will be empty, indicated by the absence
+       * of the `has-controls` attribute. Only add the top border when the control bar is not
+       * empty. */
+      #controls[has-controls] {
+        border-top: 1px solid var(--tf-creative-preview-border-color);
+      }
+
+      /* Container for the preview views below the control bar. */
+      #stage {
+        background: var(--paper-grey-100);
+        position: relative;
+        overflow-y: auto;
+        z-index: 0;
+        @apply --layout-flex-auto;
+      }
+
+      /* Hide all mode views initially. */
+      .view {
+        display: none;
+      }
+
+      /* Show only the currently-active mode view. */
+      .view[active] {
+        display: block;
+      }
+
+      /* Because of its rulers, the single view must be forced to fill the full height and width
+       * of the stage area. */
+      tf-creative-preview-single {
+        position: absolute;
+        min-width: 100%;
+        min-height: 100%;
+      }
+
+      /* The Desktop mode view must fill the full height and width of the stage area so its iframe
+       * does the same (b/113590886). */
+      tf-creative-preview-desktop {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+    <div id="header">
+      <div id="masthead">
+        <tf-creative-preview-gwd-logo id="logo"></tf-creative-preview-gwd-logo>
+      </div>
+
+      <tf-creative-preview-controls id="controls" modes="[[modes]]" sizes="[[sizes]]" feeds="[[feeds]]" mode="{{mode}}" mode-settings="{{modeSettings}}" on-reload-view="onReloadView_" on-track="onControlsTrack_" on-overlay-will-open="onDropdownWillOpen_" on-iron-overlay-closed="onDropdownClosed_">
+      </tf-creative-preview-controls>
+    </div>
+
+    <div id="stage">
+      
+      <template is="dom-if" if="[[modeEnabled_('single', modes)]]">
+        <tf-creative-preview-single id="single-view" class="view" active="[[modeIs_('single', mode)]]" preview-path="[[previewPath]]" size="{{modeSettings.single.size}}" feed="[[modeSettings.single.feed]]" breakpoints="[[breakpoints]]" responsive="[[modeSettings.single.isCustomSize]]" reload-on-resize="[[reloadOnResize]]">
+        </tf-creative-preview-single>
+      </template>
+
+      
+      <template is="dom-if" if="[[modeEnabled_('allsizes', modes)]]">
+        <tf-creative-preview-multiple-sizes id="allsizes-view" class="view" active="[[modeIs_('allsizes', mode)]]" preview-path="[[previewPath]]" sizes="[[modeSettings.allsizes.sizes]]" feed="[[modeSettings.allsizes.feed]]">
+        </tf-creative-preview-multiple-sizes>
+      </template>
+
+      
+      <template is="dom-if" if="[[modeEnabled_('allfeeds', modes)]]">
+        <tf-creative-preview-multiple-feeds id="allfeeds-view" class="view" active="[[modeIs_('allfeeds', mode)]]" preview-path="[[previewPath]]" size="[[modeSettings.allfeeds.size]]" feeds="[[matchOrder_(
+                feeds, modeSettings.allfeeds.feeds, modeSettings.allfeeds.feeds.*)]]">
+        </tf-creative-preview-multiple-feeds>
+      </template>
+
+      
+      <template is="dom-if" if="[[modeEnabled_('mobile', modes)]]">
+        <tf-creative-preview-mobile id="mobile-view" class="view" active="[[modeIs_('mobile', mode)]]" preview-path="[[previewPath]]" device-size="{{modeSettings.mobile.deviceSize}}" feed="[[modeSettings.mobile.feed]]" responsive="[[modeSettings.mobile.isCustomSize]]" reload-on-resize="[[reloadOnResize]]">
+        </tf-creative-preview-mobile>
+      </template>
+
+      
+      <template is="dom-if" if="[[modeEnabled_('desktop', modes)]]">
+        <tf-creative-preview-desktop id="desktop-view" class="view" active="[[modeIs_('desktop', mode)]]" preview-path="[[previewPath]]" feed="[[modeSettings.desktop.feed]]">
+        </tf-creative-preview-desktop>
+      </template>
+
+      
+      <template is="dom-if" if="[[modeEnabled_('parallax', modes)]]">
+        <tf-creative-preview-parallax id="parallax-view" class="view" active="[[modeIs_('parallax', mode)]]" preview-path="[[previewPath]]" device-size="{{modeSettings.parallax.deviceSize}}" size="[[modeSettings.parallax.size]]" feed="[[modeSettings.parallax.feed]]" responsive="[[modeSettings.parallax.isCustomSize]]">
+        </tf-creative-preview-parallax>
+      </template>
+    </div>
+  </template>
+  </dom-module>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Roboto:regular"><style>
+      body {
+        margin: 0;
+      }
+
+      tf-creative-preview {
+        width: 100%;
+        height: 100%;
+      }
+    </style></div>
+    <tf-creative-preview id="preview-app"></tf-creative-preview>
+  
+
+
+<script src="preview_polymer.js"></script></body></html>
