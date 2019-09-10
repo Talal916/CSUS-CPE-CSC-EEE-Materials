@@ -1,0 +1,12 @@
+build.classes.dir=${build.dir}/
+# This directory is removed when the project is cleaned:
+build.dir=bin
+# Only compile against the classpath explicitly listed here:
+dist.dir=dist
+dist.jar=${dist.dir}/A3Prj.jar
+build.test.classes.dir=${build.dir}/test/classes
+build.test.results.dir=${build.dir}/test/results
+test.src.dir=test
+javac.test.classpath=./JavaSE.jar:\
+    ${javac.classpath}:\
+    ${build.classes.dir}

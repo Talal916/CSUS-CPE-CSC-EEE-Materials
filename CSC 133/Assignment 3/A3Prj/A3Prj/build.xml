@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--build_version=4.3--> 
+
+<project name="A3Prj" basedir=".">
+	<description>Builds, tests, and runs the project CodenameOne111.</description>
+	<property file="codenameone_settings.properties" />
+	<property file="build.props" />
+	<property name="automated" value="false" />
+	<property environment="env"/>
+	<property name="javaHome" value="${env.JAVA_HOME}"/>
+	<taskdef name="codeNameOne" classname="com.codename1.build.client.CodeNameOneBuildTask" classpath="CodeNameOneBuildClient.jar" />
+    <taskdef name="prepareTests" classname="com.codename1.build.client.PrepareTestsTask" classpath="CodeNameOneBuildClient.jar"/>
+    <taskdef name="installLibs" classname="com.codename1.build.client.InstallLibsTask" classpath="CodeNameOneBuildClient.jar"/>
+    <taskdef name="verifyDir" classname="com.codename1.build.client.VerifyDir" classpath="CodeNameOneBuildClient.jar"/>
+    <taskdef name="generateGuiSources" classname="com.codename1.build.client.GenerateGuiSources" classpath="CodeNameOneBuildClient.jar"/>
+    
+	<path id="master-classpath">
+	  <fileset dir="lib">
+	    <include name="*.jar"/>
+	  </fileset>
+	  <pathelement path="CodeNameOneBuildClient.jar"/>
+	</path>
+	
+	<target depends="jar" name="compile-test">
+        <mkdir dir="${build.test.classes.dir}" />
+        <javac destdir="${build.test.classes.dir}" compiler="modern"
+            source="1.8"
+            target="1.8"
+            bootclasspath="CLDC11.jar"        	
+				classpath="lib/CodenameOne.jar:${build.classes.dir}:lib/impl/cls">
+	        <src path="${test.src.dir}"/>
+        	<classpath refid="master-classpath"/>
+        </javac>        
+        <prepareTests classesDir="${build.classes.dir}" testClassesDir="${build.test.classes.dir}" seJar="JavaSE.jar" metaDataFile="${build.test.classes.dir}/tests.dat" />
+        <jar jarfile="dist/unitTests.jar">
+            <fileset dir="${build.classes.dir}"/>
+            <fileset dir="${build.test.classes.dir}"/>
+        </jar>
+    </target>
+
+    <target depends="compile-test" name="-do-test-run" >        
+        <java  fork="true" classpath="JavaSE.jar:dist/unitTests.jar:${javac.test.classpath}:lib/impl/cls:native/internal_tmp"  classname="com.codename1.impl.javase.TestRunner">
+            <arg value="${codename1.packageName}.${codename1.mainName}" />
+        </java>
+    </target>
+    
+    <target depends="-do-test-run" description="Run unit tests." name="test"  />
+    
+    <target name="genGuiSrc">
+    	<generateGuiSources srcDir="src" encoding="UTF-8" guiDir="res/guibuilder"  />
+    </target>
+
+    <target name="refresh-libs">
+        <delete dir="lib/impl" />
+        <mkdir dir="native/android" />
+        <mkdir dir="native/ios" />
+        <mkdir dir="native/j2me" />
+        <mkdir dir="native/rim" />
+        <mkdir dir="native/win" />
+        <mkdir dir="native/javase" />
+        <mkdir dir="native/javascript" />
+        <mkdir dir="lib/impl/cls" />
+        <mkdir dir="lib/impl/stubs" />
+        <mkdir dir="lib/impl/native" />
+        <mkdir dir="lib/impl/native/android" />
+        <mkdir dir="lib/impl/native/ios" />
+        <mkdir dir="lib/impl/native/j2me" />
+        <mkdir dir="lib/impl/native/rim" />
+        <mkdir dir="lib/impl/native/win" />
+        <mkdir dir="lib/impl/native/javascript" />
+    	
+        <installLibs lib="lib" dest="lib/impl" />        
+    </target>
+	
+	<target name="jar" description="Create a jar for project">  <!-- depends="setupJavac" if="pathDefined"--> 
+			<echo>Compile is forcing compliance to the supported API's/features for maximum device compatibility. This allows smaller
+	        code size and wider device support</echo>
+	        <copy todir="bin">
+	            <fileset dir="override"/> 
+	        </copy>
+			<mkdir dir="build/tmp"/>
+			<delete>
+				<fileset dir="build/tmp" includes="**/*" />
+			</delete> 
+	        <copy todir="build/tmp">
+	            <fileset dir="src" excludes="**/*.java"/> 
+	        </copy>
+	        <copy todir="build/tmp">
+	            <fileset dir="bin" excludes="**/*.class, **/*.ovr"/> 
+	        </copy>
+	        <!-- This is the previous javac task leaving it here in case of a regression with the new javac tasks
+	        
+	         javac destdir="build/tmp" compiler="extJavac" executable="${javacPath}"
+	            source="1.8"
+	            target="1.8" 
+	            bootclasspath="lib/CLDC11.jar"
+				classpath="lib/CodenameOne.jar:${build.classes.dir}:lib/impl/cls">
+	            <src path="src"/>
+	        </javac-->
+	        
+	        <javac destdir="build/tmp" compiler="modern"
+	            source="1.8"
+	            target="1.8"
+	        	encoding="UTF-8"
+	            bootclasspath="lib/CLDC11.jar"
+				classpath="lib/CodenameOne.jar:${build.classes.dir}:lib/impl/cls">
+	            <src path="src"/>
+	        </javac>
+	        <copy todir="build/tmp">
+	            <fileset dir="${build.classes.dir}" excludes="**/*.class, **/*.ovr"/> 
+	        </copy>
+	        <copy todir="build/tmp">
+	            <fileset dir="build" includes="**/*.ovr"/> 
+	        </copy>
+	        <copy todir="build/tmp">
+	            <fileset dir="lib/impl/cls" includes="**/*"/> 
+	        </copy>
+	        	        
+	        <jar jarfile="${dist.jar}" includes="**/*" basedir="build/tmp" >
+		    	<exclude name="**/package-info.class" />
+		    	<exclude name="**/Thumbs.db" />
+			</jar>
+			
+	        <mkdir dir="native/javase" />
+	        <mkdir dir="native/internal_tmp" />
+	        <javac destdir="native/internal_tmp" compiler="modern"
+	            source="1.8"
+	            target="1.8"
+	        	encoding="UTF-8"
+				classpath="lib/CodenameOne.jar:${build.classes.dir}:lib/impl/cls:build/tmp">
+	            <src path="native/javase"/>
+	            <src path="lib/impl/native/javase"/>
+	        </javac>        
+	        
+	</target>
+		
+
+	<target name="setupJavac" depends="goBlankNoPath, goExe, goBlank, testFail">
+	</target>
+
+	<target name="goBlankNoPath" depends="testNoPath" if="javacExists">
+		<property name="javacPath" value="javac"/>
+		<property name="pathDefined" value="true"/>
+	</target>
+
+	 <target name="testNoPath">
+        <exec executable="javac" failonerror="false"
+            failifexecutionfails="false" errorproperty="javacExists">
+          <arg value="-version"/>
+        </exec>
+	</target>
+
+
+	<target name="goExe" depends="javacExe" if="javacExeExists">
+	      <property name="javacPath" value="${javaHome}\bin\javac.exe"/> 
+	      <property name="pathDefined" value="true"/> 
+	</target> 
+	<target name="javacExe" >
+		<available file="${javaHome}\bin\javac.exe" property="javacExeExists"/> 			      
+	</target> 
+	
+	<target name="goBlank" depends="javacBlank" if="javacExists">
+	      <property name="javacPath" value="${javaHome}/bin/javac"/> 
+	      <property name="pathDefined" value="true"/> 
+	</target> 
+	<target name="javacBlank" >
+	     <available file="${javaHome}/bin/javac" property="javacExists"/> 
+	</target> 
+	
+	<target name="testFail" unless="pathDefined">
+	     <echo>
+	     	Error! Path to Javac not found! 
+	     	Make sure the JAVA_HOME enviroment variable is pointing to the JDK 
+	     	or define javac path in build.xml manually!</echo>
+	     <fail/>
+	</target> 
+
+	<target name="clean" depends="refresh-libs">
+		<!-- delete>
+			<fileset dir="bin" includes="**/*" />
+		</delete --> 
+	</target>
+
+    <target name="copy-libs">
+        <copy todir="${build.classes.dir}">
+            <fileset dir="lib/impl/cls" />
+        </copy>
+    </target>
+	
+    <target name="test-for-ios-device" depends="clean-override,copy-ios-override,copy-libs,jar">
+        <codeNameOne 
+            jarFile="${dist.jar}"
+            displayName="${codename1.displayName}"
+            packageName = "${codename1.packageName}"
+            mainClassName = "${codename1.mainName}"
+            version="${codename1.version}"
+            icon="${codename1.icon}"
+            vendor="${codename1.vendor}"
+            subtitle="${codename1.secondaryTitle}"
+            buildArgs="build.unitTest=1"
+            targetType="iphone"
+            certificate="${codename1.ios.debug.certificate}"
+            certPassword="${codename1.ios.debug.certificatePassword}"
+            provisioningProfile="${codename1.ios.debug.provision}"
+            appid="${codename1.ios.appid}"
+            />
+    </target>
+
+    <target name="test-for-android-device" depends="clean-override,copy-android-override,copy-libs,jar">
+        <codeNameOne 
+            jarFile="${dist.jar}"
+            displayName="${codename1.displayName}"
+            packageName = "${codename1.packageName}"
+            mainClassName = "${codename1.mainName}"
+            version="${codename1.version}"
+            icon="${codename1.icon}"
+            vendor="${codename1.vendor}"
+            subtitle="${codename1.secondaryTitle}"
+            buildArgs="build.unitTest=1"
+            targetType="android"
+            keystoreAlias="${codename1.android.keystoreAlias}"
+            keystore="${codename1.android.keystore}"
+            certPassword="${codename1.android.keystorePassword}"
+            />
+    </target>
+
+    <target name="test-for-rim-device" depends="clean-override,copy-rim-override,copy-libs,jar">
+        <codeNameOne 
+            jarFile="${dist.jar}"
+            displayName="${codename1.displayName}"
+            packageName = "${codename1.packageName}"
+            mainClassName = "${codename1.mainName}"
+            version="${codename1.version}"
+            icon="${codename1.icon}"
+            vendor="${codename1.vendor}"
+            subtitle="${codename1.secondaryTitle}"
+            buildArgs="build.unitTest=1"
+            targetType="rim"
+            sigtoolDb="${codename1.rim.signtoolDb}"
+            certPassword="${codename1.rim.certificatePassword}"
+            sigtoolCsk="${codename1.rim.signtoolCsk}"
+            />
+    </target>
+
+     <target name="test-for-j2me-device" depends="clean-override,j2me-native-theme-init,copy-j2me-native,copy-j2me-override,copy-libs,jar,clean-j2me-native">
+        <codeNameOne
+            jarFile="${dist.jar}"
+            displayName="${codename1.displayName}"
+            packageName = "${codename1.packageName}"
+            mainClassName = "${codename1.mainName}"
+            version="${codename1.version}"
+            icon="${codename1.icon}"
+            vendor="${codename1.vendor}"
+            subtitle="${codename1.secondaryTitle}"
+            targetType="me"            
+            buildArgs="build.unitTest=1"
+            />
+    </target>
+	
+    <target name="build-for-mac-os-x-desktop" depends="clean-override,copy-desktop-override,copy-libs,jar">
+        <codeNameOne 
+            jarFile="${dist.jar}"
+            displayName="${codename1.displayName}"
+            packageName = "${codename1.packageName}"
+            mainClassName = "${codename1.mainName}"
+            version="${codename1.version}"
+            icon="${codename1.icon}"
+            vendor="${codename1.vendor}"
+            subtitle="${codename1.secondaryTitle}"
+            certificate="${codename1.desktop.mac.certificate}"
+            certPassword="${codename1.desktop.mac.certificatePassword}"
+            targetType="desktop_macosx"
+        	automated="${automated}"
+            />
+    </target>
+    
+    <target name="build-for-windows-desktop" depends="clean-override,copy-desktop-override,copy-libs,jar">
+        <codeNameOne 
+            jarFile="${dist.jar}"
+            displayName="${codename1.displayName}"
+            packageName = "${codename1.packageName}"
+            mainClassName = "${codename1.mainName}"
+            version="${codename1.version}"
+            icon="${codename1.icon}"
+            vendor="${codename1.vendor}"
+            subtitle="${codename1.secondaryTitle}"
+
+            targetType="desktop_windows"
+        	automated="${automated}"
+            />
+    </target>
+     	
+	<target name="build-for-ios-device" depends="clean-override,copy-ios-override,copy-libs,jar">
+		<codeNameOne jarFile="${dist.jar}" 
+			displayName="${codename1.displayName}" 
+			packageName="${codename1.packageName}" 
+			mainClassName="${codename1.mainName}" 
+			version="${codename1.version}" 
+			icon="${codename1.icon}" 
+			vendor="${codename1.vendor}" 
+			subtitle="${codename1.secondaryTitle}" 
+			targetType="iphone" 
+			certificate="${codename1.ios.debug.certificate}" 
+			certPassword="${codename1.ios.debug.certificatePassword}" 
+			provisioningProfile="${codename1.ios.debug.provision}" 
+			appid="${codename1.ios.appid}" 
+			automated="${automated}"
+		/>
+	</target>
+
+	<target name="build-for-ios-device-release" depends="clean-override,copy-ios-override,copy-libs,jar">
+		<codeNameOne jarFile="${dist.jar}" 
+			displayName="${codename1.displayName}" 
+			packageName="${codename1.packageName}" 
+			mainClassName="${codename1.mainName}" 
+			version="${codename1.version}" 
+			icon="${codename1.icon}" 
+			vendor="${codename1.vendor}" 
+			subtitle="${codename1.secondaryTitle}" 
+			production="true"
+			appStoreBuild="true"
+ 			targetType="iphone" 
+			certificate="${codename1.ios.release.certificate}" 
+			certPassword="${codename1.ios.release.certificatePassword}" 
+			provisioningProfile="${codename1.ios.release.provision}" 
+			appid="${codename1.ios.appid}" 
+			automated="${automated}"
+		/>
+	</target>
+
+	<target name="copy-android-override">
+		<mkdir dir="build" />
+		<mkdir dir="override" />
+		<copy todir="build" >
+			<fileset dir="override" includes="**/*_android.ovr" />
+			<fileset dir="override" includes="**/*_android-phone.ovr" />
+			<fileset dir="override" includes="**/*_android-tab.ovr" />
+			<fileset dir="override" includes="**/*_phone.ovr" />
+			<fileset dir="override" includes="**/*_tablet.ovr" />
+		</copy>
+		<mkdir dir="lib/impl/native/" />
+        <mkdir dir="lib/impl/native/android" />        		
+		<copy todir="${build.classes.dir}" >
+			<fileset dir="native/android" includes="**/*" />
+            <fileset dir="lib/impl/native/android" includes="**/*"/>
+		</copy>
+	</target>
+
+	<target name="copy-ios-override">
+		<mkdir dir="build" />
+		<mkdir dir="override" />
+		<copy todir="build" >
+			<fileset dir="override" includes="**/*_ios.ovr" />
+			<fileset dir="override" includes="**/*_iphone.ovr" />
+			<fileset dir="override" includes="**/*_ipad.ovr" />
+			<fileset dir="override" includes="**/*_phone.ovr" />
+			<fileset dir="override" includes="**/*_tablet.ovr" />
+		</copy>
+        <mkdir dir="lib/impl/native/" />
+        <mkdir dir="lib/impl/native/ios" />        		
+		<copy todir="${build.classes.dir}">
+            <fileset dir="native/ios" includes="**/*"/>
+            <fileset dir="lib/impl/native/ios" includes="**/*"/>
+        </copy>
+	</target>
+
+	<target name="copy-rim-override">
+		<mkdir dir="build" />
+		<mkdir dir="override" />
+		<copy todir="build">
+			<fileset dir="override" includes="**/*_rim.ovr" />
+			<fileset dir="override" includes="**/*_phone.ovr" />
+		</copy>
+		<mkdir dir="lib/impl/native/" />
+        <mkdir dir="lib/impl/native/rim" />        		
+		<copy todir="${build.classes.dir}">
+			<fileset dir="native/rim" includes="**/*" />
+            <fileset dir="lib/impl/native/rim" includes="**/*"/>
+		</copy>
+	</target>
+
+	<target name="copy-j2me-override">
+		<mkdir dir="build" />
+		<mkdir dir="override" />
+		<copy todir="build">
+			<fileset dir="override" includes="**/*_me.ovr" />
+			<fileset dir="override" includes="**/*_phone.ovr" />
+		</copy>
+		<mkdir dir="lib/impl/native/" />
+        <mkdir dir="lib/impl/native/j2me" />        		
+		<copy todir="${build.classes.dir}">
+			<fileset dir="native/j2me" includes="**/*" />
+            <fileset dir="lib/impl/native/j2me" includes="**/*"/>						
+		</copy>
+	</target>
+
+	<target name="copy-desktop-override">
+		<mkdir dir="build" />
+		<mkdir dir="override" />
+		<copy todir="${build.classes.dir}">
+            <fileset dir="native/javase" includes="**/*"/>
+            <fileset dir="lib/impl/native/javase" includes="**/*"/>
+        </copy>
+    </target>
+	
+	<target name="clean-override"> 
+		<delete>
+			<fileset dir="${build.classes.dir}" includes="**/*.java" />
+			<fileset dir="${build.classes.dir}" includes="**/*.m" />
+			<fileset dir="${build.classes.dir}" includes="**/*.h" />
+		</delete>
+		<mkdir dir="build/tmp"/>
+		<delete>
+			<fileset dir="build/tmp" includes="**/*" />
+		</delete>
+		<delete>
+			<fileset dir="build" includes="**/*.ovr" />
+		</delete>
+	</target>
+
+	<target name="build-for-android-device" depends="copy-android-override,copy-libs,jar,clean-override">
+		<codeNameOne jarFile="${dist.jar}" 
+			displayName="${codename1.displayName}" 
+			packageName="${codename1.packageName}" 
+			mainClassName="${codename1.mainName}" 
+			version="${codename1.version}" 
+			icon="${codename1.icon}" 
+			vendor="${codename1.vendor}" 
+			subtitle="${codename1.secondaryTitle}" 
+			targetType="android" 
+			keystoreAlias="${codename1.android.keystoreAlias}" 
+			keystore="${codename1.android.keystore}" 
+			automated="${automated}"
+			certPassword="${codename1.android.keystorePassword}" />
+	</target>
+
+    <target name="build-for-javascript" depends="clean-override,copy-javascript-override,copy-libs,jar">
+        <codeNameOne 
+            jarFile="${dist.jar}"
+            displayName="${codename1.displayName}"
+            packageName = "${codename1.packageName}"
+            mainClassName = "${codename1.mainName}"
+            version="${codename1.version}"
+            icon="${codename1.icon}"
+            vendor="${codename1.vendor}"
+            subtitle="${codename1.secondaryTitle}"
+        	automated="${automated}"
+            targetType="javascript"
+            />
+    </target>    
+	<target name="war" depends="clean,copy-javascript-override,copy-libs,jar,clean-override" description="Create .war file with Javascript build">
+        <antcall target="build-for-javascript">
+            <param name="automated" value="true"/>
+        </antcall>
+        <basename property="dist.base" file="${dist.jar}" suffix=".jar"/>
+        <property name="dist.war" value="dist/${dist.base}.war"/>
+        <mkdir dir="build/result" />
+        <unzip src="dist/result.zip" dest="build/result" />
+        <first id="first">
+            <fileset dir="build/result" includes="*.war"/>
+        </first>
+        <copy file="${toString:first}" tofile="${dist.war}" overwrite="true"/>
+        <delete dir="build/result"/>
+        <delete file="dist/result.zip"/>
+    </target>
+    <target name="check-webapp-runner">
+        <echo>Checking Webapp Runner...</echo>
+        <available file="${user.home}/.codenameone/webapp-runner.jar" property="webapprunner.present" value="true"/>
+        <echo message="Webapp Runner present? : ${webapprunner.present}"/>
+    </target>
+    <target name="init-webapp-runner" depends="check-webapp-runner" unless="webapprunner.present">
+        <mkdir dir="${user.home}/.codenameone"/>
+        <get src="https://github.com/codenameone/cn1-binaries/raw/master/javascript/webapp-runner.jar" dest="${user.home}/.codenameone/webapp-runner.jar"/>
+    </target>
+    <target name="check-war">
+        <echo>Checking War</echo>
+        <basename property="dist.base" file="${dist.jar}" suffix=".jar"/>
+        <property name="dist.war" value="dist/${dist.base}.war"/>
+        <available file="${dist.war}" property="war.present" value="true"/>
+        <echo message="War file present? ${war.present}"/>
+    </target>
+    <target name="init-war" depends="check-war" unless="war.present">
+        <antcall target="war"/>
+    </target>
+    <target name="run-war" depends="init-war,init-webapp-runner" description="Run as Web App on Localhost using embedded Tomcat">
+        <property name="port" value="0"/>
+        <java jar="${user.home}/.codenameone/webapp-runner.jar" fork="true" failonerror="true">
+            <arg value="${dist.war}"/>
+            <arg value="--port"/>
+            <arg value="${port}"/>
+            <arg value="--open-in-browser"/>
+            <arg value="--temp-directory"/>
+            <arg value="dist/webapp"/>
+        </java>
+    </target>
+	<target name="build-for-rim-device" depends="clean-override,copy-rim-override,copy-libs,jar">
+		<codeNameOne jarFile="${dist.jar}" 
+			displayName="${codename1.displayName}" 
+			packageName="${codename1.packageName}" 
+			mainClassName="${codename1.mainName}" 
+			version="${codename1.version}" 
+			icon="${codename1.icon}" 
+			vendor="${codename1.vendor}" 
+			subtitle="${codename1.secondaryTitle}" 
+			targetType="rim" 
+			sigtoolDb="${codename1.rim.signtoolDb}" 
+			certPassword="${codename1.rim.certificatePassword}"
+			automated="${automated}"
+			sigtoolCsk="${codename1.rim.signtoolCsk}" />
+	</target>
+
+
+	<target name="build-for-j2me-device" depends="j2me-native-theme-init,copy-j2me-native,copy-j2me-override,copy-libs,jar,clean-j2me-native,clean-override">
+		<codeNameOne jarFile="${dist.jar}" 
+			displayName="${codename1.displayName}" 
+			packageName="${codename1.packageName}" 
+			mainClassName="${codename1.mainName}" 
+			version="${codename1.version}" 
+			icon="${codename1.icon}" 
+			vendor="${codename1.vendor}" 
+			subtitle="${codename1.secondaryTitle}" 
+			automated="${automated}"
+			targetType="me" />
+	</target>
+	
+   <target name="copy-javascript-override">
+        <mkdir dir="${build.classes.dir}" />
+        <mkdir dir="override" />
+        <mkdir dir="native/javascript" />
+        <mkdir dir="lib/impl/native/javascript" />
+        <copy todir="${build.classes.dir}">
+            <fileset dir="native/javascript" includes="**/*"/>
+            <fileset dir="lib/impl/native/javascript" includes="**/*"/>
+        </copy>
+    </target>
+    
+     <target name="copy-windows-override">
+        <mkdir dir="build" />
+        <mkdir dir="override" />
+        <copy todir="build">
+            <fileset dir="override" includes="**/*_win.ovr"/>
+            <fileset dir="override" includes="**/*_win-phone.ovr"/>
+            <fileset dir="override" includes="**/*_win-tab.ovr"/>
+            <fileset dir="override" includes="**/*_phone.ovr"/>
+            <fileset dir="override" includes="**/*_tablet.ovr"/>
+        </copy>
+        <mkdir dir="native/win" />
+        <mkdir dir="lib/impl/native/" />
+        <mkdir dir="lib/impl/native/win" />        		
+		<copy todir="${build.classes.dir}">
+            <fileset dir="native/win" includes="**/*"/>
+            <fileset dir="lib/impl/native/win" includes="**/*"/>            
+        </copy>
+    </target>
+
+    <target name="build-for-win-device" depends="clean-override,copy-windows-override,copy-libs,jar">
+        <codeNameOne 
+            jarFile="${dist.jar}"
+            displayName="${codename1.displayName}"
+            packageName = "${codename1.packageName}"
+            mainClassName = "${codename1.mainName}"
+            version="${codename1.version}"
+            icon="${codename1.icon}"
+            vendor="${codename1.vendor}"
+            subtitle="${codename1.secondaryTitle}"            
+            targetType="win"
+        	automated="${automated}"
+            />
+    </target>
+
+    <target name="build-for-windows-device" depends="clean-override,copy-windows-override,copy-libs,jar">
+        <codeNameOne 
+            jarFile="${dist.jar}"
+            displayName="${codename1.displayName}"
+            packageName = "${codename1.packageName}"
+            mainClassName = "${codename1.mainName}"
+            version="${codename1.version}"
+            icon="${codename1.icon}"
+            vendor="${codename1.vendor}"
+            subtitle="${codename1.secondaryTitle}"            
+            targetType="windows"
+            certificate="${codename1.windows.certificate}"
+            certPassword="${codename1.windows.certificatePassword}"
+        	automated="${automated}"
+            />
+    </target>
+	
+	
+    <target name="j2me-native-theme-init">
+        <available file="${codename1.j2me.nativeTheme}" property="j2me-native-theme.available" />
+    </target>
+    
+    <target name="copy-j2me-native" if="j2me-native-theme.available">
+        <copy file="${codename1.j2me.nativeTheme}" tofile="${build.classes.dir}/nativeJ2METheme.res" />
+    </target>
+
+    <target name="clean-j2me-native" if="j2me-native-theme.available">
+        <delete file="${build.classes.dir}/nativeJ2METheme.res" />
+    </target>
+	
+	<target name="-pre-init">
+		<property name="application.args" value="${codename1.packageName}.${codename1.mainName}" />
+	</target>
+	
+    <target name="webservice-wizard">
+        <java classpath="CodeNameOneBuildClient.jar" classname="com.codename1.ws.wizard.WSWizard" dir="." fork="true" />
+    </target>		
+</project>
