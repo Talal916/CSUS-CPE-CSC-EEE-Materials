@@ -1,0 +1,66 @@
+.creately-overlay {
+	position:fixed;
+	left:0;
+	top:0;
+	background-color:#1d1d1d;
+	z-index:100002;
+	width:100%;
+	height:100%;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+}
+
+.middle-container,
+.top-container {
+    position: fixed;
+    text-align: left;
+    width: auto;
+    height: auto;
+    left: 0px;
+    top: 0px;
+    -webkit-box-shadow: 1px 2px 1px rgba(0,0,0,.14);
+    -moz-box-shadow: 1px 2px 1px rgba(0,0,0,.14);
+    box-shadow: 1px 2px 1px rgba(0,0,0,.14);
+    border: 1px solid #d4d4d4;
+}
+
+.bottom-container {
+    position: fixed;
+    text-align: left;
+    width: auto;
+    height: auto;
+    left: 0;
+    z-index: 100003;
+}
+
+.top-container {
+    z-index: 100003;
+}
+
+.middle-container {
+    z-index: 100004;
+}
+
+.creately-widget-close {
+    outline-color: -moz-use-text-color;
+    outline-style: none;
+    outline-width: medium;
+    overflow: hidden;
+    z-index: 4;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    margin: 0;
+    color: #000;
+    background-image: url('../images/close.svg');
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 20px 40px;
+}
+
+.creately-widget-close:hover {
+    background-position: 0 -20px;
+}

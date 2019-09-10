@@ -1,0 +1,146 @@
+.success {
+	font-family: "Lato","Helvetica Neue",Helvetica,sans-serif;
+	background: #fff;
+	color: #858ba1;
+	margin: 0 auto;
+	width: 560px;
+	display: inline-block;
+}
+
+.success .success-header {
+	font-size: 24px;
+	color: #000;
+	display: block;
+	font-weight: normal;
+	text-align: center;
+	margin-top: 22px;
+	margin-bottom: 26px;
+}
+
+.success .goto-btn {
+	width: 250px;
+	font-size: 18px;
+	font-weight: normal;
+	color: #fff;
+	display: block;
+	text-align: center;
+	line-height: 45px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	background-color: #efa800;
+	margin: 0 auto;
+}
+
+.success .goto-btn:hover,
+.success .goto-btn:active,
+.success .goto-btn:focus {
+	background-color: #e49f0c;
+	text-decoration: none;
+}
+
+.success .success-middle{
+	padding: 30px 20px 36px;
+}
+
+.success .success-bottom{
+	padding: 10px 30px 17px;
+	text-align: center;
+}
+
+.success .bottom-link-list{ 
+	padding:0;
+	margin: 0;
+}
+
+.success .bottom-link-list li{ 
+	display: inline-block;
+	margin: 0 28px 0;
+	padding: 0;
+}
+
+.success .bottom-link-list li a{
+	color: #415a71;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: normal;
+	display: flex;
+    align-items: center;
+}
+
+.success .bottom-link-list li a:hover{
+	color: #f19736;
+}
+
+.success .bottom-link-list li a .icon{
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	stroke-width: 0;
+	stroke: currentColor;
+	fill: currentColor;
+	margin: 0 10px 0 0;
+}
+
+.success .bottom-link-list li a span{
+	vertical-align: middle;
+	display: table-cell;
+}
+
+.success-beta-app * {
+	font-family: "Lato","Helvetica Neue",Helvetica,sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.success-beta-app {
+	background: #6880d8;
+	color: #fff;
+	bottom: 0;
+	left: 0;
+	width: 100vw;
+	position: relative;
+}
+
+.success-beta-app-wrapper{
+	padding: 50px 0;
+	margin: 0 auto;
+	width: 600px;
+	background: url('../images/rocket.svg') no-repeat bottom right;
+	background-size: 276px 192px;
+}
+
+.success-beta-app-content h3{
+	font-size: 24px;
+	font-weight: normal;
+	line-height: 1.1em;
+	margin: 0 0 15px 0;
+}
+
+.success-beta-app-content p{
+	font-size: 15px;
+	width: 340px;
+	margin-bottom: 25px;
+	line-height: 25px;
+}
+
+.success-beta-app a{
+	background-color: #fff;
+	font-size: 18px;
+	width: 165px;
+	line-height: 35px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	color: #7d77e6;
+	display: block;
+	text-align: center;
+}
+
+.success-beta-app a:hover,
+.success-beta-app a:active,
+.success-beta-app a:focus {
+	text-decoration: none;
+	color: #fff;
+	background-color: #efa800;
+}

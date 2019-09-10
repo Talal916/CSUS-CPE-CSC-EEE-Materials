@@ -1,0 +1,27 @@
+1. Launch Game
+2.Pre condition 
+	2.1: A1Prj.jar (in dist)
+	2.2 RunAssignment.jar; // at A1Prj dir
+3. Input 
+	java-jar_ RunAssignment.jar_ A1 Prj.jar
+4. output:
+	gui + text fields 
+	other text fields (like a title)
+------------------------------------------------
+1.  Introduce objects (charecters) into game
+2.  Pre condition
+	2.1: test case 1 executed
+3. Input
+	ipnuts a - asteroids
+	       y - NPS non player ship
+	       s - ps ....etc
+4. output
+	using 'm' or 'p' 
+-----------------------------------------------
+1. object interaction (fire missle, spaceship crash...etc)
+
+-----------------------------------------------
+1. exit program 
+	hitting 'q'
+	
+

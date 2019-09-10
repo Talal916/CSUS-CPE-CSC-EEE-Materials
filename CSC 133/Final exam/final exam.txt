@@ -1,0 +1,36 @@
+design pattern
+- draw uml from code
+- identify design pattern
+collection
+
+
+application of transformations
+slidedeck of applications of transformations  - actual code
+
+inheritance
+mouth nose eyes
+upcasting/downcasting
+actual type vs apparent type
+
+
+design pattern
+- draw uml from code
+- identify design pattern
+collection
+
+
+application of transformations
+slidedeck of applications of transformations  - actual code
+
+inheritance
+mouth nose eyes
+upcasting/downcasting
+actual type vs apparent type
+uml is 20% of the final
+Application of Transformation - Rectangle from slides (KNOW CODE EXACTLY)
+Design pattern and UML: Composite (UML is 20 pts)
+Inheritance - Mouth/eye quiz and dog quiz
+
+
+
+
