@@ -1,0 +1,7 @@
+vhdl isim_temp "lfsr.vhd"
+vhdl isim_temp "lcd_display.vhd"
+vhdl isim_temp "fsm.vhd"
+vhdl isim_temp "doutt.vhd"
+vhdl isim_temp "counter.vhd"
+vhdl isim_temp "cal.vhd"
+vhdl isim_temp "calculator.vhd"

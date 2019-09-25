@@ -1,0 +1,38 @@
+#-----------------------------------------------------------
+# Vivado v2017.2 (64-bit)
+# SW Build 1909853 on Thu Jun 15 18:39:09 MDT 2017
+# IP Build 1909766 on Thu Jun 15 19:58:00 MDT 2017
+# Start of session at: Wed Feb  7 14:50:07 2018
+# Process ID: 7536
+# Current directory: C:/Users/jawaidt/AppData/Roaming/Xilinx/Vivado
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent7076
+# Log file: C:/Users/jawaidt/AppData/Roaming/Xilinx/Vivado/vivado.log
+# Journal file: C:/Users/jawaidt/AppData/Roaming/Xilinx/Vivado\vivado.jou
+#-----------------------------------------------------------
+start_gui
+create_project Lab2Part2Final C:/Users/jawaidt/Desktop/LAB2PART2FINAL/Lab2Part2Final -part xc7a100tcsg324-1
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2017.2/data/ip'.
+add_files -norecurse {C:/Users/jawaidt/Desktop/LAB2PART2FINAL/dffb.v C:/Users/jawaidt/Desktop/LAB2PART2FINAL/dffa.v C:/Users/jawaidt/Desktop/LAB2PART2FINAL/mux.v C:/Users/jawaidt/Desktop/LAB2PART2FINAL/adder.v C:/Users/jawaidt/Desktop/LAB2PART2FINAL/dffa_tb.v}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+file mkdir C:/Users/jawaidt/Desktop/LAB2PART2FINAL/Lab2Part2Final/Lab2Part2Final.srcs/sources_1/new
+close [ open C:/Users/jawaidt/Desktop/LAB2PART2FINAL/Lab2Part2Final/Lab2Part2Final.srcs/sources_1/new/mult.v w ]
+add_files C:/Users/jawaidt/Desktop/LAB2PART2FINAL/Lab2Part2Final/Lab2Part2Final.srcs/sources_1/new/mult.v
+update_compile_order -fileset sources_1
+archive_project C:/Users/jawaidt/Desktop/LAB2PART2FINAL/Lab2Part2Final.xpr.zip -temp_dir C:/Users/jawaidt/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-7536-NIOBIUM -force
+INFO: [Coretcl 2-137] starting archive...
+INFO: [Coretcl 2-1499] Saving project copy to temporary location 'C:/Users/jawaidt/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-7536-NIOBIUM' for archiving project
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2017.2/data/ip'.
+INFO: [Coretcl 2-1211] Creating project copy for archival...
+INFO: [ProjectBase 1-495] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience any problem with archiving the project, please consider setting environment variable $TEMP to a shorter path.
+Current project path is 'C:/Users/jawaidt/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-7536-NIOBIUM/PrjAr/_X_'.
+INFO: [Coretcl 2-1213] Including run results for 'synth_1'
+INFO: [Coretcl 2-1213] Including run results for 'impl_1'
+INFO: [Coretcl 2-1212] Importing remotely added design sources and verilog include files (if any)...
+INFO: [filemgmt 20-348] Importing the appropriate files for fileset: 'sources_1'

@@ -1,0 +1,22 @@
+xst -intstyle ise -ifn "T:/Calculator/calculator.xst" -ofn "T:/Calculator/calculator.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -i -p xc3s500e-fg320-4 calculator.ngc calculator.ngd  
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o calculator_map.ncd calculator.ngd calculator.pcf 
+par -w -intstyle ise -ol high -t 1 calculator_map.ncd calculator.ncd calculator.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml calculator.twx calculator.ncd -o calculator.twr calculator.pcf 
+bitgen -intstyle ise -f calculator.ut calculator.ncd 
+xst -intstyle ise -ifn "C:/Users/dhanoaa/Desktop/Calculator/calculator.xst" -ofn "C:/Users/dhanoaa/Desktop/Calculator/calculator.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc test_pins.ucf -p xc3s500e-fg320-4 calculator.ngc calculator.ngd  
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o calculator_map.ncd calculator.ngd calculator.pcf 
+par -w -intstyle ise -ol high -t 1 calculator_map.ncd calculator.ncd calculator.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml calculator.twx calculator.ncd -o calculator.twr calculator.pcf -ucf test_pins.ucf 
+bitgen -intstyle ise -f calculator.ut calculator.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc test_pins.ucf -p xc3s500e-fg320-4 calculator.ngc calculator.ngd  
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o calculator_map.ncd calculator.ngd calculator.pcf 
+par -w -intstyle ise -ol high -t 1 calculator_map.ncd calculator.ncd calculator.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml calculator.twx calculator.ncd -o calculator.twr calculator.pcf -ucf test_pins.ucf 
+bitgen -intstyle ise -f calculator.ut calculator.ncd 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc test_pins.ucf -p xc3s500e-fg320-4 calculator.ngc calculator.ngd  
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o calculator_map.ncd calculator.ngd calculator.pcf 
+par -w -intstyle ise -ol high -t 1 calculator_map.ncd calculator.ncd calculator.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml calculator.twx calculator.ncd -o calculator.twr calculator.pcf -ucf test_pins.ucf 
+bitgen -intstyle ise -f calculator.ut calculator.ncd 

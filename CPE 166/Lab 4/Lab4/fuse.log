@@ -1,0 +1,32 @@
+Running: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o T:/lab5part1/top_tb_isim_beh.exe -prj T:/lab5part1/top_tb_beh.prj work.top_tb work.glbl 
+ISim P.20131013 (signature 0x7708f090)
+Number of CPUs detected in this system: 8
+Turning on mult-threading, number of parallel sub-compilation jobs: 16 
+Determining compilation order of HDL files
+Analyzing Verilog file "T:/lab5part1/mux4to1.v" into library work
+Analyzing Verilog file "T:/lab5part1/mux2to1.v" into library work
+Analyzing Verilog file "T:/lab5part1/dff.v" into library work
+Analyzing Verilog file "T:/lab5part1/alu.v" into library work
+Analyzing Verilog file "T:/lab5part1/topdata.v" into library work
+Analyzing Verilog file "T:/lab5part1/fsm.v" into library work
+Analyzing Verilog file "T:/lab5part1/top.v" into library work
+Analyzing Verilog file "T:/lab5part1/top_tb.v" into library work
+Analyzing Verilog file "C:/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Starting static elaboration
+WARNING:HDLCompiler:189 - "T:/lab5part1/topdata.v" Line 24: Size mismatch in connection of port <d3>. Formal port size is 1-bit while actual signal size is 32-bit.
+Completed static elaboration
+Compiling module dff
+Compiling module mux2to1
+Compiling module mux4to1
+Compiling module alu
+Compiling module topdata
+Compiling module fsm
+Compiling module top
+Compiling module top_tb
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Waiting for 1 sub-compilation(s) to finish...
+Compiled 9 Verilog Units
+Built simulation executable T:/lab5part1/top_tb_isim_beh.exe
+Fuse Memory Usage: 28776 KB
+Fuse CPU Usage: 264 ms

@@ -1,0 +1,7 @@
+vhdl work "lfsr.vhd"
+vhdl work "lcd_display.vhd"
+vhdl work "fsm.vhd"
+vhdl work "doutt.vhd"
+vhdl work "counter.vhd"
+vhdl work "cal.vhd"
+vhdl work "calculator.vhd"

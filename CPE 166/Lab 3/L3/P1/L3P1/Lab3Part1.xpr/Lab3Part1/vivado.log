@@ -1,0 +1,29 @@
+#-----------------------------------------------------------
+# Vivado v2017.2 (64-bit)
+# SW Build 1909853 on Thu Jun 15 18:39:09 MDT 2017
+# IP Build 1909766 on Thu Jun 15 19:58:00 MDT 2017
+# Start of session at: Wed Mar 14 16:13:43 2018
+# Process ID: 11600
+# Current directory: C:/Users/jawaidt/Desktop/Lab3Part1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent12024 C:\Users\jawaidt\Desktop\Lab3Part1\Lab3Part1.xpr
+# Log file: C:/Users/jawaidt/Desktop/Lab3Part1/vivado.log
+# Journal file: C:/Users/jawaidt/Desktop/Lab3Part1\vivado.jou
+#-----------------------------------------------------------sstart_guioopen_project C:/Users/jawaidt/Desktop/Lab3Part1/Lab3Part1.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2017.2/data/ip'.uupdate_compile_order -fileset sources_1archive_project C:/Users/jawaidt/Desktop/L3P1/Lab3Part1.xpr.zip -temp_dir C:/Users/jawaidt/Desktop/Lab3Part1/.Xil/Vivado-9432-POLONIUM -force
+INFO: [Coretcl 2-137] starting archive...
+INFO: [Coretcl 2-1499] Saving project copy to temporary location 'C:/Users/jawaidt/Desktop/Lab3Part1/.Xil/Vivado-9432-POLONIUM' for archiving project
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2017.2/data/ip'.
+INFO: [Coretcl 2-1211] Creating project copy for archival...
+INFO: [Coretcl 2-1213] Including run results for 'synth_1'
+INFO: [Coretcl 2-1213] Including run results for 'impl_1'
+INFO: [Coretcl 2-1212] Importing remotely added design sources and verilog include files (if any)...
+INFO: [filemgmt 20-348] Importing the appropriate files for fileset: 'constrs_1'
+INFO: [filemgmt 20-348] Importing the appropriate files for fileset: 'sources_1'

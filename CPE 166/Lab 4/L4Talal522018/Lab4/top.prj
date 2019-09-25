@@ -1,0 +1,4 @@
+verilog work "vga.v"
+verilog work "counter.v"
+verilog work "clkdiv.v"
+verilog work "top.v"
