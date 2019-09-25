@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.2 (64-bit)
+# SW Build 1909853 on Thu Jun 15 18:39:09 MDT 2017
+# IP Build 1909766 on Thu Jun 15 19:58:00 MDT 2017
+# Start of session at: Wed Mar 14 15:51:40 2018
+# Process ID: 2212
+# Current directory: C:/Users/jawaidt/Desktop/Lab3Part1/Lab3Part1.runs/synth_1
+# Command line: vivado.exe -log counter.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source counter.tcl
+# Log file: C:/Users/jawaidt/Desktop/Lab3Part1/Lab3Part1.runs/synth_1/counter.vds
+# Journal file: C:/Users/jawaidt/Desktop/Lab3Part1/Lab3Part1.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source counter.tcl -notrace

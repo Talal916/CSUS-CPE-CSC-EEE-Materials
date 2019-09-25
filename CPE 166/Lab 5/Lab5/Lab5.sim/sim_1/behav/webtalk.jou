@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2017.2 (64-bit)
+# SW Build 1909853 on Thu Jun 15 18:39:09 MDT 2017
+# IP Build 1909766 on Thu Jun 15 19:58:00 MDT 2017
+# Start of session at: Wed May  9 14:39:36 2018
+# Process ID: 7768
+# Current directory: C:/Users/nguyenni/Desktop/lab5/Lab5/Lab5.sim/sim_1/behav
+# Command line: wbtcv.exe -mode batch -source C:/Users/nguyenni/Desktop/lab5/Lab5/Lab5.sim/sim_1/behav/xsim.dir/lab5_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+# Log file: C:/Users/nguyenni/Desktop/lab5/Lab5/Lab5.sim/sim_1/behav/webtalk.log
+# Journal file: C:/Users/nguyenni/Desktop/lab5/Lab5/Lab5.sim/sim_1/behav\webtalk.jou
+#-----------------------------------------------------------
+source C:/Users/nguyenni/Desktop/lab5/Lab5/Lab5.sim/sim_1/behav/xsim.dir/lab5_tb_behav/webtalk/xsim_webtalk.tcl -notrace

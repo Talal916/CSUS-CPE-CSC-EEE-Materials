@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.2 (64-bit)
+# SW Build 1909853 on Thu Jun 15 18:39:09 MDT 2017
+# IP Build 1909766 on Thu Jun 15 19:58:00 MDT 2017
+# Start of session at: Wed Feb 14 15:37:27 2018
+# Process ID: 9048
+# Current directory: C:/Users/jawaidt/Desktop/LAB2PAR3/Lab2Part3/Lab2Part3.runs/impl_1
+# Command line: vivado.exe -log fpga_proj.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source fpga_proj.tcl -notrace
+# Log file: C:/Users/jawaidt/Desktop/LAB2PAR3/Lab2Part3/Lab2Part3.runs/impl_1/fpga_proj.vdi
+# Journal file: C:/Users/jawaidt/Desktop/LAB2PAR3/Lab2Part3/Lab2Part3.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source fpga_proj.tcl -notrace

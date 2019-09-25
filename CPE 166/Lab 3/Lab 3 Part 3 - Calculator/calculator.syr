@@ -1,0 +1,639 @@
+Release 14.7 - xst P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.06 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.06 secs
+ 
+--> Reading design: calculator.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "calculator.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "calculator"
+Output Format                      : NGC
+Target Device                      : xc3s500e-4-fg320
+
+---- Source Options
+Top Module Name                    : calculator
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+WARNING:HDLParsers:3607 - Unit work/calculator is now defined in a different file.  It was defined in "T:/Calculator/calculator.vhd", and is now defined in "C:/Users/dhanoaa/Desktop/Calculator/calculator.vhd".
+WARNING:HDLParsers:3607 - Unit work/calculator/Behavioral is now defined in a different file.  It was defined in "T:/Calculator/calculator.vhd", and is now defined in "C:/Users/dhanoaa/Desktop/Calculator/calculator.vhd".
+WARNING:HDLParsers:3607 - Unit work/cal is now defined in a different file.  It was defined in "T:/Calculator/cal.vhd", and is now defined in "C:/Users/dhanoaa/Desktop/Calculator/cal.vhd".
+WARNING:HDLParsers:3607 - Unit work/cal/Behavioral is now defined in a different file.  It was defined in "T:/Calculator/cal.vhd", and is now defined in "C:/Users/dhanoaa/Desktop/Calculator/cal.vhd".
+WARNING:HDLParsers:3607 - Unit work/counter is now defined in a different file.  It was defined in "T:/Calculator/counter.vhd", and is now defined in "C:/Users/dhanoaa/Desktop/Calculator/counter.vhd".
+WARNING:HDLParsers:3607 - Unit work/counter/beh is now defined in a different file.  It was defined in "T:/Calculator/counter.vhd", and is now defined in "C:/Users/dhanoaa/Desktop/Calculator/counter.vhd".
+WARNING:HDLParsers:3607 - Unit work/doutt is now defined in a different file.  It was defined in "T:/Calculator/doutt.vhd", and is now defined in "C:/Users/dhanoaa/Desktop/Calculator/doutt.vhd".
+WARNING:HDLParsers:3607 - Unit work/doutt/Behavioral is now defined in a different file.  It was defined in "T:/Calculator/doutt.vhd", and is now defined in "C:/Users/dhanoaa/Desktop/Calculator/doutt.vhd".
+WARNING:HDLParsers:3607 - Unit work/fsm is now defined in a different file.  It was defined in "T:/Calculator/fsm.vhd", and is now defined in "C:/Users/dhanoaa/Desktop/Calculator/fsm.vhd".
+WARNING:HDLParsers:3607 - Unit work/fsm/Behavioral is now defined in a different file.  It was defined in "T:/Calculator/fsm.vhd", and is now defined in "C:/Users/dhanoaa/Desktop/Calculator/fsm.vhd".
+WARNING:HDLParsers:3607 - Unit work/lcd_display is now defined in a different file.  It was defined in "T:/Calculator/lcd_display.vhd", and is now defined in "C:/Users/dhanoaa/Desktop/Calculator/lcd_display.vhd".
+WARNING:HDLParsers:3607 - Unit work/lcd_display/beh is now defined in a different file.  It was defined in "T:/Calculator/lcd_display.vhd", and is now defined in "C:/Users/dhanoaa/Desktop/Calculator/lcd_display.vhd".
+WARNING:HDLParsers:3607 - Unit work/lfsr is now defined in a different file.  It was defined in "T:/Calculator/lfsr.vhd", and is now defined in "C:/Users/dhanoaa/Desktop/Calculator/lfsr.vhd".
+WARNING:HDLParsers:3607 - Unit work/lfsr/beh is now defined in a different file.  It was defined in "T:/Calculator/lfsr.vhd", and is now defined in "C:/Users/dhanoaa/Desktop/Calculator/lfsr.vhd".
+Compiling vhdl file "C:/Users/dhanoaa/Desktop/Calculator/counter.vhd" in Library work.
+Architecture beh of Entity counter is up to date.
+Compiling vhdl file "C:/Users/dhanoaa/Desktop/Calculator/fsm.vhd" in Library work.
+Architecture behavioral of Entity fsm is up to date.
+Compiling vhdl file "C:/Users/dhanoaa/Desktop/Calculator/lfsr.vhd" in Library work.
+Architecture beh of Entity lfsr is up to date.
+Compiling vhdl file "C:/Users/dhanoaa/Desktop/Calculator/doutt.vhd" in Library work.
+Architecture behavioral of Entity doutt is up to date.
+Compiling vhdl file "C:/Users/dhanoaa/Desktop/Calculator/cal.vhd" in Library work.
+Architecture behavioral of Entity cal is up to date.
+Compiling vhdl file "C:/Users/dhanoaa/Desktop/Calculator/lcd_display.vhd" in Library work.
+Architecture beh of Entity lcd_display is up to date.
+Compiling vhdl file "C:/Users/dhanoaa/Desktop/Calculator/calculator.vhd" in Library work.
+Architecture behavioral of Entity calculator is up to date.
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for entity <calculator> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <counter> in library <work> (architecture <beh>).
+
+Analyzing hierarchy for entity <fsm> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <lfsr> in library <work> (architecture <beh>).
+
+Analyzing hierarchy for entity <doutt> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <cal> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <lcd_display> in library <work> (architecture <beh>).
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <calculator> in library <work> (Architecture <behavioral>).
+Entity <calculator> analyzed. Unit <calculator> generated.
+
+Analyzing Entity <counter> in library <work> (Architecture <beh>).
+Entity <counter> analyzed. Unit <counter> generated.
+
+Analyzing Entity <fsm> in library <work> (Architecture <behavioral>).
+Entity <fsm> analyzed. Unit <fsm> generated.
+
+Analyzing Entity <lfsr> in library <work> (Architecture <beh>).
+Entity <lfsr> analyzed. Unit <lfsr> generated.
+
+Analyzing Entity <doutt> in library <work> (Architecture <behavioral>).
+Entity <doutt> analyzed. Unit <doutt> generated.
+
+Analyzing Entity <cal> in library <work> (Architecture <behavioral>).
+Entity <cal> analyzed. Unit <cal> generated.
+
+Analyzing Entity <lcd_display> in library <work> (Architecture <beh>).
+INFO:Xst:2679 - Register <lcd_busy> in unit <lcd_display> has a constant value of 1 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <sf_ce0> in unit <lcd_display> has a constant value of 1 during circuit operation. The register is replaced by logic.
+Entity <lcd_display> analyzed. Unit <lcd_display> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <counter>.
+    Related source file is "C:/Users/dhanoaa/Desktop/Calculator/counter.vhd".
+    Found 1-bit register for signal <clkref>.
+    Found 28-bit comparator less for signal <clkref$cmp_lt0000> created at line 28.
+    Found 27-bit up counter for signal <cnt10>.
+    Summary:
+	inferred   1 Counter(s).
+	inferred   1 D-type flip-flop(s).
+	inferred   1 Comparator(s).
+Unit <counter> synthesized.
+
+
+Synthesizing Unit <fsm>.
+    Related source file is "C:/Users/dhanoaa/Desktop/Calculator/fsm.vhd".
+    Using one-hot encoding for signal <cs>.
+    Found 3-bit register for signal <cs>.
+Unit <fsm> synthesized.
+
+
+Synthesizing Unit <lfsr>.
+    Related source file is "C:/Users/dhanoaa/Desktop/Calculator/lfsr.vhd".
+WARNING:Xst:647 - Input <lfshold> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <b2> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 4-bit register for signal <cnt10>.
+    Found 1-bit xor2 for signal <cnt10_2$xor0000> created at line 27.
+    Summary:
+	inferred   4 D-type flip-flop(s).
+Unit <lfsr> synthesized.
+
+
+Synthesizing Unit <doutt>.
+    Related source file is "C:/Users/dhanoaa/Desktop/Calculator/doutt.vhd".
+Unit <doutt> synthesized.
+
+
+Synthesizing Unit <cal>.
+    Related source file is "C:/Users/dhanoaa/Desktop/Calculator/cal.vhd".
+WARNING:Xst:737 - Found 3-bit latch for signal <f>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+    Found 3-bit adder for signal <f$addsub0000> created at line 29.
+    Found 2-bit comparator greater for signal <f$cmp_gt0000> created at line 21.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred   1 Comparator(s).
+Unit <cal> synthesized.
+
+
+Synthesizing Unit <lcd_display>.
+    Related source file is "C:/Users/dhanoaa/Desktop/Calculator/lcd_display.vhd".
+    Found 1-bit register for signal <lcd_4>.
+    Found 1-bit register for signal <lcd_5>.
+    Found 1-bit register for signal <lcd_6>.
+    Found 1-bit register for signal <lcd_7>.
+    Found 1-bit register for signal <lcd_e>.
+    Found 1-bit register for signal <lcd_rs>.
+    Found 1-bit register for signal <lcd_rw>.
+    Found 25-bit up counter for signal <count>.
+    Found 6-bit register for signal <lcd_code>.
+    Found 1-bit register for signal <lcd_rw_1>.
+    Found 1-bit register for signal <lcd_stb>.
+    Found 1-bit xor2 for signal <lcd_stb$xor0000> created at line 67.
+    Found 7-bit register for signal <lcd_stuff>.
+    Summary:
+	inferred   1 Counter(s).
+	inferred  22 D-type flip-flop(s).
+Unit <lcd_display> synthesized.
+
+
+Synthesizing Unit <calculator>.
+    Related source file is "C:/Users/dhanoaa/Desktop/Calculator/calculator.vhd".
+WARNING:Xst:1780 - Signal <f3_u> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <f3_l> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <f2_u> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <f2_l> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <f1_u> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <f1_l> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+Unit <calculator> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 1
+ 3-bit adder                                           : 1
+# Counters                                             : 2
+ 25-bit up counter                                     : 1
+ 27-bit up counter                                     : 1
+# Registers                                            : 17
+ 1-bit register                                        : 14
+ 3-bit register                                        : 1
+ 6-bit register                                        : 1
+ 7-bit register                                        : 1
+# Latches                                              : 1
+ 3-bit latch                                           : 1
+# Comparators                                          : 2
+ 2-bit comparator greater                              : 1
+ 28-bit comparator less                                : 1
+# Xors                                                 : 2
+ 1-bit xor2                                            : 2
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 1
+ 3-bit adder                                           : 1
+# Counters                                             : 2
+ 25-bit up counter                                     : 1
+ 27-bit up counter                                     : 1
+# Registers                                            : 30
+ Flip-Flops                                            : 30
+# Latches                                              : 1
+ 3-bit latch                                           : 1
+# Comparators                                          : 2
+ 2-bit comparator greater                              : 1
+ 28-bit comparator less                                : 1
+# Xors                                                 : 2
+ 1-bit xor2                                            : 2
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:2677 - Node <q1/cs_2> of sequential type is unconnected in block <calculator>.
+
+Optimizing unit <calculator> ...
+
+Optimizing unit <lcd_display> ...
+
+Optimizing unit <cal> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block calculator, actual ratio is 1.
+
+Final Macro Processing ...
+
+Processing Unit <calculator> :
+	Found 2-bit shift register for signal <q6/lcd_rs>.
+	Found 2-bit shift register for signal <q6/lcd_e>.
+	Found 2-bit shift register for signal <q6/lcd_6>.
+	Found 3-bit shift register for signal <q6/lcd_5>.
+	Found 2-bit shift register for signal <q6/lcd_7>.
+	Found 2-bit shift register for signal <q6/lcd_4>.
+	Found 2-bit shift register for signal <q6/lcd_rw_1>.
+Unit <calculator> processed.
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 66
+ Flip-Flops                                            : 66
+# Shift Registers                                      : 7
+ 2-bit shift register                                  : 6
+ 3-bit shift register                                  : 1
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : calculator.ngr
+Top Level Output File Name         : calculator
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 17
+
+Cell Usage :
+# BELS                             : 257
+#      GND                         : 1
+#      INV                         : 7
+#      LUT1                        : 53
+#      LUT2                        : 39
+#      LUT3                        : 5
+#      LUT4                        : 23
+#      LUT4_L                      : 1
+#      MUXCY                       : 70
+#      MUXF5                       : 5
+#      VCC                         : 1
+#      XORCY                       : 52
+# FlipFlops/Latches                : 76
+#      FD                          : 35
+#      FDC                         : 29
+#      FDP                         : 1
+#      FDPE                        : 4
+#      FDR                         : 3
+#      FDS                         : 1
+#      LD                          : 3
+# Shift Registers                  : 7
+#      SRL16                       : 7
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 16
+#      IBUF                        : 4
+#      OBUF                        : 12
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s500efg320-4 
+
+ Number of Slices:                       73  out of   4656     1%  
+ Number of Slice Flip Flops:             76  out of   9312     0%  
+ Number of 4 input LUTs:                135  out of   9312     1%  
+    Number used as logic:               128
+    Number used as Shift registers:       7
+ Number of IOs:                          17
+ Number of bonded IOBs:                  17  out of    232     7%  
+ Number of GCLKs:                         1  out of     24     4%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+osc                                | BUFGP                  | 74    |
+q0/clkref                          | NONE(q2/cnt10_1)       | 6     |
+q4/f_not0001(q4/f_not00011:O)      | NONE(*)(q4/f_2)        | 3     |
+-----------------------------------+------------------------+-------+
+(*) This 1 clock signal(s) are generated by combinatorial logic,
+and XST is not able to identify which are the primary clock signals.
+Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+-----------------------------------+------------------------+-------+
+Control Signal                     | Buffer(FF name)        | Load  |
+-----------------------------------+------------------------+-------+
+b1                                 | IBUF                   | 30    |
+q1/cs_0(q1/cs_0:Q)                 | NONE(q2/cnt10_1)       | 4     |
+-----------------------------------+------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 6.196ns (Maximum Frequency: 161.394MHz)
+   Minimum input arrival time before clock: 5.405ns
+   Maximum output required time after clock: 4.571ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'osc'
+  Clock period: 6.196ns (frequency: 161.394MHz)
+  Total number of paths / destination ports: 1543 / 78
+-------------------------------------------------------------------------
+Delay:               6.196ns (Levels of Logic = 28)
+  Source:            q0/cnt10_1 (FF)
+  Destination:       q0/cnt10_26 (FF)
+  Source Clock:      osc rising
+  Destination Clock: osc rising
+
+  Data Path: q0/cnt10_1 to q0/cnt10_26
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDC:C->Q              3   0.591   0.706  q0/cnt10_1 (q0/cnt10_1)
+     LUT1:I0->O            1   0.704   0.000  q0/Mcount_cnt10_cy<1>_rt (q0/Mcount_cnt10_cy<1>_rt)
+     MUXCY:S->O            1   0.464   0.000  q0/Mcount_cnt10_cy<1> (q0/Mcount_cnt10_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<2> (q0/Mcount_cnt10_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<3> (q0/Mcount_cnt10_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<4> (q0/Mcount_cnt10_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<5> (q0/Mcount_cnt10_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<6> (q0/Mcount_cnt10_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<7> (q0/Mcount_cnt10_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<8> (q0/Mcount_cnt10_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<9> (q0/Mcount_cnt10_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<10> (q0/Mcount_cnt10_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<11> (q0/Mcount_cnt10_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<12> (q0/Mcount_cnt10_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<13> (q0/Mcount_cnt10_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<14> (q0/Mcount_cnt10_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<15> (q0/Mcount_cnt10_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<16> (q0/Mcount_cnt10_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<17> (q0/Mcount_cnt10_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<18> (q0/Mcount_cnt10_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<19> (q0/Mcount_cnt10_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<20> (q0/Mcount_cnt10_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<21> (q0/Mcount_cnt10_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<22> (q0/Mcount_cnt10_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<23> (q0/Mcount_cnt10_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  q0/Mcount_cnt10_cy<24> (q0/Mcount_cnt10_cy<24>)
+     MUXCY:CI->O           0   0.059   0.000  q0/Mcount_cnt10_cy<25> (q0/Mcount_cnt10_cy<25>)
+     XORCY:CI->O           1   0.804   0.499  q0/Mcount_cnt10_xor<26> (Result<26>)
+     LUT2:I1->O            1   0.704   0.000  q0/Mcount_cnt10_eqn_261 (q0/Mcount_cnt10_eqn_26)
+     FDC:D                     0.308          q0/cnt10_26
+    ----------------------------------------
+    Total                      6.196ns (4.991ns logic, 1.205ns route)
+                                       (80.6% logic, 19.4% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'q0/clkref'
+  Clock period: 2.486ns (frequency: 402.253MHz)
+  Total number of paths / destination ports: 9 / 8
+-------------------------------------------------------------------------
+Delay:               2.486ns (Levels of Logic = 1)
+  Source:            q2/cnt10_1 (FF)
+  Destination:       q2/cnt10_2 (FF)
+  Source Clock:      q0/clkref rising
+  Destination Clock: q0/clkref rising
+
+  Data Path: q2/cnt10_1 to q2/cnt10_2
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDPE:C->Q             7   0.591   0.883  q2/cnt10_1 (q2/cnt10_1)
+     LUT2:I0->O            1   0.704   0.000  q2/Mxor_cnt10_2_xor0000_Result1 (q2/cnt10_2_xor0000)
+     FDPE:D                    0.308          q2/cnt10_2
+    ----------------------------------------
+    Total                      2.486ns (1.603ns logic, 0.883ns route)
+                                       (64.5% logic, 35.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'q0/clkref'
+  Total number of paths / destination ports: 3 / 2
+-------------------------------------------------------------------------
+Offset:              3.572ns (Levels of Logic = 2)
+  Source:            b1 (PAD)
+  Destination:       q1/cs_1 (FF)
+  Destination Clock: q0/clkref rising
+
+  Data Path: b1 to q1/cs_1
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            34   1.218   1.342  b1_IBUF (b1_IBUF)
+     LUT2:I1->O            1   0.704   0.000  q1/ns<1>1 (q1/ns<1>)
+     FDC:D                     0.308          q1/cs_1
+    ----------------------------------------
+    Total                      3.572ns (2.230ns logic, 1.342ns route)
+                                       (62.4% logic, 37.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'q4/f_not0001'
+  Total number of paths / destination ports: 19 / 3
+-------------------------------------------------------------------------
+Offset:              5.405ns (Levels of Logic = 4)
+  Source:            b1 (PAD)
+  Destination:       q4/f_1 (LATCH)
+  Destination Clock: q4/f_not0001 falling
+
+  Data Path: b1 to q4/f_1
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            34   1.218   1.342  b1_IBUF (b1_IBUF)
+     LUT2:I1->O            5   0.704   0.808  q4/f_mux0009<2>11 (q4/N8)
+     LUT4:I0->O            1   0.704   0.000  q4/f_mux0009<1>1 (q4/f_mux0009<1>1)
+     MUXF5:I1->O           1   0.321   0.000  q4/f_mux0009<1>_f5 (q4/f_mux0009<1>)
+     LD:D                      0.308          q4/f_1
+    ----------------------------------------
+    Total                      5.405ns (3.255ns logic, 2.150ns route)
+                                       (60.2% logic, 39.8% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'osc'
+  Total number of paths / destination ports: 7 / 7
+-------------------------------------------------------------------------
+Offset:              4.283ns (Levels of Logic = 1)
+  Source:            q6/lcd_4 (FF)
+  Destination:       lcd_4 (PAD)
+  Source Clock:      osc rising
+
+  Data Path: q6/lcd_4 to lcd_4
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               1   0.591   0.420  q6/lcd_4 (q6/lcd_4)
+     OBUF:I->O                 3.272          lcd_4_OBUF (lcd_4)
+    ----------------------------------------
+    Total                      4.283ns (3.863ns logic, 0.420ns route)
+                                       (90.2% logic, 9.8% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'q0/clkref'
+  Total number of paths / destination ports: 4 / 4
+-------------------------------------------------------------------------
+Offset:              4.571ns (Levels of Logic = 1)
+  Source:            q2/cnt10_4 (FF)
+  Destination:       q<4> (PAD)
+  Source Clock:      q0/clkref rising
+
+  Data Path: q2/cnt10_4 to q<4>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDPE:C->Q             7   0.591   0.708  q2/cnt10_4 (q2/cnt10_4)
+     OBUF:I->O                 3.272          q_4_OBUF (q<4>)
+    ----------------------------------------
+    Total                      4.571ns (3.863ns logic, 0.708ns route)
+                                       (84.5% logic, 15.5% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 4.00 secs
+Total CPU time to Xst completion: 3.57 secs
+ 
+--> 
+
+Total memory usage is 261072 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   24 (   0 filtered)
+Number of infos    :    4 (   0 filtered)
+

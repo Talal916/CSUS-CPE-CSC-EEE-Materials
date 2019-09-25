@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.2 (64-bit)
+# SW Build 1909853 on Thu Jun 15 18:39:09 MDT 2017
+# IP Build 1909766 on Thu Jun 15 19:58:00 MDT 2017
+# Start of session at: Wed Mar 14 14:40:45 2018
+# Process ID: 7312
+# Current directory: C:/Users/jawaidt/Desktop/Lab3Part1/Lab3Part1.runs/impl_1
+# Command line: vivado.exe -log display_counter_vhd.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source display_counter_vhd.tcl -notrace
+# Log file: C:/Users/jawaidt/Desktop/Lab3Part1/Lab3Part1.runs/impl_1/display_counter_vhd.vdi
+# Journal file: C:/Users/jawaidt/Desktop/Lab3Part1/Lab3Part1.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source display_counter_vhd.tcl -notrace

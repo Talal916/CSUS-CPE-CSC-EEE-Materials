@@ -1,0 +1,11 @@
+#-----------------------------------------------------------
+# Vivado v2017.2 (64-bit)
+# SW Build 1909853 on Thu Jun 15 18:39:09 MDT 2017
+# IP Build 1909766 on Thu Jun 15 19:58:00 MDT 2017
+# Start of session at: Wed Mar 14 16:13:43 2018
+# Process ID: 11600
+# Current directory: C:/Users/jawaidt/Desktop/Lab3Part1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent12024 C:\Users\jawaidt\Desktop\Lab3Part1\Lab3Part1.xpr
+# Log file: C:/Users/jawaidt/Desktop/Lab3Part1/vivado.log
+# Journal file: C:/Users/jawaidt/Desktop/Lab3Part1\vivado.jou
+#-----------------------------------------------------------sstart_guioopen_project C:/Users/jawaidt/Desktop/Lab3Part1/Lab3Part1.xpruupdate_compile_order -fileset sources_1archive_project C:/Users/jawaidt/Desktop/L3P1/Lab3Part1.xpr.zip -temp_dir C:/Users/jawaidt/Desktop/Lab3Part1/.Xil/Vivado-9432-POLONIUM -force
