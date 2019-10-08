@@ -1,0 +1,113 @@
+<!--
+/* PROJECT HOMESTEAD
+ *  
+ * CPE185
+ *
+ * SPRING 2019
+ *
+ */-->
+<html>
+<head>
+<title>Project</title>
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+</head>
+<body>
+<div class="container">
+	<h1 align="center">PROJECT HOMESTEAD</h1>
+	</br>
+	<div class="jumbotron">
+			<div align="center">
+				<font size="5">
+	 				<label>Lights 1</label>
+	 				</br>
+					<div class="btn-group btn-group-justified">
+	  					<!-- Link Which send a request to php file which writes 1 or 0-->
+	  					<a href="Lights1.php?state=1" class="btn btn-success">On</a>
+	  					<a href="Lights1.php?state=0" class="btn btn-danger">Off</a>
+					</div>
+	 				<label>Lights 2</label>
+	 				</br>
+					<div class="btn-group btn-group-justified">
+	  					<a href="Lights2.php?state=1" class="btn btn-success">On</a>
+	  					<a href="Lights2.php?state=0" class="btn btn-danger">Off</a>
+					</div>					
+					</br>
+					<label>Front Door</label>
+	 				</br>
+					<div class="btn-group btn-group-justified">
+	  					<a href="door.php?state=1" class="btn btn-success">Open</a>
+	  					<a href="door.php?state=0" class="btn btn-danger">Close</a>
+					</div>
+					</br>
+					<label>Fan</label>
+	 				</br>
+					<div class="btn-group btn-group-justified">
+	  					<a href="Fan.php?state=1" class="btn btn-success">On</a>
+	  					<a href="Fan.php?state=0" class="btn btn-danger">Off</a>
+					</div>					
+					</br>
+                    <label> Control Temperature</label>
+                    <div class="""slidecontainer">
+                        <input type="range" min="60" max="90" value="70" class="slider" id="myRange">
+                        <p>Temperature: <span id="demo"></span></p>
+                    </div>
+                    </font>
+		    </div>
+		</div>
+	</div>
+	<div id="snow" style="z-index: -1">
+	</div>
+</body>
+<script>
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+      output.innerHTML = this.value;
+}
+</script>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #1E90FF;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #1E90FF;
+  cursor: pointer;
+}
+</style>
+</head>
+</html>
