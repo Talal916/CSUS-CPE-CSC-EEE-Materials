@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.2 (64-bit)
+# SW Build 1909853 on Thu Jun 15 18:39:09 MDT 2017
+# IP Build 1909766 on Thu Jun 15 19:58:00 MDT 2017
+# Start of session at: Wed Jan 23 16:05:17 2019
+# Process ID: 36172
+# Current directory: T:/myand.v/myand.v.runs/impl_1
+# Command line: vivado.exe -log myand.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source myand.tcl -notrace
+# Log file: T:/myand.v/myand.v.runs/impl_1/myand.vdi
+# Journal file: T:/myand.v/myand.v.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source myand.tcl -notrace
