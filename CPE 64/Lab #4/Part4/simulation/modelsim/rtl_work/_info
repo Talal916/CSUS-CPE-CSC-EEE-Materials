@@ -1,0 +1,56 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/leesam/Desktop/Part4/simulation/modelsim
+vPart4
+Z1 !s110 1525797837
+!i10b 1
+!s100 :IZ<E0`Y`9DZSzo7;;MTf3
+Ik9XUNiz2K7Y^20>4l2W]62
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1525400603
+8C:/Users/leesam/Desktop/Part4/Part4.v
+FC:/Users/leesam/Desktop/Part4/Part4.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1525797837.000000
+!s107 C:/Users/leesam/Desktop/Part4/Part4.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leesam/Desktop/Part4|C:/Users/leesam/Desktop/Part4/Part4.v|
+!i113 1
+Z5 o-vlog01compat -work work
+Z6 !s92 -vlog01compat -work work +incdir+C:/Users/leesam/Desktop/Part4
+Z7 tCvgOpt 0
+n@part4
+vPart4TB
+R1
+!i10b 1
+!s100 LBn?TiQ]<LmLHWCOG;il^2
+IZB3=nJozFz88<cQhz@O@70
+R2
+R0
+w1525797826
+8C:/Users/leesam/Desktop/Part4/Part4TB.v
+FC:/Users/leesam/Desktop/Part4/Part4TB.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/Users/leesam/Desktop/Part4/Part4TB.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leesam/Desktop/Part4|C:/Users/leesam/Desktop/Part4/Part4TB.v|
+!i113 1
+R5
+R6
+R7
+n@part4@t@b

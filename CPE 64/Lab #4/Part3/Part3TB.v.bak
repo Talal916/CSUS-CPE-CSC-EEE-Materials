@@ -1,0 +1,36 @@
+`timescale 1ns	/ 1ps
+module Part3TB();
+	reg CLK, D;
+	wire Q, NQ;
+	
+	Part1 uut(.CLK(CLK), .D(D), .Q(Q), .NQ(NQ));
+	
+	initial begin 
+	CLK = 1'b1;
+	D = 1'b0;
+	
+	#20;
+	CLK = 1'b1;
+	D = 1'b1;
+	
+	#20;
+	CLK = 1'b0;
+	D = 1'b1;
+	
+	#20;
+	CLK = 1'b1;
+	D = 1'b0;
+	
+	#20;
+	CLK = 1'b0;
+	D = 1'b1;
+	
+	#20;
+	CLK = 1'b1;
+	D = 1'b1;
+	
+	#20;
+	$stop;
+	
+	end
+	endmodule

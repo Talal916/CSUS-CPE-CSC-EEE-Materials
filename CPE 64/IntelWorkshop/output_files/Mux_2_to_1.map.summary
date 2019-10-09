@@ -1,0 +1,16 @@
+Analysis & Synthesis Status : Successful - Fri Mar 02 14:28:49 2018
+Quartus Prime Version : 17.0.1 Build 598 06/07/2017 SJ Lite Edition
+Revision Name : Mux_2_to_1
+Top-level Entity Name : Mux_2_to_1
+Family : MAX 10
+Total logic elements : 3
+    Total combinational functions : 3
+    Dedicated logic registers : 0
+Total registers : 0
+Total pins : 20
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0
+UFM blocks : 0
+ADC blocks : 0

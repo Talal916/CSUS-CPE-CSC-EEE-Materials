@@ -1,0 +1,11 @@
+|Part5
+CLK => q3~reg0.CLK
+CLK => q2~reg0.CLK
+CLK => q1~reg0.CLK
+CLK => q0~reg0.CLK
+q0 << q0~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q1 << q1~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q2 << q2~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q3 << q3~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+

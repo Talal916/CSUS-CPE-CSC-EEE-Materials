@@ -1,0 +1,63 @@
+Info: Start Nativelink Simulation process
+Info: NativeLink has detected Verilog design -- Verilog simulation models will be used
+
+========= EDA Simulation Settings =====================
+
+Sim Mode              :  RTL
+Family                :  cycloneive
+Quartus root          :  c:/intelfpga_lite/17.0/quartus/bin64/
+Quartus sim root      :  c:/intelfpga_lite/17.0/quartus/eda/sim_lib
+Simulation Tool       :  modelsim-altera
+Simulation Language   :  verilog
+Simulation Mode       :  GUI
+Sim Output File       :  
+Sim SDF file          :  
+Sim dir               :  simulation\modelsim
+
+=======================================================
+
+Info: Starting NativeLink simulation with ModelSim-Altera software
+Sourced NativeLink script c:/intelfpga_lite/17.0/quartus/common/tcl/internal/nativelink/modelsim.tcl
+Warning: File Lab3_run_msim_rtl_verilog.do already exists - backing up current file as Lab3_run_msim_rtl_verilog.do.bak11
+error deleting "msim_transcript": permission denied
+Error: NativeLink simulation flow was NOT successful
+
+
+
+================The following additional information is provided to help identify the cause of error while running nativelink scripts=================
+Nativelink TCL script failed with errorCode:  POSIX EACCES {permission denied}
+Nativelink TCL script failed with errorInfo:  error deleting "msim_transcript": permission denied
+    while executing
+"file delete -force msim_transcript"
+    invoked from within
+"if [ catch {eval gen_msim_script args_hash} msim_do_file_name] {
+	error "$::errorCode" "$::errorInfo"
+    } elseif {$script_mode == 0} {
+	post_message..."
+    (procedure "launch_sim" line 108)
+    invoked from within
+"launch_sim launch_args_hash"
+    ("eval" body line 1)
+    invoked from within
+"eval launch_sim launch_args_hash"
+    invoked from within
+"if [ info exists ::errorCode ] {
+                set savedCode $::errorCode
+                set savedInfo $::errorInfo
+                error $result $..."
+    invoked from within
+"if [catch {eval launch_sim launch_args_hash} result ] {
+            set status 1
+            if [ info exists ::errorCode ] {
+                set save..."
+    (procedure "run_sim" line 74)
+    invoked from within
+"run_sim run_sim_args_hash"
+    invoked from within
+"if [ info exists ::errorCode ] {
+            set savedCode $::errorCode
+            set savedInfo $::errorInfo
+            error "$result" $savedInfo ..."
+    (procedure "run_eda_simulation_tool" line 334)
+    invoked from within
+"run_eda_simulation_tool eda_opts_hash"

@@ -1,0 +1,55 @@
+module part5_signed (a0,a1,a2,b0,b1,b2,E,L,G);
+input a0,a1,a2,b0,b1,b2;
+output E,L,G;
+reg E,L,G;
+always@( a0 or a1 or a2 or b0 or b1 or b2)
+begin
+case ({a0,a1,a2,b0,b1,b2})
+0 : begin
+E<=1;
+L<=0;
+G<=0;
+end
+1 : begin
+E<=0;
+L<=1;
+G<=0;
+end
+2 : begin
+E<=0;
+L<=1;
+G<=0;
+end
+3 : begin
+E<=0;
+L<=1;
+G<=0;
+end
+4 : begin
+E<=0;
+L<=0;
+G<=1;
+end
+5 : begin
+E<=0;
+L<=0;
+G<=1;
+end
+6 : begin
+E<=0;
+L<=0;
+G<=1;
+end
+7 : begin
+E<=0;
+L<=0;
+G<=1;
+end
+8 : begin
+E<=0;
+L<=0;
+G<=1;
+end
+9 : begin
+E<=1;
+L<=0;

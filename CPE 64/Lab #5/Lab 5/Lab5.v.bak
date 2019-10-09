@@ -1,0 +1,139 @@
+module Lab5(clk,reset,X,W,Y,D,Q);
+input wire reset, clk, X;
+output reg Y, W;
+output reg [2:0]Q; // outputs for next state
+output reg [2:0]D; // current state
+
+always @(posedge clk or posedge ~reset) begin 
+	if(reset==0)
+		Q <= 3'b100;
+	else 
+		Q <= D;
+	
+	end 
+
+always@(*)begin
+
+		case(Q)
+		0:begin
+			W<=0;
+			if (X==1)
+			begin	
+				D <= 2;
+				Y <= 0;
+			end 
+			else if(X==0)
+			begin 
+				D <= 1; Y <=1;
+			end 
+			else D <=4;
+		end 
+		
+		1:begin
+			W <= 0;
+			if(X==1)
+			begin 
+				D <= 2;
+				Y <= 1;
+			end
+			else if(X==0)
+			begin 
+				D <=3; 
+				Y <= 1;
+			end 
+			else D <= 4;
+		end
+	
+		2:begin
+			W <= 1;
+			if(X==1)
+			begin 
+				D <= 7;
+				Y <= 1;
+			end
+			else if(X==0)
+			begin 
+				D <=0; 
+				Y <= 0;
+			end 
+			else D <= 4;
+		end 
+		
+		3:begin
+			W <= 1;
+			if(X==1)
+			begin 
+				D <= 7;
+				Y <= 1;
+			end
+			else if(X==0)
+			begin 
+				D <=0; 
+				Y <= 1;
+			end 
+			else D <= 4;
+		end 
+		
+		4:begin
+			W <= 1;
+			if(X==1)
+			begin 
+				D <= 7;
+				Y <= 1;
+			end
+			else if(X==0)
+			begin 
+				D <=0; 
+				Y <= 0;
+			end 
+			else D <= 4;
+		end 
+		
+		5:begin
+			W <= 1;
+			if(X==1)
+			begin 
+				D <= 7;
+				Y <= 1;
+			end
+			else if(X==0)
+			begin 
+				D <=0; 
+				Y <= 0;
+			end 
+			else D <= 4;
+		end 
+		
+		6:begin
+			W <= 1;
+			if(X==1)
+			begin 
+				D <= 7;
+				Y <= 1;
+			end
+			else if(X==0)
+			begin 
+				D <=0; 
+				Y <= 0;
+			end 
+			else D <= 4;
+		end 
+		
+		7:begin
+			W <= 0;
+			if(X==1)
+			begin 
+				D <= 1;
+				Y <= 0;
+			end
+			else if(X==0)
+			begin 
+				D <=2; 
+				Y <= 0;
+			end 
+			else D <= 4;
+		end
+		endcase 
+end
+
+endmodule 

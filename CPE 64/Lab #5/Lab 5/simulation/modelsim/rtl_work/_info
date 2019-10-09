@@ -1,0 +1,56 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/leesam/Desktop/Lab5/simulation/modelsim
+vLab5
+Z1 !s110 1525998101
+!i10b 1
+!s100 dfOL<Aj<nd?n=c^Ucn47D1
+IRSUB81Gb^5ff@YiHYo>YT2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1525917028
+8C:/Users/leesam/Desktop/Lab5/Lab5.v
+FC:/Users/leesam/Desktop/Lab5/Lab5.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1525998101.000000
+!s107 C:/Users/leesam/Desktop/Lab5/Lab5.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leesam/Desktop/Lab5|C:/Users/leesam/Desktop/Lab5/Lab5.v|
+!i113 1
+Z5 o-vlog01compat -work work
+Z6 !s92 -vlog01compat -work work +incdir+C:/Users/leesam/Desktop/Lab5
+Z7 tCvgOpt 0
+n@lab5
+vLab5TB
+R1
+!i10b 1
+!s100 3UUb?XTmN<Vk=kFY2Ul?a1
+IGceQ1kI;[3Xoa=5LhjFc]1
+R2
+R0
+w1525997709
+8C:/Users/leesam/Desktop/Lab5/Lab5TB.v
+FC:/Users/leesam/Desktop/Lab5/Lab5TB.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/Users/leesam/Desktop/Lab5/Lab5TB.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leesam/Desktop/Lab5|C:/Users/leesam/Desktop/Lab5/Lab5TB.v|
+!i113 1
+R5
+R6
+R7
+n@lab5@t@b

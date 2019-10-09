@@ -1,0 +1,21 @@
+`timescale 1ns	/ 1ps
+module Part5TB();
+	reg CLK;
+	wire Q3, Q2, Q1, Q1;
+	
+	Part5 uut(.CLK(CLK), .Q3(Q3), .Q2(Q2), .Q1(Q1), .Q0(Q0);
+	
+	initial begin 
+	CLK = 1'b0;
+	
+	#10;
+	CLK = 1'b1;
+	
+	#10;
+	CLK = 1'b0;
+	
+	#10;
+	$stop;
+	
+	end
+	endmodule

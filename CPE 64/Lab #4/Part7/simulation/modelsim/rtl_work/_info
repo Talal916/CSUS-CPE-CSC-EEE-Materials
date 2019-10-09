@@ -1,0 +1,56 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/leesam/Desktop/Part7/simulation/modelsim
+vPart7
+Z1 !s110 1525999409
+!i10b 1
+!s100 O;AZk`RY8foANL>SWL[YM0
+IcJNf_@OAXgo:R2@7`jHfT3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1525999230
+8C:/Users/leesam/Desktop/Part7/Part7.v
+FC:/Users/leesam/Desktop/Part7/Part7.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1525999408.000000
+!s107 C:/Users/leesam/Desktop/Part7/Part7.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leesam/Desktop/Part7|C:/Users/leesam/Desktop/Part7/Part7.v|
+!i113 1
+Z4 o-vlog01compat -work work
+Z5 !s92 -vlog01compat -work work +incdir+C:/Users/leesam/Desktop/Part7
+Z6 tCvgOpt 0
+n@part7
+vPart7TB
+R1
+!i10b 1
+!s100 :eDG0@2jXP;I87;5IT9b^2
+IC^7EokW>1>V2:[k8AUU3P3
+R2
+R0
+w1525999369
+8C:/Users/leesam/Desktop/Part7/Part7TB.v
+FC:/Users/leesam/Desktop/Part7/Part7TB.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1525999409.000000
+!s107 C:/Users/leesam/Desktop/Part7/Part7TB.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/leesam/Desktop/Part7|C:/Users/leesam/Desktop/Part7/Part7TB.v|
+!i113 1
+R4
+R5
+R6
+n@part7@t@b
