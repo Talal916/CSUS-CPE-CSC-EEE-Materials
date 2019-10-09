@@ -1,0 +1,9 @@
+|Lab2Part1B
+in1 => and1.IN0
+in2 => and1.IN1
+in3 => and3.IN0
+in4 => and2.IN1
+in4 => and3.IN1
+out <= or1.DB_MAX_OUTPUT_PORT_TYPE
+
+

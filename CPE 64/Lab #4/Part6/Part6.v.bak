@@ -1,0 +1,26 @@
+module Part6(CLK,reset,si,D,Q);
+	inut CLK, reset, si;
+	output [7:0] Q
+	output [7:0] D;
+	reg [7:0] D;
+	reg [7:0] Q;
+	
+	always@ (*)
+	begin
+		D <= {si, Q[7:11]};
+	end
+	
+	always@ (posedge CLK)
+	
+		begin if (reset)
+		
+		Q <= 8'b00000000;
+		
+		else begin
+		
+		Q <= D;
+		
+	end
+	end
+	endmodule
+	

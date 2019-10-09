@@ -1,0 +1,18 @@
+Fitter Status : Successful - Fri Mar 02 14:05:53 2018
+Quartus Prime Version : 17.0.1 Build 598 06/07/2017 SJ Lite Edition
+Revision Name : Switch_to_LED
+Top-level Entity Name : Switch_to_LED
+Family : MAX 10
+Device : 10M50DAF484C6GES
+Timing Models : Preliminary
+Total logic elements : 1 / 49,760 ( < 1 % )
+    Total combinational functions : 1 / 49,760 ( < 1 % )
+    Dedicated logic registers : 0 / 49,760 ( 0 % )
+Total registers : 0
+Total pins : 20 / 360 ( 6 % )
+Total virtual pins : 0
+Total memory bits : 0 / 1,677,312 ( 0 % )
+Embedded Multiplier 9-bit elements : 0 / 288 ( 0 % )
+Total PLLs : 0 / 4 ( 0 % )
+UFM blocks : 0 / 1 ( 0 % )
+ADC blocks : 0 / 2 ( 0 % )

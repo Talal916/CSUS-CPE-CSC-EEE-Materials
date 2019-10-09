@@ -1,0 +1,28 @@
+`timescale 1ns	/ 1ps
+module Part4TB();
+	reg PR,CR,CLK,D;
+	wire Q,QN,nand1,nand2,nand3;
+	
+	Part3 uut(.PR(PR), .CR(CR), .CLK(CLK), .D(D));
+	
+	initial begin 
+	CLK = 1'b1;
+	D = 1'b0;
+
+	#5;
+	CLK = 1'b0;
+	//D = 1'b1;
+	
+	#5;
+	CLK = 1'b0;
+	D = 1'b1;
+	
+	#5;
+	CLK = 1'b1;
+	D = 1'b1;
+	
+	#5;
+	$stop;
+	
+	end
+	endmodule

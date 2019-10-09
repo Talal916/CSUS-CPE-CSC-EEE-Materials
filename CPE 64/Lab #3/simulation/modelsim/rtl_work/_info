@@ -1,0 +1,55 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d//gaia/leesam/CPE 64/Lab #3/simulation/modelsim
+vadder
+!s110 1523929842
+!i10b 1
+!s100 RN]:6]MHc?4UmG71aCe4J1
+Il1QeJA=0_66HLH>DO2=eo3
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1523327944
+8//gaia/leesam/CPE 64/Lab #3/adder.v
+F//gaia/leesam/CPE 64/Lab #3/adder.v
+L0 1
+Z2 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z3 !s108 1523929842.000000
+!s107 //gaia/leesam/CPE 64/Lab #3/adder.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+//gaia/leesam/CPE 64/Lab #3|//gaia/leesam/CPE 64/Lab #3/adder.v|
+!i113 1
+Z4 o-vlog01compat -work work
+!s92 -vlog01compat -work work {+incdir+//gaia/leesam/CPE 64/Lab #3}
+Z5 tCvgOpt 0
+vComparatorTestBench
+!s110 1523929843
+!i10b 1
+!s100 Y88b3Wi4O33JeJ2j:T]Xb2
+II[^ocLe=ZDMD>1ZhciZi30
+R1
+R0
+w1523585956
+8C:/intelFPGA_lite/17.0/ComparatorTestBench.v
+FC:/intelFPGA_lite/17.0/ComparatorTestBench.v
+L0 2
+R2
+r1
+!s85 0
+31
+R3
+!s107 C:/intelFPGA_lite/17.0/ComparatorTestBench.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/17.0|C:/intelFPGA_lite/17.0/ComparatorTestBench.v|
+!i113 1
+R4
+!s92 -vlog01compat -work work +incdir+C:/intelFPGA_lite/17.0
+R5
+n@comparator@test@bench

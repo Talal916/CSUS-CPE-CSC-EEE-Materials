@@ -1,0 +1,8 @@
+module Lab2Part1B(in1, in2, out);
+	input in1, in2;
+	output out;
+	
+	wire in1, in2, out;
+	
+	nandg1(out, in1,in2);
+endmodule

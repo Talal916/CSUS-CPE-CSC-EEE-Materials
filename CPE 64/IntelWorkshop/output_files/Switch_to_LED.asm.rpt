@@ -1,0 +1,92 @@
+Assembler report for Switch_to_LED
+Fri Mar 02 14:05:59 2018
+Quartus Prime Version 17.0.1 Build 598 06/07/2017 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Assembler Summary
+  3. Assembler Settings
+  4. Assembler Generated Files
+  5. Assembler Device Options: C:/Users/leesam/Desktop/IntelWorkshop/output_files/Switch_to_LED.sof
+  6. Assembler Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++---------------------------------------------------------------+
+; Assembler Summary                                             ;
++-----------------------+---------------------------------------+
+; Assembler Status      ; Successful - Fri Mar 02 14:05:59 2018 ;
+; Revision Name         ; Switch_to_LED                         ;
+; Top-level Entity Name ; Switch_to_LED                         ;
+; Family                ; MAX 10                                ;
+; Device                ; 10M50DAF484C6GES                      ;
++-----------------------+---------------------------------------+
+
+
++----------------------------------+
+; Assembler Settings               ;
++--------+---------+---------------+
+; Option ; Setting ; Default Value ;
++--------+---------+---------------+
+
+
++----------------------------------------------------------------------+
+; Assembler Generated Files                                            ;
++----------------------------------------------------------------------+
+; File Name                                                            ;
++----------------------------------------------------------------------+
+; C:/Users/leesam/Desktop/IntelWorkshop/output_files/Switch_to_LED.sof ;
++----------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/leesam/Desktop/IntelWorkshop/output_files/Switch_to_LED.sof ;
++----------------+-------------------------------------------------------------------------------+
+; Option         ; Setting                                                                       ;
++----------------+-------------------------------------------------------------------------------+
+; JTAG usercode  ; 0x00270EA1                                                                    ;
+; Checksum       ; 0x00270EA1                                                                    ;
++----------------+-------------------------------------------------------------------------------+
+
+
++--------------------+
+; Assembler Messages ;
++--------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Assembler
+    Info: Version 17.0.1 Build 598 06/07/2017 SJ Lite Edition
+    Info: Processing started: Fri Mar 02 14:05:55 2018
+Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off Switch_to_LED -c Switch_to_LED
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (115031): Writing out detailed assembly data for power analysis
+Info (115030): Assembler is generating device programming files
+Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 571 megabytes
+    Info: Processing ended: Fri Mar 02 14:05:59 2018
+    Info: Elapsed time: 00:00:04
+    Info: Total CPU time (on all processors): 00:00:03
+
+

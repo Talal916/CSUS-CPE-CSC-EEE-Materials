@@ -1,0 +1,24 @@
+|Lab3
+in1 => and4.IN0
+in1 => or1.IN1
+in1 => and2.IN0
+in1 => and3.IN0
+in2 => and1.IN0
+in2 => and4.IN1
+in2 => and6.IN0
+in2 => and2.IN1
+in2 => and7.IN0
+in3 => and1.IN1
+in3 => and5.IN1
+in3 => and7.IN1
+in3 => and3.IN1
+in3 => and6.IN1
+in3 => out4.DATAIN
+in4 => out5.DATAIN
+out1 << or1.DB_MAX_OUTPUT_PORT_TYPE
+out2 << or3.DB_MAX_OUTPUT_PORT_TYPE
+out3 << or4.DB_MAX_OUTPUT_PORT_TYPE
+out4 << in3.DB_MAX_OUTPUT_PORT_TYPE
+out5 << in4.DB_MAX_OUTPUT_PORT_TYPE
+
+

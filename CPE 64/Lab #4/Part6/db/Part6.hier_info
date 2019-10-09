@@ -1,0 +1,28 @@
+|Part6
+clock => q7~reg0.CLK
+clock => q6~reg0.CLK
+clock => q5~reg0.CLK
+clock => q4~reg0.CLK
+clock => q3~reg0.CLK
+clock => q2~reg0.CLK
+clock => q1~reg0.CLK
+clock => q0~reg0.CLK
+i => q0~reg0.DATAIN
+reset => q7~reg0.ACLR
+reset => q6~reg0.ACLR
+reset => q5~reg0.ACLR
+reset => q4~reg0.ACLR
+reset => q3~reg0.ACLR
+reset => q2~reg0.ACLR
+reset => q1~reg0.ACLR
+reset => q0~reg0.ACLR
+q0 << q0~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q1 << q1~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q2 << q2~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q3 << q3~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q4 << q4~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q5 << q5~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q6 << q6~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q7 << q7~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
