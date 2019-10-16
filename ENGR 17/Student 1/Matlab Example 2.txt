@@ -1,0 +1,162 @@
+
+	This is a Classroom License for instructional use only.
+	Research and commercial use is prohibited.
+
+>> eqn1 = -5 + ((V1-V2)/(0-(j*8))) + ((V1-(0+(j*20)))/(0-(j*4))) == 0
+Undefined function or variable 'V1'.
+ 
+>> eqn1 = -5 + ((x-y)/(0-(j*8))) + ((x-(0+(j*20)))/(0-(j*4))) == 0
+Undefined function or variable 'x'.
+ 
+>> j = 1*i
+
+j =
+
+   0.0000 + 1.0000i
+
+>> eqn1 = -5 + ((V1-V2)/(0-(j*8))) + ((V1-(0+(j*20)))/(0-(j*4))) == 0
+Undefined function or variable 'V1'.
+ 
+>> eqn1 = -5 + ((V1-V2)/(0-(j*8))) + ((V1-(0+(j*20)))/(0-(j*4))) == 0
+Undefined function or variable 'V1'.
+ 
+>> syms V1 V2
+>> eqn1 = -5 + ((V1-V2)/(0-(j*8))) + ((V1-(0+(j*20)))/(0-(j*4))) == 0
+ 
+eqn1 =
+ 
+(V1*3i)/8 - (V2*1i)/8 == 0
+ 
+>> eqn2 = ((V2-V1)/(0-(j*8))) + (V2/(0 + (j*4))) + ((V2- (0+(j*20)))/(12) == 0
+ eqn2 = ((V2-V1)/(0-(j*8))) + (V2/(0 + (j*4))) + ((V2- (0+(j*20)))/(12) == 0
+                                                                            ↑
+Error: Expression or statement is incorrect--possibly unbalanced (, {, or [.
+ 
+Did you mean:
+>> eqn2 = ((V2-V1)/(0-(j*8))) + (V2/(0 + (j*4))) + ((V2- (0+(j*20)))/(12)) == 0
+ 
+eqn2 =
+ 
+- (V1*1i)/8 + V2*(1/12 - 1i/8) - 5i/3 == 0
+ 
+>> [A,B] = equationsToMatrix([eqn1, eqn2], [V1, V2])
+ 
+A =
+ 
+[  3i/8,       -1i/8]
+[ -1i/8, 1/12 - 1i/8]
+ 
+ 
+B =
+ 
+    0
+ 5i/3
+ 
+>> V1 = linsolve(A.B)
+Error using sym/subsref
+Too many output arguments.
+ 
+>> V1 = linsolve(A,B)
+ 
+V1 =
+ 
+ - 8/3 + 4i/3
+     - 8 + 4i
+ 
+>> V2 = linsolve(A,B)
+ 
+V2 =
+ 
+ - 8/3 + 4i/3
+     - 8 + 4i
+ 
+>> V1
+ 
+V1 =
+ 
+ - 8/3 + 4i/3
+     - 8 + 4i
+ 
+>> r = abs(V1);
+>> r
+ 
+r =
+ 
+ 80^(1/2)/3
+   80^(1/2)
+ 
+>> theta = angle (V1)
+ 
+theta =
+ 
+ pi - atan(1/2)
+ pi - atan(1/2)
+ 
+>> theta1 = atan2(imag(V1),real(V1))
+ 
+theta1 =
+ 
+ pi - atan(1/2)
+ pi - atan(1/2)
+ 
+>> clear
+>> j = 1*i
+
+j =
+
+   0.0000 + 1.0000i
+
+>> syms V0 V1
+>> eqn1 = ((V1 -(100+(j*0)))/(j*40)) + ((V1/40)) + ((V1-V0)/(60)) == 0
+ 
+eqn1 =
+ 
+- V0/60 + V1*(1/24 - 1i/40) + 5i/2 == 0
+ 
+>> eqn2 = ((V0-V1)/(60)) + (V0/(j*20)) == 0
+ 
+eqn2 =
+ 
+V0*(1/60 - 1i/20) - V1/60 == 0
+ 
+>> [A,B] = equationsToMatrix([eqn1, eqn2], [V0, V1])
+ 
+A =
+ 
+[        -1/60, 1/24 - 1i/40]
+[ 1/60 - 1i/20,        -1/60]
+ 
+ 
+B =
+ 
+ -5i/2
+     0
+ 
+>> V0 = linsolve(A,B)
+ 
+V0 =
+ 
+  15 + 5i
+ 30 - 40i
+ 
+>> V1 = linsolve(A,B)
+ 
+V1 =
+ 
+  15 + 5i
+ 30 - 40i
+ 
+>> r = abs(V0)
+ 
+r =
+ 
+ 250^(1/2)
+        50
+ 
+>> theta = angle (V0)
+ 
+theta =
+ 
+  atan(1/3)
+ -atan(4/3)
+ 
