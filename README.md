@@ -1,5 +1,5 @@
 # CSUS-CPE-CSC-EEE-Materials
-Homework, labs, tests for a variety of classes. Feel free to share. 
+Homework, labs, tests for a variety of classes at California State University Sacramento. Feel free to share. 
 
 CPE 166
 
