@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>The Movie Database | Interactive Design</title>
+
+      <!-- css files -->
+      <link
+         href="http://fonts.googleapis.com/css?family=Alegreya+Sans:300,400,700"
+         rel="stylesheet"
+         type="text/css"
+      />
+      <link
+         href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.6.6/jquery.fullPage.css"
+         rel="stylesheet"
+      />
+      <link href="static/css/main.css" rel="stylesheet" />
+
+      <link href="static/css/barchart.css" rel="stylesheet" />
+
+      <!--[if lt IE 9]>
+         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <![endif]-->
+   </head>
+   <body>
+      <script src="http://d3js.org/d3.v3.min.js"></script>
+      <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+
+      <div id="fullpage">
+         <section class="vertical-scrolling" id="intro">
+            <h2>The Movie Database</h2>
+            <h3>Interactive design with D3.</h3>
+            <br />
+            <h3>CSC196V-01</h3>
+            <h4>Justin Eugenio</h4>
+            <h4>Minquan Li</h4>
+
+            <div class="scroll-icon">
+               <p></p>
+               <a href="#secondSection/1" class="icon-up-open-big"></a>
+            </div>
+         </section>
+
+         <section class="vertical-scrolling" id="section1">
+            <h2>Interactive Design</h2>
+            <h3>Genre With Highest Release</h3>
+
+            <script src="static/js/barchart.js" type="text/javascript"></script>
+
+            <div class="wrapper">
+               <h4>
+                  We chose a interactive D3 template from bl.ocks.org. We
+                  incorporated our dataset with this
+                  <a
+                     id="link"
+                     href="http://bl.ocks.org/caged/6476579"
+                     target="_blank"
+                     >template</a
+                  >. It's a D3 bar chart with tooltips.
+               </h4>
+            </div>
+            <br />
+
+            <div class="wrapper">
+               <h4>
+                  For this group project, the work was split evenly. We created
+                  a repository on GitHub to share the work. The development
+                  process consisted of modifying the fullPage template as well
+                  as the D3 chart template. We pushed changes to repository. We
+                  also spent time researching additional interaction tools and
+                  techniques.
+               </h4>
+            </div>
+         </section>
+      </div>
+
+      <!-- js files -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.6.6/jquery.fullPage.min.js"></script>
+      <script src="static/js/main.js"></script>
+   </body>
+</html>
