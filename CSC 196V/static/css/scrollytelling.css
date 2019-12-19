@@ -1,0 +1,305 @@
+/* Fonts
+* --------------------------------------- */
+
+@font-face {
+   font-family: "Canela";
+   src: url("https://justinbrian.github.io/data-visualization/static/fonts/CanelaWeb-Light.ttf")
+      format("truetype");
+   font-weight: normal;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: "Atlas Grotesk Light";
+   src: url("https://justinbrian.github.io/data-visualization/static/fonts/AtlasGroteskWeb-Light.ttf")
+      format("truetype");
+   font-weight: normal;
+   font-style: normal;
+}
+
+/* Style for fullpage
+  * --------------------------------------- */
+#fp-nav ul li a span {
+   background: #1a1a1a;
+}
+
+#fp-nav ul li .fp-tooltip {
+   color: #1a1a1a;
+}
+
+body {
+   font-family: "Atlas Grotesk Light" !important;
+   color: #1a1a1a;
+}
+
+.background {
+   box-sizing: border-box;
+   width: 100%;
+   height: 100%;
+   background-image: url("https://justinbrian.github.io/data-visualization/static/img/intro.jpg");
+   border: 1px solid black;
+   background-size: 100% 100%;
+}
+
+/* Style for section headers
+  * --------------------------------------- */
+.intro h1 {
+   font-size: 5em;
+   font-family: "Canela", sans-serif;
+   font-weight: 100;
+   color: rgb(255, 255, 255);
+   margin: 0;
+   text-shadow: 2px 2px 4px #000000;
+}
+
+.intro h2 {
+   font-size: 0.9em;
+   font-family: Canela;
+   text-transform: uppercase;
+   color: rgb(255, 255, 255);
+   letter-spacing: 0.3em;
+   text-shadow: 2px 2px 4px #000000;
+}
+
+.header h1 {
+   font-size: 5em;
+   font-family: Canela;
+   font-weight: 100;
+   margin: 0;
+}
+
+.header h2 {
+   font-size: 0.9em;
+   font-family: Canela;
+   text-transform: uppercase;
+   letter-spacing: 0.3em;
+}
+
+#main-title {
+   font-size: 2em;
+}
+
+.header {
+   text-align: center;
+   padding-left: 0px;
+}
+
+.header p {
+   font-size: 2em;
+   font-weight: 100;
+}
+
+#main-title p {
+   font-size: 1em;
+}
+
+/* Style for section content
+  * --------------------------------------- */
+
+.content h1 {
+   font-size: 300%;
+   font-weight: 100;
+   font-family: Canela;
+}
+
+.content {
+   text-align: left;
+   padding-left: 100px;
+   padding-right: 100px;
+   font-weight: 400;
+}
+
+.content p {
+   font-size: 120%;
+   width: 80%;
+}
+
+/* For stats
+  * --------------------------------------- */
+
+div.header div.inner_content {
+   padding-top: 70px;
+   box-sizing: border-box;
+   width: 100%;
+   background-image: url("https://www.themoviedb.org/assets/2/v4/marketing/red_pipes-594140f35efb300741add9827cc4f41053b0a4bb7ba249a40375377cc9d22d47.svg");
+   background-position: center -250px;
+   background-repeat: no-repeat;
+   position: relative;
+   top: 0;
+   left: 0;
+   z-index: 2;
+}
+
+div.header div.inner_content div.content {
+   color: #fff;
+   padding: 20px 0 70px 0;
+   width: 800px;
+   margin: 0 auto;
+   text-align: center;
+}
+
+div.header div.inner_content div.content em {
+   font-style: normal;
+   border-bottom: 1px solid #d40242;
+}
+
+div.header div.inner_content div.content h2 {
+   height: 233px;
+   line-height: 233px;
+   font-family: "Shrikhand", cursive;
+   font-size: 10em;
+   font-weight: 400;
+   position: relative;
+   top: 0;
+   left: 0;
+}
+
+div.header div.inner_content div.content h3 {
+   font-size: 4em;
+   margin-top: 40px;
+   margin-bottom: 20px;
+   font-weight: 700;
+}
+
+div.header div.inner_content div.content h4 {
+   font-size: 2em;
+   margin-top: 70px;
+   margin-bottom: 40px;
+   font-weight: 700;
+}
+
+div.header div.inner_content img {
+   position: relative;
+   top: 0;
+   left: 0;
+   margin-top: -140px;
+   outline-style: hidden;
+}
+
+div.header div.inner_content div.content p {
+   margin: 0 auto;
+   text-align: center;
+   font-size: 1.2em;
+}
+
+div.header div.inner_content div.wrapper {
+   margin: 0 auto;
+   width: 100%;
+}
+
+div.header div.inner_content div.wrapper div {
+   width: 100%;
+   display: flex;
+   align-items: flex-start;
+   margin-bottom: 20px;
+}
+
+div.header div.inner_content div.wrapper div p {
+   text-align: left;
+   margin: 0;
+   width: 92vw;
+}
+
+div.header div.inner_content div.wrapper div > div {
+   color: #d40242;
+   font-weight: 700;
+   font-size: 4em;
+   line-height: 0.8em;
+   opacity: 0.7;
+   width: 8vw;
+}
+
+div.stats {
+   width: 100%;
+   padding: 64px 0;
+   background-color: #fff;
+}
+
+div.stats div.content {
+   width: 1000px;
+   margin: 0 auto;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+}
+
+div.stats div.content h2 {
+   font-size: 2em;
+   color: #0a1526;
+}
+
+div.stats div.content div.inner_stats {
+   display: flex;
+   flex-wrap: wrap;
+   width: 679px;
+   box-sizing: border-box;
+}
+
+div.stats div.content div.inner_stats div.stat {
+   min-width: 25%;
+   padding-right: 40px;
+   padding-bottom: 10px;
+   box-sizing: border-box;
+}
+
+div.stats div.content div.inner_stats div.stat p {
+   margin-bottom: 0;
+   font-weight: 300;
+}
+
+div.stats div.content div.inner_stats div.stat p:first-of-type {
+   color: #0a1526;
+   font-size: 1.6em;
+   font-weight: 600;
+}
+
+div.stats div.content div.inner_stats {
+   display: flex;
+   flex-wrap: wrap;
+   width: 679px;
+   box-sizing: border-box;
+}
+
+div.stats div.content div.inner_stats div.stat {
+   min-width: 25%;
+   padding-right: 40px;
+   padding-bottom: 10px;
+   box-sizing: border-box;
+}
+
+div.stats div.content div.inner_stats div.stat p {
+   margin-bottom: 0;
+   font-weight: 300;
+}
+
+div.stats div.content div.inner_stats div.stat p:first-of-type {
+   color: #0a1526;
+   font-size: 1.6em;
+   font-weight: 600;
+}
+
+/* For barchart.
+  * --------------------------------------- */
+
+/* For about links.
+------------------------------------------- */
+
+/* unvisited link */
+a:link {
+   color: rgb(53, 53, 53);
+}
+
+/* visited link */
+a:visited {
+   color: rgb(0, 0, 0);
+}
+
+/* mouse over link */
+a:hover {
+   color: rgb(0, 119, 10);
+}
+
+/* selected link */
+a:active {
+   color: rgb(0, 0, 0);
+}

@@ -1,0 +1,13 @@
+path {
+    fill: #ccc;
+    stroke: #333;
+    stroke-width: 1.5px;
+    transition: fill 250ms linear;
+    transition-delay: 150ms;
+}
+  
+path:hover {
+    fill: #999;
+    stroke: #000;
+    transition-delay: 0;
+}

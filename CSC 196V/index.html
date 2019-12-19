@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="shortcut icon" href="static/favicon.ico" />
+	<title>The Movie Database (TMDb)</title>
+
+	<!-- ************ FULL PAGE ************** -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="static/fullpage/jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="static/css/scrollytelling.css" />
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,100" rel="stylesheet">
+	<script type="text/javascript" src="static/fullpage/jquery.fullPage.min.js"></script>
+	<script type="text/javascript">
+		var headerColor = '#ddd',
+			contentColor = '#fff';
+
+		$(document).ready(function() {
+			$('#fullpage').fullpage({
+				anchors: ['title', 'tmdbBackground', 'currentTmdbStats', 'data', 'populargenres', 'moviereleasetrend', 'keywords', 'budgettrend', 'correlation', 'about'],
+				sectionsColor: [headerColor, contentColor, contentColor, headerColor, contentColor, contentColor, contentColor, contentColor, contentColor, contentColor, headerColor],
+				navigation: true,
+				navigationPosition: 'right',
+				navigationTooltips: ['Start', 'What is TMDb?', 'Current Stats', 'Analyzing the Data', 'Movie Release Trend', 'Popular Genres', 'Keywords', 'Budget Trend', 'Popularity vs. Profit', 'About']
+			});
+		});
+   </script>	
+   
+   <!-- Needs https for GitHub hosting. -->           
+   <script src="https://d3js.org/d3.v3.min.js"></script>
+   <script src="https://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+
+   <!-- ************ Top Genre Bar Chart ************** -->
+   <link href="static/css/barchart.css" rel="stylesheet" />
+
+   <!-- ************ Arcs ************** -->
+   <link href="static/css/arcs.css" rel="stylesheet" />
+
+   <!-- ************ Brush & Zoom ************** -->
+   <link href="static/css/brushandzoom.css" rel="stylesheet" />
+
+   <!--[if lt IE 9]>
+         <script src="httpss://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+   <![endif]-->
+
+</head>
+<body>
+	<div id="fullpage">
+		<div class="section background" id="section0">
+			<div class="header intro" id="main-title">
+				<h1>The Movie Database (TMDb)</h1>
+				<h2>Exploring through the lens of data</h2>
+			</div>
+		</div>
+
+		<div class="section" id="section1">
+		    <div class="content">
+				<h1>What is TMDb?</h1>
+				<p>The Movie Database (TMDb) is a community built movie and TV database. Every piece of data has</p>
+				<p>been added by their community dating back to 2008. TMDb's strong international focus and</p>
+            	<p>breadth of data is largely unmatched and something they're incredibly proud of. Put simply, they live</p>
+            	<p>and breathe community and that's precisely what makes them different.</p>
+			</div>
+		</div>
+
+		<div class="section" id="section2">
+			<div class="content">
+            <h1>Current Stats</h1>
+            <p>Here's a few that we found interesting. The TMDb doesn't only focus on movies. They also focus on</p> 
+			<p>other features of data. Movies continue to be more popular than TV shows.</p>
+            
+            <div class="stats">
+               <div class="content">
+                 <div class="inner_content">
+                   <div class="inner_stats">
+                     <div class="stat">
+                       <p>504,226</p>
+                       <p>Movies</p>
+                     </div>
+             
+                     <div class="stat">
+                       <p>86,876</p>
+                       <p>TV Shows</p>
+                     </div>
+             
+                     <div class="stat">
+                       <p>121,375</p>
+                       <p>TV Seasons</p>
+                     </div>
+             
+                     <div class="stat">
+                       <p>1,828,751</p>
+                       <p>TV Episodes</p>
+                     </div>
+             
+                     <div class="stat">
+                       <p>1,518,908</p>
+                       <p>People</p>
+                     </div>
+             
+                     <div class="stat">
+                       <p>2,560,128</p>
+                       <p>Images</p>
+                     </div>
+             
+                     <div class="stat">
+                       <p>220,934</p>
+                       <p>Edits Last Week</p>
+                     </div>
+                   </div>
+                 </div>
+             
+                 <img src="https://www.themoviedb.org/assets/2/v4/marketing/sheldon-1a29d9f7807771f061c5a3799a61ed2f0a84505553c70fc99719df02335d9746.png" width="321" height="379">
+               </div>
+             </div>
+
+			</div>
+		</div>
+
+		<div class="section" id="section3">
+			<div class="header">
+				<h1>Analyzing the Data</h1>
+			</div>
+	  </div>
+	  
+	  <div class="section" id="section6">
+		<div class="content">
+			<h1>Is there a trend throughout the years?</h1>
+			<p>The year of the movie has a correlation to the amount of movie release. The movies are getting easier to make, but that</p> 
+			<p>doesn't mean they are getting more profitable each year.</p>
+			
+			<div id="brushandzoom"><script src="static/js/brushandzoom.js" type="text/javascript"></script></div>
+		</div>
+	</div>
+
+		<div class="section" id="section4">
+			<div class="content">
+				<h1>Which genre is most popular?</h1>
+				<p>This is bar chart showing the current top movie genres with highest to lowest release. Each movie is tagged with a genre, and the genre</p>
+				<p>with the most release is what people like to watch the most. As you hover over each bar there is an annotation that shows the amount of releases.</p>
+				
+				<div id="barchart">
+					<script src="static/js/barchart.js" type="text/javascript"></script>
+				</div>
+            
+         </div>
+		</div>
+
+		
+
+		<div class="section" id="section7">
+			<div class="content">
+				<h1>What are the most searched keywords?</h1>
+				<p>A visual showing a word cloud of all searched keywords for all the movies. The word cloud shows what the most popular keywords by</p> 
+				<p>the word size. People are obviously interested in "woman director based on novel biography murder film".</p>
+				
+				<img src="static/img/keywords.png" width="900"></img>
+			</div>
+		</div>
+
+		<div class="section" id="section8">
+			<div class="content">
+				<h1>What is the budget throughout the years?</h1>
+				<p>The average budget of the movies gets higher and higher over the years. It means that movies cost more money to make. However,</p> 
+				<p>there is a drop in budget in around 2008. It could mean that the movie is getting easier to make as technology advances.</p>
+				
+				<img src="static/img/yearvsbudget.png"></img>
+			</div>
+		</div>
+
+		<div class="section" id="section9">
+			<div class="content">
+				<h1>Is there correlation between popularity and profit?</h1>
+				<p>It makes sense that a popular movie makes more profit and the graph is showing a positive slope which supports the theory.</p> 
+				<p>However, it is not always the case. You can see there are many movies that are less popular and still making a lot of profit.</p> 
+				<p>There are also less popular movies make more profits than the more popular ones.</p>
+				
+				<img src="static/img/popularityvsprofit.png"></img>
+			</div>
+		</div>
+
+		<div class="section" id="section10">
+			<div class="content">
+				<h1>About this project</h1>
+				<p>Our names are Justin Eugenio, and Minquan Li.</p>
+				<p>This was a final project for the first undergraduate data visualization course at CSUS, <a href="https://www.coursicle.com/csus/courses/CSC/196V/">CSC 196V</a>.</p>
+				<p>Special thanks to our professor <a href="https://www.ecs.csus.edu/csc/people/baynes/">Anna Baynes</a>.</p>
+				<p>The Movie Database (TMDb) <a href="https://www.kaggle.com/juzershakir/tmdb-movies-dataset">dataset</a> from Kaggle has data on 10k+ movies from 1960-2015. Dataset features include popularity, budget, revenue, title, cast, homepage, director, overview, runtime, genres, production_companies, release_date, vote_count, and release_year.</p>
+				</br>
+				<iframe width="608" height="378" src="https://www.youtube.com/embed/cXV-whT-WF8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>
