@@ -1,0 +1,37 @@
+------------------------------------------------------------------
+Homework 12: Functions
+
+Problem 1 Comments
+------------------------------------------------------------------
+
+(1) After compiling and running the program. I observed that it's
+    calculating f(x,y,z) and returning z. The function f is has
+    a return variable that is taking the sin of x * y. z is adding
+    1.0 to retval. 
+
+(2) I changed the variable type to int for z and c. Also, to float
+    for x and y. The error was that it cannot bind non-const lvalue
+    reference of type 'double&' to an rvalue of type 'double' 
+    c = f(x, y, z);
+
+(3) I've changed the function call to c = f(1, 2, 3). I've added
+    integers instead. The error I got was x and y are being stated
+    as unused variables. The error that stated about not being
+    able to bind non-const lvalue reference of type 'double&'
+    to an rvalue of type 'double' c = (1, 2, 3); still pops
+    up.
+
+(4) The original output of the program is:
+       f(x,y,z) = 0.479426
+       z = 1.47943
+
+    By changing the function declaration to double z changed
+    the output as:
+        f(x,y,z) = 0.479426
+        z = 6.95333e-310
+
+    &z means we're passing in a reference-to-double to the
+    function. It accepts arguments by reference. 
+    z = retval + 1.0 is being passed. Changing the function
+    declaration to double z removes this feature. Therefore,
+    it leads to changing the z output.

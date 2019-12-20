@@ -1,0 +1,21 @@
+(2) Nothing happens when you change the type of x and y in main 
+    (at least if it's still a number type).
+    C++ automatically converts number types into each other as needed.
+	If the new type is int, the result of the calculation will change 
+	when the program is run.
+
+(3) If x and/or y is replaced by a number when calling the function, 
+     nothing happens (other than a warning that the replaced variable is 
+	 declared but unused.
+	 If variable z is replaced by a number, we instead get an error message!
+	 In f, z is a reference to a variable, so we have to pass a variable. Literals 
+	 don't have memory addresses.
+
+(4) If we change the argument declaration for z (in f) to "double z" instead
+    of "double& z", we now get a warning when compiling that z is used 
+	uninitialized (and indeed the printed value is a random, very small number).
+	This is because a copy of z is now passed to the function and that copy
+	is modified in f, leaving the variable in main unchanged (and uninitialized
+	as the warning says.)
+	Note that we can now pass a number for z, though.
+  
