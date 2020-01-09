@@ -1,0 +1,9 @@
+8
+Noddy Dwarf 4
+Legolas Elf 77
+Minerva Fairy 33
+Samwise Hobbit 24
+Merry Hobbit 29
+Warhammer Dwarf 87
+Ernedyll Elf 19
+Frodo Hobbit 18
