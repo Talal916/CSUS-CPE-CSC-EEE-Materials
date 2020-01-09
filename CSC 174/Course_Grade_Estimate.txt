@@ -1,0 +1,29 @@
+CSc 174 - Course_Grade_Estimate - as of 12/6/2011
+-------------------------------------------------
+
+This grade estimate is your final course grade, unless you take the
+final Quiz, and await the grade adjustment.
+
+SacSt ID	Est
+(last 4		Final
+digits)		Grade
+-------		-----
+0690		B+
+2315		B+
+2909		B-
+3146		A
+3462		A
+4188		A-
+4429		B+
+5182		A
+5473		A-
+6604		A
+7961		A-
+7994		B-
+8128		A-
+8137		A-
+9075		C
+9088		A
+9658		B
+9813		A-
+

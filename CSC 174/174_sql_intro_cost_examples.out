@@ -1,0 +1,195 @@
+SQL> 
+SQL> show user
+USER is "SYS"
+SQL> 
+SQL> -- Clear buffer caches (normally DBAs should NOT do this)
+SQL> -- Done to measure SQL statement costs withoout effects from other user tr
+SQL> 
+SQL> -- xkey is the PK of mitchell.X, and there is an Idyn index on PK column
+SQL> -- X is a very simple 2-column table with 20 million rows
+SQL> desc mitchell.x
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ XKEY                                      NOT NULL NUMBER(38)
+ STR_CONST                                          CHAR(60)
+
+SQL> 
+SQL> -- The instructor-written flush_ora_memory.sql utility clears all DB buffer cache
+SQL> -- as well as shard SQL areas; this completely re-sets, that is, clears any memory
+SQL> --  resident data/index/DD info; this means that a SELECT following such a flush must
+SQL> --   read EVERYTHING needed to process the query from disk
+SQL> @flush_ora_memory.sql
+SQL> -- Filename flush_ora_memory.sql
+SQL> -- Reset buffer cache and shared pool content
+SQL> -- Usage  Must be SYS to execute this script
+SQL> --      Post Condition - Session remains connected
+SQL> 
+SQL> set timing on
+SQL> 
+SQL> alter system flush buffer_cache;
+
+System altered.
+
+Elapsed: 00:00:02.54
+SQL> 
+SQL> alter system flush shared_pool;
+
+System altered.
+
+Elapsed: 00:00:00.41
+SQL> 
+SQL> -- An 1-r retrieval:
+SQL> -- THe result had to wait for all initializing index and data block reads from disk
+SQL> select * from mitchell.x where xkey = 13876225;
+
+      XKEY STR_CONST                                                            
+---------- ------------------------------------------------------------         
+  13876225 ABCDEFGHIJKLMNOPRSTUWXabcdefghijklmnoprstuwx01234556789              
+
+Elapsed: 00:00:01.64
+SQL> 
+SQL> @flush_ora_memory.sql
+SQL> -- Filename flush_ora_memory.sql
+SQL> -- Reset buffer cache and shared pool content
+SQL> -- Usage  Must be SYS to execute this script
+SQL> --      Post Condition - Session remains connected
+SQL> 
+SQL> set timing on
+SQL> 
+SQL> alter system flush buffer_cache;
+
+System altered.
+
+Elapsed: 00:00:00.03
+SQL> 
+SQL> alter system flush shared_pool;
+
+System altered.
+
+Elapsed: 00:00:00.07
+SQL> 
+SQL> -- A range query for 1000 rows that forces access to the 1000 rows
+SQL> -- i.e. the index alone cannot be used to solve this query because values of a non-key
+SQL> --  column must be read from data blocks
+SQL> select count (distinct str_const) from mitchell.x
+  2  where xkey between 5000000 and 5001000;
+
+COUNT(DISTINCTSTR_CONST)                                                        
+------------------------                                                        
+                       2                                                        
+
+Elapsed: 00:00:01.59
+SQL> 
+SQL> -- Finally compare scanning for 2 different purposes:
+SQL> -- 1) Force a scan where all rows are retrieved vs. 2) count the rows
+SQL> -- 2) can be solved simply by scanning the PK index, and this is relatively much
+SQL> --    faster than a table scan
+SQL> --   (a PK index is usually much smaller than its table)
+SQL> @flush_ora_memory.sql
+SQL> -- Filename flush_ora_memory.sql
+SQL> -- Reset buffer cache and shared pool content
+SQL> -- Usage  Must be SYS to execute this script
+SQL> --      Post Condition - Session remains connected
+SQL> 
+SQL> set timing on
+SQL> 
+SQL> alter system flush buffer_cache;
+
+System altered.
+
+Elapsed: 00:00:00.07
+SQL> 
+SQL> alter system flush shared_pool;
+
+System altered.
+
+Elapsed: 00:00:00.07
+SQL> 
+SQL> select count (str_const) from mitchell.x;
+
+COUNT(STR_CONST)                                                                
+----------------                                                                
+        20000001                                                                
+
+Elapsed: 00:00:51.87
+SQL> @flush_ora_memory.sql
+SQL> -- Filename flush_ora_memory.sql
+SQL> -- Reset buffer cache and shared pool content
+SQL> -- Usage  Must be SYS to execute this script
+SQL> --      Post Condition - Session remains connected
+SQL> 
+SQL> set timing on
+SQL> 
+SQL> alter system flush buffer_cache;
+
+System altered.
+
+Elapsed: 00:00:00.78
+SQL> 
+SQL> alter system flush shared_pool;
+
+System altered.
+
+Elapsed: 00:00:00.12
+SQL> 
+SQL> select count (*) from mitchell.x;
+
+  COUNT(*)                                                                      
+----------                                                                      
+  20000001                                                                      
+
+Elapsed: 00:00:01.60
+SQL> 
+SQL> -- These last 2 comparisons are absolute/stand-alone, and NOT representative of the
+SQL> -- influence that caching would have in a normal runtime situation, so
+SQL> -- lastly, do NOT clear the caches, and re-run the 2 examples AND an additional 1-r
+SQL> --  retreival given the PK
+SQL> -- This will demonstrate the huge benefits of shared SQL structures that get cached as
+SQL> --  DB processing goes on normally (WITHOUT buffer flushing)
+SQL> -- TO REPEAT, the DBA would NEVER do cache flushinng on a production DB instance;
+SQL> --  The experiments done here should be run on a test instance of the DB that does not
+SQL> --  interfere with normal production work
+SQL> 
+SQL> -- Force read of all rows
+SQL> select count (str_const) from mitchell.x;
+
+COUNT(STR_CONST)                                                                
+----------------                                                                
+        20000001                                                                
+
+Elapsed: 00:00:50.76
+SQL> -- count the rows - Oracle can do this by a full scan of the PK index - very fast
+SQL> select count (*) from mitchell.x;
+
+  COUNT(*)                                                                      
+----------                                                                      
+  20000001                                                                      
+
+Elapsed: 00:00:00.00
+SQL> -- A 1-r retrieval, in which Oracle is 1) aware that the PK index exists and 2) the
+SQL> --  query processor is configured to automatically optimize the query and develop the
+SQL> --  least cost access to the data; in this case, the ROWID of the target row is found in
+SQL> --   an index leaf nodel and the target row is directly read from physical address =
+SQL> --   the r's ROWID = the database file + block within the file + row offset within the block
+SQL> select * from mitchell.x where xkey = 3908338;
+
+      XKEY STR_CONST                                                            
+---------- ------------------------------------------------------------         
+   3908338 ABCDEFGHIJKLMNOPRSTUWXabcdefghijklmnoprstuwx01234556789              
+
+Elapsed: 00:00:00.02
+SQL> -- Finally, for thsoe who are curious, let's repeat the last query, but also get the r's
+SQL> -- ROWID::
+SQL> select ROWID, xkey, str_const from mitchell.x where xkey = 3908338;
+
+ROWID                    XKEY                                                   
+------------------ ----------                                                   
+STR_CONST                                                                       
+------------------------------------------------------------                    
+AAAPNzAAJAACFm2AAZ    3908338                                                   
+ABCDEFGHIJKLMNOPRSTUWXabcdefghijklmnoprstuwx01234556789                         
+                                                                                
+
+Elapsed: 00:00:00.03
+SQL> 
+SQL> spool OFF
