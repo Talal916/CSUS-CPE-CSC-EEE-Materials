@@ -1,0 +1,56 @@
+#  Copy to  ./GDB159.RC
+#  Also, 
+#  Your DLI must be downloaded *before* running GDB with flash.
+#
+#  Set this non-zero to display packets to/from target.
+## set remotedebug 1
+set remotebaud 38400
+target remote /dev/ttyS0
+
+#  Height of "0" means do not paginate output.
+set height 0
+set output-radix 0x10
+
+#  Note there is a trailing space on the next line.
+set prompt GDB386> 
+
+#  Set a temporary break at main.  It will disappear once hit.
+tbreak main
+
+define run
+echo run: Not allowed under GDB386 use "cont" instead.
+end
+
+#-------------------------------------------------
+define reason
+silent
+printf "CPU vector 0x%x, code 0x%x\n", gdb_i386vector, _gdb_i386errcode
+end
+document reason
+Prints the Intr vector and error code from CPU (stored by GDB stub).
+end
+
+#-------------------------------------------------
+define auto
+info locals
+end
+document auto
+Display function local ("auto" storage class) vars.
+end
+
+#-------------------------------------------------
+define DISABLE
+set $ps = $ps & ~(1 << 9)
+end
+document DISABLE
+Turns off interrupts in EFlags register.
+end
+
+#-------------------------------------------------
+#  This puts control at main()
+cont
+
+#-------------------------------------------------
+#   You may add addition commands below here.
+#-------------------------------------------------
+

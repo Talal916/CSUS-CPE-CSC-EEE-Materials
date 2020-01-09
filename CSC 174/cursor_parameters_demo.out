@@ -1,0 +1,45 @@
+SQL> -- Usage: Prior to execution of this code, get department number by substitution variable
+SQL> -- Exercise: there is a bug in this code involving substitution variables - do you see it?
+SQL> -- Enable DBMS_OUTPUT package results display
+SQL> set serveroutput ON
+SQL> 
+SQL> -- The cursor's query all employees who work for dept specified by input
+SQL> DECLARE
+  2  CURSOR employee_cur (dept_id  e.dno%TYPE) IS
+  3  	     SELECT *
+  4  	     FROM e
+  5  	     WHERE dept_id = dno;
+  6  
+  7  employee_rec    employee_cur%ROWTYPE;
+  8  dept_num	     e.dno%type;
+  9  
+ 10  BEGIN
+ 11  -- For each result row of the cursor, display selected employee name and salary
+ 12  	     OPEN employee_cur (&&dnum);
+ 13  	      DBMS_OUTPUT.PUT_LINE('Name and salary of employes in Dept: ' || dept_num);
+ 14  	     FETCH employee_cur into employee_rec;
+ 15  		     WHILE employee_cur%FOUND LOOP
+ 16  		     DBMS_OUTPUT.PUT_LINE
+ 17  		     (employee_rec.lname || ',' || employee_rec.fname ||
+ 18  		     'makes ' || TO_CHAR(employee_rec.salary));
+ 19  		     FETCH employee_cur into employee_rec;
+ 20  		     END LOOP;
+ 21  	     CLOSE employee_cur;
+ 22  END;
+ 23  /
+Enter value for dnum: 5
+old  12: 	OPEN employee_cur (&&dnum);
+new  12: 	OPEN employee_cur (5);
+Name and salary of employes in Dept:                                                                                                                            
+Wong           ,Franklin       makes 40000                                                                                                                      
+English        ,Joyce          makes 25000                                                                                                                      
+Narayan        ,Ramesh         makes 38000                                                                                                                      
+Smith          ,John           makes 30000                                                                                                                      
+
+PL/SQL procedure successfully completed.
+
+Elapsed: 00:00:00.07
+SQL> show errors
+No errors.
+SQL> 
+SQL> spool off
