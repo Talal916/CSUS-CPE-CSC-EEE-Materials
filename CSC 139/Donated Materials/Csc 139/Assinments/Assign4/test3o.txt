@@ -1,0 +1,38 @@
+FIFO
+Page 1 loaded into frame 0
+Page 2 loaded into frame 1
+Page 1 already in frame 0
+Page 2 already in frame 1
+Page 1 unloaded from Frame 0, Page 3 loaded into Frame 0
+Page 3 already in frame 0
+Page 2 already in frame 1
+Page 3 already in frame 0
+Page 2 unloaded from Frame 1, Page 1 loaded into Frame 1
+Page 3 unloaded from Frame 0, Page 2 loaded into Frame 0
+5 page faults
+
+Optimal
+Page 1 loaded into frame 0
+Page 2 loaded into frame 1
+Page 1 already in frame 0
+Page 2 already in frame 1
+Page 1 unloaded from frame 0, Page 3 loaded into Frame 0
+Page 3 already in frame 0
+Page 2 already in frame 1
+Page 3 already in frame 0
+Page 3 unloaded from frame 0, Page 1 loaded into Frame 0
+Page 2 already in frame 1
+4 page faults
+
+LRU
+Page 1 loaded into frame 0
+Page 2 loaded into frame 1
+Page 1 already in frame 0
+Page 2 already in frame 1
+Page 1 unloaded from frame 0, Page 3 loaded into Frame 0
+Page 3 already in frame 0
+Page 2 already in frame 1
+Page 3 already in frame 0
+Page 2 unloaded from frame 1, Page 1 loaded into Frame 1
+Page 3 unloaded from frame 0, Page 2 loaded into Frame 0
+5 page faults
