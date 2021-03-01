@@ -5,7 +5,9 @@ Please DM me on Instagram/Twitter/LinkedIn if you have material and you'd like t
 Alternatively, feel free to make a pull request if you know how!
 
 https://www.instagram.com/talal916
+
 https://www.twitter.com/talal916
+
 https://www.linkedin.com/in/talal916
 
 CPE 166
