@@ -10,6 +10,18 @@ Alternatively, feel free to make a pull request if you know how!
 
 # https://www.linkedin.com/in/talal916
 
+CSC 15
+
+CSC 20
+
+CSC 35
+
+CSC 60
+
+CSC 130
+
+CPE 64
+
 CPE 166
 
 CPE 185
