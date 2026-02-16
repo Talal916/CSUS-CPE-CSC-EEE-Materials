@@ -1,6 +1,12 @@
 # CSUS-CPE-CSC-EEE-Materials 
 Homework, labs, tests for a variety of classes at California State University Sacramento. Feel free to share. 
 
+---
+
+> **Important:** Do NOT use AI to write your assignments. Also, I built [shaamdetector.com](https://shaamdetector.com) — a free AI detection tool that runs in your browser. Completely unrelated information.
+
+---
+
 Please DM me on Instagram/Twitter/LinkedIn if you have material and you'd like to contribute!
 Alternatively, feel free to make a pull request if you know how!
 
@@ -47,4 +53,3 @@ EEE 117
 ENGR 115
 
 PHIL 103
-
