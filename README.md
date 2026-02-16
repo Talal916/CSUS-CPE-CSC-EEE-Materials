@@ -1,5 +1,6 @@
-# CSUS-CPE-CSC-EEE-Materials 
-Homework, labs, tests for a variety of classes at California State University Sacramento. Feel free to share. 
+# CSUS-CPE-CSC-EEE-Materials
+
+Homework, labs, tests for a variety of classes at California State University Sacramento. Feel free to share.
 
 ---
 
@@ -7,49 +8,53 @@ Homework, labs, tests for a variety of classes at California State University Sa
 
 ---
 
-Please DM me on Instagram/Twitter/LinkedIn if you have material and you'd like to contribute!
-Alternatively, feel free to make a pull request if you know how!
+## Contributing
 
-# https://www.instagram.com/talal916
+Have material you'd like to add? DM me or open a pull request!
 
-# https://www.twitter.com/talal916
+[![Instagram](https://img.shields.io/badge/Instagram-talal916-E4405F?logo=instagram&logoColor=white)](https://www.instagram.com/talal916)
+[![Twitter](https://img.shields.io/badge/Twitter-talal916-1DA1F2?logo=twitter&logoColor=white)](https://www.twitter.com/talal916)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-talal916-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/talal916)
 
-# https://www.linkedin.com/in/talal916
+---
 
-CSC 15
+## Available Courses
 
-CSC 20
+### Computer Science (CSC)
 
-CSC 35
+| Course | Description |
+|--------|-------------|
+| CSC 15 | Programming Concepts and Methodology I |
+| CSC 20 | Programming Concepts and Methodology II |
+| CSC 35 | Introduction to Computer Architecture |
+| CSC 60 | Introduction to Systems Programming in UNIX |
+| CSC 130 | Data Structures and Algorithm Analysis |
+| CSC 131 | Computer Software Engineering |
+| CSC 133 | Object-Oriented Computer Graphics Programming |
+| CSC 134 | Database Management Systems |
+| CSC 135 | Computing Theory and Programming Languages |
+| CSC 137 | Computer Organization |
+| CSC 138 | Computer Networking Fundamentals |
+| CSC 177 | Data Analytics and Mining |
 
-CSC 60
+### Computer Engineering (CPE)
 
-CSC 130
+| Course | Description |
+|--------|-------------|
+| CPE 64 | Introduction to Logic Design |
+| CPE 166 | Microprocessor System Design |
+| CPE 185 | Microcontroller Systems |
+| CPE 186 | Computer Interfacing |
 
-CPE 64
+### Electrical & Electronic Engineering (EEE)
 
-CPE 166
+| Course | Description |
+|--------|-------------|
+| EEE 117 | Electromagnetic Fields & Waves |
 
-CPE 185
+### Other
 
-CPE 186
-
-CSC 131
-
-CSC 133
-
-CSC 134
-
-CSC 135
-
-CSC 137
-
-CSC 138
-
-CSC 177
-
-EEE 117
-
-ENGR 115
-
-PHIL 103
+| Course | Description |
+|--------|-------------|
+| ENGR 115 | Technical Writing for Engineers |
+| PHIL 103 | Logic and Critical Thinking |
